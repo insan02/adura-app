@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Adura App</string>
+    <string name="logo_adura">Logo Adura</string>
+    <string name="username">Nama Pengguna</string>
+    <string name="password">Kata sandi</string>
+    <string name="login">Masuk</string>
+</resources>
