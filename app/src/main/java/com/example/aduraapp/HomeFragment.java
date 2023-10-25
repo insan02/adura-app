@@ -3,10 +3,17 @@ package com.example.aduraapp;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.aduraapp.adapters.MenuAdapter;
+import com.example.aduraapp.models.Menu;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +21,8 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
+
+    private RecyclerView rvMenu;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +68,38 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        rvMenu = view.findViewById(R.id.rv_menu);
+        // Initialize and set the RecyclerView's layout manager and adapter here
+        MenuAdapter adapter = new MenuAdapter(getMenu());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
+        rvMenu.setLayoutManager(layoutManager);
+        rvMenu.setAdapter(adapter);
+        return view;
+    }
+
+    private ArrayList<Menu> getMenu() {
+        ArrayList<Menu> listMenu = new ArrayList<>();
+
+        // Add sample menu items; replace with your actual data
+        listMenu.add(new Menu(
+                null,
+                "Panduan"
+        ));
+        listMenu.add(new Menu(
+                null,
+                "Medis"
+        ));
+        listMenu.add(new Menu(
+                null,
+                "Keamanan"
+        ));
+        listMenu.add(new Menu(
+                null,
+                "Kebakaran"
+        ));
+        // Add more menu items as needed
+
+        return listMenu;
     }
 }
