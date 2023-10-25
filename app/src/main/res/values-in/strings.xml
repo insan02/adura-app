@@ -7,4 +7,7 @@
     <string name="confirmpassword">Konfirmasi Kata sandi</string>
     <string name="login">Masuk</string>
     <string name="register">Daftar</string>
+    <string name="kebakaran">
+Kebakaran
+</string>
 </resources>
