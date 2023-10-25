@@ -19,7 +19,7 @@
         android:contentDescription="@string/logo_adura" />
 
     <TextView
-        android:id="@+id/textLogin"
+        android:id="@+id/textRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -43,7 +43,7 @@
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageLogo"
-        app:layout_constraintTop_toBottomOf="@+id/textLogin"
+        app:layout_constraintTop_toBottomOf="@+id/textRegister"
         app:startIconDrawable="@drawable/ic_username">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -53,7 +53,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textLayoutPassword"
+        android:id="@+id/textLayoutConfirmPassword"
         android:layout_width="361dp"
         android:layout_height="65dp"
         android:layout_marginTop="16dp"
@@ -82,8 +82,8 @@
         android:text="@string/login"
         android:textColor="#000000"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textLayoutPassword"
-        app:layout_constraintStart_toStartOf="@+id/textLayoutPassword"
-        app:layout_constraintTop_toBottomOf="@+id/textLayoutPassword" />
+        app:layout_constraintEnd_toEndOf="@+id/textLayoutConfirmPassword"
+        app:layout_constraintStart_toStartOf="@+id/textLayoutConfirmPassword"
+        app:layout_constraintTop_toBottomOf="@+id/textLayoutConfirmPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

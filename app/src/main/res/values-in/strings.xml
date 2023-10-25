@@ -4,5 +4,7 @@
     <string name="logo_adura">Logo Adura</string>
     <string name="username">Nama Pengguna</string>
     <string name="password">Kata sandi</string>
+    <string name="confirmpassword">Konfirmasi Kata sandi</string>
     <string name="login">Masuk</string>
+    <string name="register">Daftar</string>
 </resources>

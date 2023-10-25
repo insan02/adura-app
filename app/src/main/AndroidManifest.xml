@@ -19,7 +19,6 @@
                 android:name="android.app.lin.name"
                 android:value="true" >
             </meta-data>
-
         </activity>
         <activity
             android:name=".MainActivity"
@@ -29,6 +28,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="true">
+        </activity>
+
     </application>
 
 </manifest>

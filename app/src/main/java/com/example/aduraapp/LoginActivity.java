@@ -1,5 +1,6 @@
 package com.example.aduraapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,11 +12,13 @@ import com.example.aduraapp.databinding.ActivityLoginBinding;
 import com.example.aduraapp.databinding.ActivityMainBinding;
 import com.google.android.material.textfield.TextInputEditText;
 
+
 public class LoginActivity extends AppCompatActivity {
 
     TextInputEditText editUsername, editPassword;
 
     private ActivityLoginBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +34,11 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-
     public void onButtonLoginClicked(View view) {
         //explicit intent
         String username = binding.editUsername.getText().toString();
         String password = binding.editPassword.getText().toString();
+
 
         if(password.equals("123")){
             Intent mainIntent = new Intent(this, MainActivity.class);
@@ -46,5 +49,10 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Kombinasi Username dan Password Anda Salah!", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    public void onButtonRegisterClicked(View view){
+        Intent registerIntent = new Intent(getApplicationContext(), RegisterActivity.class);
+        startActivity(registerIntent);
     }
 }
