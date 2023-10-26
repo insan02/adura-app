@@ -7,7 +7,7 @@ public class kebakarancreateactivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mediscreate);
+        setContentView(R.layout.activity_kebakarancreate);
 
     }
 }
