@@ -19,11 +19,9 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView rvMenu;
 
-
     public HomeFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,9 +37,14 @@ public class HomeFragment extends Fragment {
                     startActivity(medisIntent);
                 }
                 if (menu.getNamaMenu().equals("Kebakaran")) {
-                    Intent medisIntent = new Intent(requireContext(), kebakarancreateactivity.class);
-                    medisIntent.putExtra("Nama_Menu", menu.getNamaMenu());
-                    startActivity(medisIntent);
+                    Intent kebakaranIntent = new Intent(requireContext(), kebakarancreateactivity.class);
+                    kebakaranIntent.putExtra("Nama_Menu", menu.getNamaMenu());
+                    startActivity(kebakaranIntent);
+                }
+                if (menu.getNamaMenu().equals("Keamanan")) {
+                    Intent keamananIntent = new Intent(requireContext(), KeamananCreateActivity.class);
+                    keamananIntent.putExtra("Nama_Menu", menu.getNamaMenu());
+                    startActivity(keamananIntent);
                 }
             }
         });
