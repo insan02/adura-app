@@ -10,9 +10,8 @@
         android:id="@+id/topmedis"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginBottom="651dp"
         android:background="@drawable/bg_topmedis"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +57,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.139" />
 
+
+    <ImageView
+        android:id="@+id/upload"
+        android:layout_width="51dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.961"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:srcCompat="@drawable/ic_upload" />
+
     <View
         android:id="@+id/tempatfoto"
         android:layout_width="282dp"
@@ -68,18 +80,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topmedis"
-        app:layout_constraintVertical_bias="0.068" />
-
-    <ImageView
-        android:id="@+id/upload"
-        android:layout_width="51dp"
-        android:layout_height="39dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tempatfoto"
-        app:layout_constraintEnd_toEndOf="@+id/tempatfoto"
-        app:layout_constraintStart_toStartOf="@+id/tempatfoto"
-        app:layout_constraintTop_toTopOf="@+id/tempatfoto"
-        app:layout_constraintVertical_bias="0.469"
-        app:srcCompat="@drawable/ic_upload" />
+        app:layout_constraintVertical_bias="0.085" />
 
     <TextView
         android:id="@+id/textView3"

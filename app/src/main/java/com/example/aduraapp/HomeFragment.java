@@ -1,17 +1,14 @@
 package com.example.aduraapp;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.aduraapp.adapters.MenuAdapter;
 import com.example.aduraapp.models.Menu;
@@ -36,9 +33,16 @@ public class HomeFragment extends Fragment {
         MenuAdapter adapter = new MenuAdapter(getMenu(), new MenuAdapter.ItemMenuClickListener() {
             @Override
             public void onItemMenuClick(Menu menu) {
-                Intent createIntent = new Intent(requireContext(), MenuCreateActivity.class);
-                createIntent.putExtra("Nama_Menu", menu.getNamaMenu());
-                startActivity(createIntent);
+                if (menu.getNamaMenu().equals("Medis")) {
+                    Intent medisIntent = new Intent(requireContext(), MedisCreateActivity.class);
+                    medisIntent.putExtra("Nama_Menu", menu.getNamaMenu());
+                    startActivity(medisIntent);
+                }
+                if (menu.getNamaMenu().equals("Kebakaran")) {
+                    Intent medisIntent = new Intent(requireContext(), kebakarancreateactivity.class);
+                    medisIntent.putExtra("Nama_Menu", menu.getNamaMenu());
+                    startActivity(medisIntent);
+                }
             }
         });
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());

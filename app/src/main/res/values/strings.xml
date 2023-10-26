@@ -15,5 +15,6 @@
     <string name="keterangan">Explanation</string>
     <string name="simpan">Saved</string>
     <string name="kirim">Send</string>
+    <string name="editmedis">Edit Medic</string>
 
 </resources>

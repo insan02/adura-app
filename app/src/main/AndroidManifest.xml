@@ -34,6 +34,12 @@
         <activity
             android:name=".RegisterActivity"
             android:exported="true"></activity>
+        <activity
+            android:name=".MedisCreateActivity"
+            android:exported="true"></activity>
+        <activity
+        android:name=".kebakarancreateactivity"
+        android:exported="true"></activity>
     </application>
 
 </manifest>
