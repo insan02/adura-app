@@ -34,9 +34,44 @@
             android:textAppearance="@style/kebakaran"
             android:gravity="center">
            </TextView>
-
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/heading1"
+        android:layout_width="194dp"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="56dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="31dp"
+        android:text="@string/unggah_foto"
+        android:textAppearance="@style/unggah_foto"
+        app:layout_constraintTop_toBottomOf="@id/rectangle_7"
+        app:layout_constraintStart_toStartOf="parent">
+    </TextView>
+    <RelativeLayout
+        android:layout_width="282dp"
+        android:layout_height="99dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="55dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/rectangle_2"
+        app:layout_constraintTop_toBottomOf="@id/heading1"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:layout_width="76dp"
+            android:layout_height="70dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="102dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="14dp"
+            android:layout_marginEnd="102dp"
+            android:src="@drawable/__icon__cloud_download_"></ImageView>
+    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
