@@ -21,7 +21,7 @@ import com.example.aduraapp.models.Menu;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MenuAdapter.ItemMenuClickListener{
 
     private RecyclerView rvMenu;
 
@@ -39,14 +39,11 @@ public class MainActivity extends AppCompatActivity {
 
         rvMenu = findViewById(R.id.rv_menu);
         if (rvMenu != null) {
-            // Initialize and set the RecyclerView's layout manager and adapter
             MenuAdapter adapter = new MenuAdapter(getMenu());
+            adapter.setListener(this);
             LinearLayoutManager layoutManager = new LinearLayoutManager(this);
             rvMenu.setLayoutManager(layoutManager);
             rvMenu.setAdapter(adapter);
-        } else {
-            // Handle the case where the RecyclerView is not found in the layout
-            Toast.makeText(this, "RecyclerView not found in the layout", Toast.LENGTH_SHORT).show();
         }
 
         replaceFragment(new HomeFragment());
@@ -101,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
+    @Override
+    public void onItemMenuClick(Menu menu) {
+        Toast.makeText(this, "Buat Laporan" + menu.getNamaMenu(), Toast.LENGTH_SHORT).show();
+    }
 }

@@ -8,17 +8,16 @@
 
     <TextView
         android:id="@+id/textGreeting"
-        android:layout_width="159dp"
-        android:layout_height="60dp"
+        android:layout_width="169dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="100dp"
+        android:fontFamily="serif"
         android:text="Hello, username"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.063"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.086" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

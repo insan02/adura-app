@@ -18,14 +18,26 @@
             android:id="@+id/rv_menu"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="300dp"
+            android:layout_marginTop="330dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.043"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.364"
+            app:layout_constraintVertical_bias="1.0"
             tools:listitem="@layout/item_menu" />
+
+        <ImageView
+            android:id="@+id/imageLogoAdura"
+            android:layout_width="111dp"
+            android:layout_height="94dp"
+            app:layout_constraintBottom_toTopOf="@+id/rv_menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.019"
+            app:srcCompat="@drawable/logo_adura" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
