@@ -16,5 +16,7 @@
     <string name="simpan">Saved</string>
     <string name="kirim">Send</string>
     <string name="editmedis">Edit Medic</string>
+    <string name="edit">Edit</string>
+    <string name="hapus">Delete</string>
 
 </resources>

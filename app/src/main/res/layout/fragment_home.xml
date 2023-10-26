@@ -37,7 +37,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.019"
+            app:layout_constraintVertical_bias="0.165"
             app:srcCompat="@drawable/logo_adura" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
