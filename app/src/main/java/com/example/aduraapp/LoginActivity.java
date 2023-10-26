@@ -1,15 +1,13 @@
 package com.example.aduraapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.aduraapp.databinding.ActivityLoginBinding;
-import com.example.aduraapp.databinding.ActivityMainBinding;
 import com.google.android.material.textfield.TextInputEditText;
 
 

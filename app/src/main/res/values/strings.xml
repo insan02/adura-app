@@ -6,4 +6,6 @@
     <string name="confirmpassword">Confirm Password</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="medis">Medic</string>
+    <string name="fotobukti">Upload Photo Evidence</string>
 </resources>
