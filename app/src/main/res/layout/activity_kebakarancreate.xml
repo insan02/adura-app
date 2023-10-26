@@ -200,7 +200,7 @@
     <EditText
         android:id="@+id/editTextTextMultiLine"
         android:layout_width="301dp"
-        android:layout_height="34dp"
+        android:layout_height="48dp"
         android:layout_marginTop="4dp"
         android:ems="18"
         android:gravity="start|top"
