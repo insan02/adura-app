@@ -39,7 +39,6 @@ public class HomeFragment extends Fragment {
                 Intent createIntent = new Intent(requireContext(), MenuCreateActivity.class);
                 createIntent.putExtra("Nama_Menu", menu.getNamaMenu());
                 startActivity(createIntent);
-
             }
         });
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
