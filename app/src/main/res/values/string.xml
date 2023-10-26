@@ -3,4 +3,16 @@
      <string name="unggah_foto">
 Unggah Foto Bukti Laporan
 </string>
+     <string name="nama_pelapor">
+Nama Pelapor
+</string>
+     <string name="nomor_hp_pelapor">
+Nomor HP Pelapor
+     </string>
+     <string name="tanggal_kej">
+Tanggal Kejadian
+     </string>
+     <string name="lokasi_kej">
+Lokasi Kejadian
+     </string>
 </resources>
