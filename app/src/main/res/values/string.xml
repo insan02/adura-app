@@ -15,4 +15,7 @@ Tanggal Kejadian
      <string name="lokasi_kej">
 Lokasi Kejadian
      </string>
+     <string name="keterangan">
+Keterangan
+     </string>
 </resources>
