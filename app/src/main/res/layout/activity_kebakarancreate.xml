@@ -171,5 +171,25 @@
         app:layout_constraintTop_toBottomOf="@id/lokasi_kej">
 
     </EditText>
+    
+    <TextView
+        android:id="@+id/keterangan"
+        android:layout_width="121dp"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="5dp"
+        android:gravity="top"
+        android:text="@string/keterangan"
+        android:textAppearance="@style/keterangan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/kolomlokasikejadian">
+
+    </TextView>
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
