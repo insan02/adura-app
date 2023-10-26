@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -44,7 +45,7 @@
         android:layout_marginLeft="56dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="5dp"
-        android:text="@string/unggah_foto"
+        android:text="@string/fotobukti"
         android:textAppearance="@style/unggah_foto"
         app:layout_constraintTop_toBottomOf="@id/bg_top_keamanan"
         app:layout_constraintStart_toStartOf="parent">
@@ -83,7 +84,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="56dp"
         android:layout_marginTop="5dp"
-        android:text="@string/nama_pelapor"
+        android:text="@string/pelapor"
         android:textAppearance="@style/nama_pelapo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/uploadbukti" />
@@ -92,10 +93,11 @@
         android:id="@+id/kolomnamapelapor"
         android:layout_width="305dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/nama_pelapor"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="56dp"
-        ></EditText>
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nama_pelapor"
+        tools:ignore="SpeakableTextPresentCheck"></EditText>
 
     <TextView
         android:id="@+id/nomor_hp_pelapor"
@@ -105,7 +107,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="56dp"
         android:layout_marginTop="5dp"
-        android:text="@string/nomor_hp_pelapor"
+        android:text="@string/hp"
         android:textAppearance="@style/nomor_hp_pe"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/kolomnamapelapor" />
@@ -114,9 +116,11 @@
         android:id="@+id/kolomnomorpelapor"
         android:layout_width="305dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/nomor_hp_pelapor"
+        android:layout_marginStart="56dp"
+        android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="56dp">
+        app:layout_constraintTop_toBottomOf="@id/nomor_hp_pelapor"
+        tools:ignore="SpeakableTextPresentCheck">
 
     </EditText>
 
@@ -129,7 +133,7 @@
         android:layout_marginStart="56dp"
         android:layout_marginTop="5dp"
         android:gravity="top"
-        android:text="@string/tanggal_kej"
+        android:text="@string/tanggal"
         android:textAppearance="@style/tanggal_kej"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/kolomnomorpelapor">
@@ -142,8 +146,10 @@
         android:layout_width="305dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
+        android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tanggal_kej">
+        app:layout_constraintTop_toBottomOf="@id/tanggal_kej"
+        tools:ignore="SpeakableTextPresentCheck">
 
     </EditText>
 
@@ -156,19 +162,22 @@
         android:layout_marginStart="56dp"
         android:layout_marginTop="5dp"
         android:gravity="top"
-        android:text="@string/lokasi_kej"
+        android:text="@string/lokasi"
         android:textAppearance="@style/lokasi_keja"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/kolomtanggalkejadian">
 
     </TextView>
+
     <EditText
         android:id="@+id/kolomlokasikejadian"
         android:layout_width="305dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
+        android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lokasi_kej">
+        app:layout_constraintTop_toBottomOf="@id/lokasi_kej"
+        tools:ignore="SpeakableTextPresentCheck">
 
     </EditText>
     
@@ -188,6 +197,31 @@
 
     </TextView>
 
+    <EditText
+        android:id="@+id/editTextTextMultiLine"
+        android:layout_width="301dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="4dp"
+        android:ems="18"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/keterangan"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corner_kirimsimpan"
+        android:text="@string/kirim"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
 
 
 
