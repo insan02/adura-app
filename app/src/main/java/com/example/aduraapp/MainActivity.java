@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +13,17 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.aduraapp.adapters.MenuAdapter;
 import com.example.aduraapp.databinding.ActivityMainBinding;
+import com.example.aduraapp.models.Menu;
 
-public class MainActivity extends AppCompatActivity {
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements MenuAdapter.ItemMenuClickListener{
+
+    private RecyclerView rvMenu;
 
     private boolean isLoggedIn = false;
 //    TextView textGreeting;
@@ -23,11 +33,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
- //       setContentView(R.layout.activity_main);
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        rvMenu = findViewById(R.id.rv_menu);
+        if (rvMenu != null) {
+            MenuAdapter adapter = new MenuAdapter(getMenu());
+            adapter.setListener(this);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+            rvMenu.setLayoutManager(layoutManager);
+            rvMenu.setAdapter(adapter);
+        }
+
         replaceFragment(new HomeFragment());
 
         Intent mainIntent = getIntent();
@@ -66,4 +84,22 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+    public ArrayList<Menu> getMenu(){
+        ArrayList<Menu> listMenu = new ArrayList<>();
+        listMenu.add(new Menu(
+                null,
+                "Panduan"
+        ));
+        listMenu.add(new Menu(
+                null,
+                "Medis"
+        ));
+        return listMenu;
+    }
+
+
+    @Override
+    public void onItemMenuClick(Menu menu) {
+        Toast.makeText(this, "Buat Laporan" + menu.getNamaMenu(), Toast.LENGTH_SHORT).show();
+    }
 }

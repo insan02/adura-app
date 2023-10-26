@@ -13,26 +13,27 @@
         android:theme="@style/Theme.AduraApp"
         tools:targetApi="31">
         <activity
+            android:name=".MenuCreateActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lin.name"
-                android:value="true" >
-            </meta-data>
+                android:value="true"></meta-data>
         </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".RegisterActivity"
-            android:exported="true">
-        </activity>
-
+            android:exported="true"></activity>
     </application>
 
 </manifest>

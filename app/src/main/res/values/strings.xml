@@ -8,4 +8,12 @@
     <string name="register">Register</string>
     <string name="medis">Medic</string>
     <string name="fotobukti">Upload Photo Evidence</string>
+    <string name="pelapor">Name</string>
+    <string name="hp">Phone Number</string>
+    <string name="tanggal">Date of Incident</string>
+    <string name="lokasi">Incident Location</string>
+    <string name="keterangan">Explanation</string>
+    <string name="simpan">Saved</string>
+    <string name="kirim">Send</string>
+
 </resources>
