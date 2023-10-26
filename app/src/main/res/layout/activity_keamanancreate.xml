@@ -44,7 +44,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="20dp"
         android:text="@string/unggah_foto"
         android:textAppearance="@style/unggah_foto"
         android:textStyle="bold"
@@ -53,11 +53,11 @@
 
     <RelativeLayout
         android:id="@+id/uploadbukti"
-        android:layout_width="283dp"
-        android:layout_height="137dp"
+        android:layout_width="285dp"
+        android:layout_height="108dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/rectangle_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,9 +69,9 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginLeft="105dp"
-            android:layout_marginTop="39dp"
-            android:layout_marginEnd="102dp"
+            android:layout_marginLeft="106dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="103dp"
             android:layout_marginBottom="14dp"
             android:src="@drawable/__icon__cloud_download_"></ImageView>
 
@@ -94,11 +94,12 @@
     <EditText
         android:id="@+id/kolomnamapelapor"
         android:layout_width="350dp"
-        android:layout_height="46dp"
+        android:layout_height="48dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
         android:hint="Nama Pelapor"
         android:minHeight="48dp"
+        android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nama_pelapor"></EditText>
 
@@ -124,6 +125,7 @@
         android:layout_marginTop="4dp"
         android:hint="Nomor HP Pelapor"
         android:minHeight="48dp"
+        android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nomor_hp_pelapor">
 
@@ -155,27 +157,12 @@
         android:layout_marginTop="4dp"
         android:hint="Tanggal Kejadian"
         android:minHeight="48dp"
+        android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tanggal_kej">
 
     </EditText>
 
-    <TextView
-        android:id="@+id/lokasi_kej"
-        android:layout_width="121dp"
-        android:layout_height="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="12dp"
-        android:gravity="top"
-        android:text="@string/lokasi_kej"
-        android:textAppearance="@style/lokasi_keja"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/kolomtanggalkejadian">
-
-    </TextView>
 
     <EditText
         android:id="@+id/kolomlokasikejadian"
@@ -185,21 +172,61 @@
         android:layout_marginTop="4dp"
         android:hint="Lokasi Kejadian"
         android:minHeight="48dp"
+        android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lokasi_kej"></EditText>
+
+    <TextView
+        android:id="@+id/lokasi_kej"
+        android:layout_width="121dp"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:gravity="top"
+        android:text="@string/lokasi_kej"
+        android:textAppearance="@style/lokasi_keja"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/kolomtanggalkejadian">
+
+    </TextView>
 
     <Button
         android:id="@+id/button"
         android:layout_width="137dp"
-        android:layout_height="44dp"
+        android:layout_height="48dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/corner"
         android:text="Kirim"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kolomlokasikejadian"
-        app:layout_constraintVertical_bias="0.526" />
+        app:layout_constraintTop_toBottomOf="@+id/kolomketerangan" />
+
+    <TextView
+        android:id="@+id/keterangan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="Keterangan"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kolomlokasikejadian" />
+
+    <EditText
+        android:id="@+id/kolomketerangan"
+        android:layout_width="350dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:ems="10"
+        android:hint="Keterangan"
+        android:inputType="text"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/keterangan" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
