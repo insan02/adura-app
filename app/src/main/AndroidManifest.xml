@@ -43,9 +43,6 @@
         <activity
             android:name=".KeamananCreateActivity"
             android:exported="false" />
-        <activity
-            android:name=".MedisDetailRiwayatActivity"
-            android:exported="false" />
     </application>
 
 </manifest>
