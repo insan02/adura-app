@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MedisCreateActivity">
+    tools:context=".MedisEditActivity">
 
     <View
         android:id="@+id/topmedis"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@drawable/bg_topmedis"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        android:layout_marginBottom="651dp"
+        android:background="@drawable/topkebakaran"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +35,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/medis"
+        android:text="@string/editmedis"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,39 +49,36 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:text="@string/fotobukti"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintHorizontal_bias="0.071"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.139" />
+        app:layout_constraintTop_toBottomOf="@+id/topmedis" />
 
 
     <View
         android:id="@+id/tempatfoto"
         android:layout_width="282dp"
         android:layout_height="99dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/tempatfoto"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.364"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topmedis"
-        app:layout_constraintVertical_bias="0.085" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <ImageView
         android:id="@+id/upload"
         android:layout_width="51dp"
         android:layout_height="39dp"
-        android:layout_marginTop="36dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        android:layout_marginTop="64dp"
+        android:elevation="2dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.023"
         app:srcCompat="@drawable/ic_upload" />
 
     <TextView
@@ -228,12 +226,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/corner_kirimsimpan"
-        android:text="@string/kirim"
+        android:text="@string/simpan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine"
-        android:onClick="SendData"/>
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

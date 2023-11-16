@@ -1,7 +1,9 @@
 package com.example.aduraapp;
 
+import android.content.Intent;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 
 public class MedisCreateActivity extends Activity {
     @Override
@@ -9,5 +11,9 @@ public class MedisCreateActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mediscreate);
 
+    }
+    public void SendData(View view) {
+        Intent intent = new Intent(this, MedisDetailRiwayatActivity.class);
+        startActivity(intent);
     }
 }
