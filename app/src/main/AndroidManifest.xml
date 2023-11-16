@@ -13,6 +13,9 @@
         android:theme="@style/Theme.AduraApp"
         tools:targetApi="31">
         <activity
+            android:name=".KeamananRiwayatActivity"
+            android:exported="false" />
+        <activity
             android:name=".MenuCreateActivity"
             android:exported="false" />
         <activity
@@ -42,6 +45,9 @@
             android:exported="true" />
         <activity
             android:name=".KeamananCreateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".KeamananRiwayatActivity"
             android:exported="false" />
     </application>
 

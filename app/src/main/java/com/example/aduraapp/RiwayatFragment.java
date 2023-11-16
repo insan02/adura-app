@@ -1,5 +1,6 @@
 package com.example.aduraapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,9 +29,19 @@ public class RiwayatFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_riwayat, container, false);
         rvMenu = view.findViewById(R.id.rv_menu);
+
         TextView textRiwayat = view.findViewById(R.id.textRiwayat);
         textRiwayat.setText("Riwayat Laporan Anda");
-        MenuAdapter adapter = new MenuAdapter(getMenu());
+        MenuAdapter adapter = new MenuAdapter(getMenu(), new MenuAdapter.ItemMenuClickListener() {
+            @Override
+            public void onItemMenuClick(Menu menu) {
+                if (menu.getNamaMenu().equals("Keamanan")) {
+                    Intent keamananIntent = new Intent(requireContext(), KeamananRiwayatActivity.class);
+                    keamananIntent.putExtra("Nama_Menu", menu.getNamaMenu());
+                    startActivity(keamananIntent);
+                }
+            }
+        });
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
         rvMenu.setLayoutManager(layoutManager);
         rvMenu.setAdapter(adapter);

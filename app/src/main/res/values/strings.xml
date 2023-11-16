@@ -18,5 +18,11 @@
     <string name="editmedis">Edit Medic</string>
     <string name="edit">Edit</string>
     <string name="hapus">Delete</string>
+    <string name="unggah_foto">Unggah Foto</string>
+    <string name="nama_pelapor">Nama Pelapor</string>
+    <string name="nomor_hp_pelapor">Nomor HP</string>
+    <string name="tanggal_kej">Tanggal Kejadian</string>
+    <string name="lokasi_kej">Lokasi Kejadian</string>
+    <string name="riwayatkeamanan">Riwayat Keamanan</string>
 
 </resources>

@@ -4,7 +4,7 @@ public class Menu {
     String gambar;
     String namaMenu;
 
-    public Menu(){}
+    public Menu(int ic_keamanan, String keamanan){}
 
     public Menu(String gambar, String namaMenu) {
         this.gambar = gambar;
