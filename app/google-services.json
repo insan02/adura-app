@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "392005103715",
+    "project_id": "adura-app-21e3b",
+    "storage_bucket": "adura-app-21e3b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:392005103715:android:1e3179810b03e0e38e0856",
+        "android_client_info": {
+          "package_name": "com.example.aduraapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD39_-i0SJfHpH3OB3nTLcC2rUdQ6qrt10"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
