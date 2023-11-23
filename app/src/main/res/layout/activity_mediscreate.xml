@@ -5,44 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MedisCreateActivity">
-
-    <View
+    <RelativeLayout
         android:id="@+id/topmedis"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
         android:background="@drawable/bg_topmedis"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="51dp"
-        android:layout_height="39dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/topmedis"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toStartOf="@+id/topmedis"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
-        app:srcCompat="@drawable/vector" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="51dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="18dp"
+            android:clickable="true"
+            android:onClick="onBackPressed"
+            android:src="@drawable/vector"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/medis"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/topmedis"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.036"
-        android:textSize="20sp"
-        app:lineHeight="24sp" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="101dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="182dp"
+            android:layout_marginBottom="25dp"
+            android:layout_toEndOf="@+id/imageView"
+            android:text="@string/medis"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:lineHeight="24sp" />
+    </RelativeLayout>
+
 
     <TextView
         android:id="@+id/textView2"

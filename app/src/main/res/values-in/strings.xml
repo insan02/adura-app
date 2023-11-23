@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Adura App</string>
     <string name="logo_adura">Logo Adura</string>
-    <string name="username">Nama Pengguna</string>
+    <string name="email">Email</string>
     <string name="password">Kata sandi</string>
     <string name="confirmpassword">Konfirmasi Kata sandi</string>
     <string name="login">Masuk</string>

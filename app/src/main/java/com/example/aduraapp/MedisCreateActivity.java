@@ -12,6 +12,10 @@ public class MedisCreateActivity extends Activity {
         setContentView(R.layout.activity_mediscreate);
 
     }
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
     public void SendData(View view) {
         Intent intent = new Intent(this, MedisDetailRiwayatActivity.class);
         startActivity(intent);
