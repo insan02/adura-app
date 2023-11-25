@@ -59,22 +59,21 @@ public class HomeFragment extends Fragment {
 
         // Add sample menu items; replace with your actual data
         listMenu.add(new Menu(
-                null,
+                R.drawable.ic_buku,
                 "Panduan"
         ));
         listMenu.add(new Menu(
-                null,
+                R.drawable.ic_medis,
                 "Medis"
         ));
         listMenu.add(new Menu(
-                null,
+                R.drawable.ic_keamanan,
                 "Keamanan"
         ));
         listMenu.add(new Menu(
-                null,
+                R.drawable.ic_kebakaran,
                 "Kebakaran"
         ));
-        // Add more menu items as needed
 
         return listMenu;
     }

@@ -46,10 +46,13 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
     @Override
     public void onBindViewHolder(@NonNull MenuViewHolder holder, int position) {
         Menu menu = listMenu.get(position);
-        holder.imageMenu.setImageResource(R.drawable.ic_buku);
-        holder.textNamaMenu.setText(menu.getNamaMenu());
 
+        int gambarId = menu.getGambarId();
+        holder.imageMenu.setImageResource(gambarId);
+
+        holder.textNamaMenu.setText(menu.getNamaMenu());
     }
+
 
     @Override
     public int getItemCount() {

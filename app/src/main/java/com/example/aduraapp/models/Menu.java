@@ -1,21 +1,20 @@
 package com.example.aduraapp.models;
 
 public class Menu {
-    String gambar;
+    int gambarId;
     String namaMenu;
 
-    public Menu(int ic_keamanan, String keamanan){}
-
-    public Menu(String gambar, String namaMenu) {
-        this.gambar = gambar;
+    public Menu(int gambarId, String namaMenu) {
+        this.gambarId = gambarId;
         this.namaMenu = namaMenu;
     }
-    public String getGambar() {
-        return gambar;
+
+    public int getGambarId() {
+        return gambarId;
     }
 
-    public void setGambar(String gambar) {
-        this.gambar = gambar;
+    public void setGambarId(int gambarId) {
+        this.gambarId = gambarId;
     }
 
     public String getNamaMenu() {

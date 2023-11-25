@@ -87,11 +87,11 @@ public class MainActivity extends AppCompatActivity implements MenuAdapter.ItemM
     public ArrayList<Menu> getMenu(){
         ArrayList<Menu> listMenu = new ArrayList<>();
         listMenu.add(new Menu(
-                null,
+                R.drawable.ic_keamanan,
                 "Panduan"
         ));
         listMenu.add(new Menu(
-                null,
+                R.drawable.ic_keamanan,
                 "Medis"
         ));
         return listMenu;

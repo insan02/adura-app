@@ -52,16 +52,16 @@ public class RiwayatFragment extends Fragment {
         ArrayList<Menu> listMenu = new ArrayList<>();
 
         listMenu.add(new Menu(
-                null,
+                R.drawable.ic_medis,
                 "Medis"
 
         ));
         listMenu.add(new Menu(
-                null,
+                R.drawable.ic_keamanan,
                 "Keamanan"
         ));
         listMenu.add(new Menu(
-                null,
+                R.drawable.ic_kebakaran,
                 "Kebakaran"
         ));
         // Add more menu items as needed
