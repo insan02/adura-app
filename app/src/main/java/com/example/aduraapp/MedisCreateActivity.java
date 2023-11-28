@@ -12,7 +12,7 @@ public class MedisCreateActivity extends Activity {
         setContentView(R.layout.activity_mediscreate);
 
     }
-    public void onBackPressed() {
+    public void onBackPressed(View view) {
         super.onBackPressed();
         finish();
     }
