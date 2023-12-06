@@ -36,7 +36,7 @@ public class RiwayatFragment extends Fragment {
             @Override
             public void onItemMenuClick(Menu menu) {
                 if (menu.getNamaMenu().equals("Keamanan")) {
-                    Intent keamananIntent = new Intent(requireContext(), KeamananRiwayatActivity.class);
+                    Intent keamananIntent = new Intent(requireContext(), KeamananRiwayatList.class);
                     keamananIntent.putExtra("Nama_Menu", menu.getNamaMenu());
                     startActivity(keamananIntent);
                 }

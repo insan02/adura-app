@@ -25,7 +25,8 @@
             android:layout_marginTop="20dp"
             android:clickable="true"
             android:onClick="onBackPressed"
-            android:src="@drawable/vector"></ImageView>
+            android:src="@drawable/vector"
+            tools:ignore="TouchTargetSizeCheck"></ImageView>
 
         <TextView
             android:layout_width="101dp"
@@ -55,8 +56,8 @@
 
     <RelativeLayout
         android:id="@+id/uploadbukti"
-        android:layout_width="285dp"
-        android:layout_height="108dp"
+        android:layout_width="200dp"
+        android:layout_height="105dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="8dp"
@@ -66,16 +67,28 @@
         app:layout_constraintTop_toBottomOf="@id/heading1">
 
         <ImageView
-            android:layout_width="76dp"
-            android:layout_height="70dp"
+            android:id="@+id/selectImagebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="57dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginLeft="106dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="103dp"
+            android:layout_marginLeft="62dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="62dp"
             android:layout_marginBottom="14dp"
             android:src="@drawable/__icon__cloud_download_"></ImageView>
+
+        <ImageView
+            android:id="@+id/uploadImageView"
+            android:layout_width="281dp"
+            android:layout_height="match_parent"
+            android:layout_alignStart="@+id/selectImagebtn"
+            android:layout_alignEnd="@+id/selectImagebtn"
+            android:layout_marginStart="-106dp"
+            android:layout_marginEnd="-99dp"
+            android:visibility="gone"
+            tools:src="@tools:sample/avatars" />
 
     </RelativeLayout>
 
@@ -88,7 +101,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
         android:text="@string/nama_pelapor"
-        android:textAppearance="@style/nama_pelapo"
+        android:textAppearance="@style/nama_pelapor"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/uploadbukti" />
@@ -157,7 +170,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
-        android:hint="Tanggal Kejadian"
+        android:hint="DD-MM-YYYY"
         android:minHeight="48dp"
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -196,7 +209,7 @@
     </TextView>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnkirim"
         android:layout_width="137dp"
         android:layout_height="48dp"
         android:layout_marginBottom="16dp"

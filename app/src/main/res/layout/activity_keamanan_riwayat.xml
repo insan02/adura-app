@@ -26,12 +26,12 @@
             android:src="@drawable/vector"></ImageView>
 
         <TextView
-            android:layout_width="101dp"
-            android:layout_height="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="155dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="22dp"
             android:gravity="center"
             android:text="@string/riwayatkeamanan"
             android:textAppearance="@style/riwayatkeamanan"></TextView>

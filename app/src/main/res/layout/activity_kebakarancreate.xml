@@ -85,7 +85,7 @@
         android:layout_marginStart="56dp"
         android:layout_marginTop="5dp"
         android:text="@string/pelapor"
-        android:textAppearance="@style/nama_pelapo"
+        android:textAppearance="@style/nama_pelapor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/uploadbukti" />
 
@@ -213,7 +213,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_kirim"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/corner_kirimsimpan"

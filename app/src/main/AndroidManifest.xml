@@ -17,6 +17,9 @@
         android:theme="@style/Theme.AduraApp"
         tools:targetApi="31">
         <activity
+            android:name=".KeamananRiwayatList"
+            android:exported="false" />
+        <activity
             android:name=".MedisRiwayatActivity"
             android:exported="false" />
         <activity
