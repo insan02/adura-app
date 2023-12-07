@@ -141,6 +141,7 @@
         android:hint="Nomor HP Pelapor"
         android:minHeight="48dp"
         android:textSize="13sp"
+        android:inputType="phone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nomor_hp_pelapor">
 

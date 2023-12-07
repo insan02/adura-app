@@ -142,7 +142,7 @@ public class MedisCreateActivity extends Activity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, 100);
     }
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 100 && data != null && data.getData() != null) {
@@ -150,13 +150,16 @@ public class MedisCreateActivity extends Activity {
 
             ImageView uploadImageView = findViewById(R.id.selectImagebtn);
 
+            // Simpan parameter tata letak yang ada
+            originalParams = (RelativeLayout.LayoutParams) uploadImageView.getLayoutParams();
+
             uploadImageView.setImageURI(imageUri);
 
             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
                     RelativeLayout.LayoutParams.WRAP_CONTENT,
                     RelativeLayout.LayoutParams.WRAP_CONTENT
             );
-            layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);  // Pusatkan gambar di RelativeLayout
+            layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
             uploadImageView.setLayoutParams(layoutParams);
         }
     }

@@ -9,6 +9,8 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.aduraapp.adapters.KeamananListAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,7 +23,7 @@ public class KeamananRiwayatList extends AppCompatActivity {
 
     RecyclerView recyclerView;
     DatabaseReference database;
-    KeamananListAdapter KeamananListAdapter;
+    KeamananListAdapter keamananListAdapter;
     ArrayList<KeamananRiwayat> list;
 
     @Override
@@ -30,24 +32,29 @@ public class KeamananRiwayatList extends AppCompatActivity {
         setContentView(R.layout.activity_keamanan_riwayat_list);
 
         recyclerView = findViewById(R.id.KeamananRiwayatList);
-        database = FirebaseDatabase.getInstance().getReference("Laporan_keamanan");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        KeamananListAdapter = new KeamananListAdapter(this,list);
-        recyclerView.setAdapter(KeamananListAdapter);
+        keamananListAdapter = new KeamananListAdapter(this, list);
+        recyclerView.setAdapter(keamananListAdapter);
 
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                list.clear(); // Clear the list before adding new data
+        // Get the currently logged-in user
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            // Use the user's ID to query the database for their security reports
+            String userId = currentUser.getUid();
+            database = FirebaseDatabase.getInstance().getReference("Laporan_keamanan").child(userId);
 
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Log.d("Tag", "DataSnapshot: " + dataSnapshot.toString());
+            database.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    list.clear(); // Clear the list before adding new data
 
-                    for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-                        KeamananRiwayat keamananRiwayat = childSnapshot.getValue(KeamananRiwayat.class);
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Log.d("Tag", "DataSnapshot: " + dataSnapshot.toString());
+
+                        KeamananRiwayat keamananRiwayat = dataSnapshot.getValue(KeamananRiwayat.class);
 
                         if (keamananRiwayat != null) {
                             // Log data for debugging
@@ -59,15 +66,15 @@ public class KeamananRiwayatList extends AppCompatActivity {
                             Log.e("Tag", "KeamananRiwayat is null");
                         }
                     }
+                    keamananListAdapter.notifyDataSetChanged();
                 }
-                KeamananListAdapter.notifyDataSetChanged();
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Handle error, e.g., log or display a message to the user
-                Log.e("Tag", "Error: " + error.getMessage());
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    // Handle error, e.g., log or display a message to the user
+                    Log.e("Tag", "Error: " + error.getMessage());
+                }
+            });
+        }
     }
 }

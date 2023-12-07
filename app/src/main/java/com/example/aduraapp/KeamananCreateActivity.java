@@ -11,6 +11,7 @@ import android.widget.Toast;
 import android.net.Uri;
 
 import com.example.aduraapp.databinding.ActivityKeamanancreateBinding;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.annotations.Nullable;
@@ -24,7 +25,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -74,17 +74,12 @@ public class KeamananCreateActivity extends Activity {
                 kolomlokasikejadian = binding.kolomlokasikejadian.getText() != null ? binding.kolomlokasikejadian.getText().toString() : "";
                 kolomketerangan = binding.kolomketerangan.getText() != null ? binding.kolomketerangan.getText().toString() : "";
 
+                String idUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 if (kolomnamapelapor.isEmpty() || kolomnomorpelapor.isEmpty() || kolomtanggalkejadian.isEmpty() || kolomlokasikejadian.isEmpty() || kolomketerangan.isEmpty() || imageUri == null) {
                     // Tampilkan notifikasi untuk mengisi semua kolom dan memilih gambar
                     Toast.makeText(KeamananCreateActivity.this, "Harap isi semua data", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    // Validasi kolomnomorpelapor harus diisi dengan angka
-                    if (!isNumeric(kolomnomorpelapor)) {
-                        // Tampilkan notifikasi untuk meminta pengguna mengisi dengan angka
-                        Toast.makeText(KeamananCreateActivity.this, "Kolom Nomor Pelapor harus diisi dengan angka", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
                     // Validasi format tanggal
                     if (!isValidDate(kolomtanggalkejadian)) {
                         // Tampilkan notifikasi untuk meminta pengguna menyesuaikan format tanggal
@@ -97,7 +92,7 @@ public class KeamananCreateActivity extends Activity {
                     reference = db.getReference("Laporan_keamanan");
 
                     // Query untuk mendapatkan jumlah entri yang ada
-                    reference.child(kolomnamapelapor).addListenerForSingleValueEvent(new ValueEventListener() {
+                    reference.child(idUser).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             // Dapatkan jumlah entri yang ada
@@ -107,7 +102,7 @@ public class KeamananCreateActivity extends Activity {
                             String nextIdLaporan = String.valueOf(entryCount + 1);
 
                             // Gunakan nextIdLaporan dalam DatabaseReference
-                            DatabaseReference userEntryRef = reference.child(kolomnamapelapor).child(nextIdLaporan);
+                            DatabaseReference userEntryRef = reference.child(idUser).child(nextIdLaporan);
 
                             // Format tanggal ke format yang disimpan di Firebase Database (yyyy-MM-dd)
                             SimpleDateFormat inputFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -129,6 +124,7 @@ public class KeamananCreateActivity extends Activity {
                             // Buat objek data dan masukkan nilai ke dalamnya
                             Map<String, Object> data = new HashMap<>();
                             data.put("imageUrl", imageUrl);
+                            data.put("namapelapor", kolomnamapelapor);
                             data.put("nomorpelapor", kolomnomorpelapor);
                             data.put("tanggalkejadian", kolomtanggalkejadian);
                             data.put("lokasikejadian", kolomlokasikejadian);
@@ -226,16 +222,6 @@ public class KeamananCreateActivity extends Activity {
             // Jika ada kesalahan parsing, tanggal tidak valid
             return false;
         }
-    }
-
-    // Fungsi untuk memeriksa apakah string adalah angka
-    private boolean isNumeric(String str) {
-        try {
-            double d = Double.parseDouble(str);
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-        return true;
     }
 
     public void onBackPressed(View view) {
