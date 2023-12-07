@@ -24,5 +24,6 @@
     <string name="tanggal_kej">Tanggal Kejadian</string>
     <string name="lokasi_kej">Lokasi Kejadian</string>
     <string name="riwayatkeamanan">Riwayat Keamanan</string>
+    <string name="riwayatmedis">History of Medis</string>
 
 </resources>

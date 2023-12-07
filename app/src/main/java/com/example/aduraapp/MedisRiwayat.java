@@ -1,60 +1,51 @@
 package com.example.aduraapp;
 
 public class MedisRiwayat {
-    private int id;
-    private String name;
-    private String phone;
-    private String location;
+
+    private String nextIdLaporan; // Tambahkan properti idLaporan
+
+    private String namapelapor;
+
+    private String nomorpelapor;
+    private String tanggalkejadian;
+    private String imageUrl;
     private String keterangan;
-    public MedisRiwayat(int id, String name, String phone, String location, String keterangan) {
-        this.id = id;
-        this.name = name;
-        this.phone = phone;
-        this.location = location;
-        this.keterangan = keterangan;
+    private String lokasikejadian;
+
+    // Default constructor required for Firebase
+    public MedisRiwayat() {
     }
 
-    @Override
-    public String toString() {
-        return "MedisRiwayat{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", location='" + location + '\'' +
-                ", keterangan='" + keterangan + '\'' +
-                '}';
+    public String getNamapelapor() {
+        return namapelapor;
     }
 
-    public int getId() {
-        return id;
+    public void setNamapelapor(String namapelapor) {
+        this.namapelapor = namapelapor;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getNomorpelapor() {
+        return nomorpelapor;
     }
 
-    public String getName() {
-        return name;
+    public void setNomorpelapor(String nomorpelapor) {
+        this.nomorpelapor = nomorpelapor;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getTanggalkejadian() {
+        return tanggalkejadian;
     }
 
-    public String getPhone() {
-        return phone;
+    public void setTanggalkejadian(String tanggalkejadian) {
+        this.tanggalkejadian = tanggalkejadian;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getKeterangan() {
@@ -63,5 +54,21 @@ public class MedisRiwayat {
 
     public void setKeterangan(String keterangan) {
         this.keterangan = keterangan;
+    }
+
+    public String getLokasikejadian() {
+        return lokasikejadian;
+    }
+
+    public void setLokasikejadian(String lokasikejadian) {
+        this.lokasikejadian = lokasikejadian;
+    }
+
+    public String getnextIdLaporan() {
+        return nextIdLaporan;
+    }
+
+    public void setIdLaporan(String idLaporan) {
+        this.nextIdLaporan = nextIdLaporan;
     }
 }
