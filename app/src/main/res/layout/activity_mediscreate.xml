@@ -61,30 +61,44 @@
         app:layout_constraintVertical_bias="0.139" />
 
 
-    <View
-        android:id="@+id/tempatfoto"
-        android:layout_width="282dp"
-        android:layout_height="99dp"
-        android:background="@drawable/tempatfoto"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <RelativeLayout
+        android:id="@+id/uploadbukti"
+        android:layout_width="200dp"
+        android:layout_height="105dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/rectangle_2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topmedis"
-        app:layout_constraintVertical_bias="0.085" />
+        app:layout_constraintTop_toBottomOf="@id/textView2">
 
-    <ImageView
-        android:id="@+id/upload"
-        android:layout_width="51dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="36dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.023"
-        app:srcCompat="@drawable/ic_upload" />
+        <ImageView
+            android:id="@+id/selectImagebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="57dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="62dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="62dp"
+            android:layout_marginBottom="14dp"
+            android:src="@drawable/__icon__cloud_download_"></ImageView>
+
+        <ImageView
+            android:id="@+id/uploadImageView"
+            android:layout_width="281dp"
+            android:layout_height="match_parent"
+            android:layout_alignStart="@+id/selectImagebtn"
+            android:layout_alignEnd="@+id/selectImagebtn"
+            android:layout_marginStart="-106dp"
+            android:layout_marginEnd="-99dp"
+            android:visibility="gone"
+            tools:src="@tools:sample/avatars" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/textView3"
@@ -96,11 +110,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tempatfoto"
+        app:layout_constraintTop_toBottomOf="@+id/uploadbukti"
         app:layout_constraintVertical_bias="0.02" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/kolomnamapelapor"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginBottom="8dp"
@@ -119,15 +133,15 @@
         android:layout_height="wrap_content"
         android:text="@string/hp"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPhone"
+        app:layout_constraintBottom_toTopOf="@+id/kolomnomorpelapor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText"
+        app:layout_constraintTop_toBottomOf="@+id/kolomnamapelapor"
         app:layout_constraintVertical_bias="0.187" />
 
     <EditText
-        android:id="@+id/editTextPhone"
+        android:id="@+id/kolomnomorpelapor"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginBottom="391dp"
@@ -149,10 +163,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+        app:layout_constraintTop_toBottomOf="@+id/kolomnomorpelapor" />
 
     <EditText
-        android:id="@+id/editTextDate"
+        android:id="@+id/kolomtanggalkejadian"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -176,10 +190,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+        app:layout_constraintTop_toBottomOf="@+id/kolomtanggalkejadian" />
 
     <AutoCompleteTextView
-        android:id="@+id/locationAutoCompleteTextView"
+        android:id="@+id/kolomlokasikejadian"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Ketik lokasi atau pilih dari peta..."
@@ -196,7 +210,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/locationAutoCompleteTextView"
+        app:layout_constraintStart_toEndOf="@+id/kolomlokasikejadian"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -209,10 +223,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.047"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationAutoCompleteTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/kolomlokasikejadian" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/kolomketerangan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -227,16 +241,16 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/button_kirim"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/btnkirim"
+        android:layout_width="137dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/corner_kirimsimpan"
         android:text="@string/kirim"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine"
-        android:onClick="SendData"/>
+        app:layout_constraintTop_toBottomOf="@+id/kolomketerangan" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
