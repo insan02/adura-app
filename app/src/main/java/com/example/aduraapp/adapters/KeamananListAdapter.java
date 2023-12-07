@@ -1,6 +1,7 @@
 package com.example.aduraapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.aduraapp.KeamananDetailRiwayatActivity;
 import com.example.aduraapp.KeamananRiwayat;
 import com.example.aduraapp.R;
 
@@ -39,6 +41,22 @@ public class KeamananListAdapter extends RecyclerView.Adapter<KeamananListAdapte
         KeamananRiwayat KeamananRiwayat = list.get(position);
         holder.kolomtanggalkejadian.setText(KeamananRiwayat.getTanggalkejadian());
         holder.kolomketerangan.setText(KeamananRiwayat.getKeterangan());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Handle item click here
+                Intent intent = new Intent(context, KeamananDetailRiwayatActivity.class);
+                intent.putExtra("tanggalkejadian", KeamananRiwayat.getTanggalkejadian());
+                intent.putExtra("keterangan", KeamananRiwayat.getKeterangan());
+                intent.putExtra("imageUrl", KeamananRiwayat.getImageUrl());
+                intent.putExtra("namapelapor", KeamananRiwayat.getNamapelapor());
+                intent.putExtra("nomorpelapor", KeamananRiwayat.getNomorpelapor());
+                intent.putExtra("lokasikejadian", KeamananRiwayat.getLokasikejadian());
+                // Add more data if needed
+                context.startActivity(intent);
+            }
+        });
 
 
     }

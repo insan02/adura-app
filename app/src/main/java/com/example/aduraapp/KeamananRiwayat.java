@@ -4,6 +4,8 @@ public class KeamananRiwayat {
 
     private String nextIdLaporan; // Tambahkan properti idLaporan
 
+    private String namapelapor;
+
     private String nomorpelapor;
     private String tanggalkejadian;
     private String imageUrl;
@@ -12,6 +14,14 @@ public class KeamananRiwayat {
 
     // Default constructor required for Firebase
     public KeamananRiwayat() {
+    }
+
+    public String getNamapelapor() {
+        return namapelapor;
+    }
+
+    public void setNamapelapor(String namapelapor) {
+        this.namapelapor = namapelapor;
     }
 
     public String getNomorpelapor() {
