@@ -50,7 +50,6 @@ public class KeamananListAdapter extends RecyclerView.Adapter<KeamananListAdapte
                 intent.putExtra("tanggalkejadian", KeamananRiwayat.getTanggalkejadian());
                 intent.putExtra("keterangan", KeamananRiwayat.getKeterangan());
                 intent.putExtra("imageUrl", KeamananRiwayat.getImageUrl());
-                intent.putExtra("imageUri", KeamananRiwayat.getImageUri());
                 intent.putExtra("namapelapor", KeamananRiwayat.getNamapelapor());
                 intent.putExtra("nomorpelapor", KeamananRiwayat.getNomorpelapor());
                 intent.putExtra("lokasikejadian", KeamananRiwayat.getLokasikejadian());

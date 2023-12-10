@@ -143,6 +143,7 @@
         android:layout_marginTop="28dp"
         android:background="@drawable/corner_edit"
         android:backgroundTint="#F7ECE11B"
+        android:onClick="onButtonEditClicked"
         android:text="@string/edit"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/btnhapus"

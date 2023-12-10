@@ -1,17 +1,15 @@
 package com.example.aduraapp;
 
 import android.content.Intent;
-import android.database.Cursor;
+import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.OpenableColumns;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
 
 import com.example.aduraapp.databinding.ActivityKeamanancreateBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.annotations.Nullable;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -30,7 +29,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class KeamananCreateActivity extends AppCompatActivity {
+public class KeamananCreateActivity extends Activity {
 
     ActivityKeamanancreateBinding binding;
     Uri imageUri;
@@ -39,25 +38,18 @@ public class KeamananCreateActivity extends AppCompatActivity {
     DatabaseReference reference;
     FirebaseStorage storage;
     StorageReference storageRef;
-
-    // Simpan ukuran asli icon selectImagebtn
     RelativeLayout.LayoutParams originalParams;
 
     @Override
-     protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityKeamanancreateBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Inisialisasi Firebase Storage
         storage = FirebaseStorage.getInstance();
-        storageRef = storage.getReference("images_keamanan"); // Folder image di firebase store
+        storageRef = storage.getReference("images");
 
-        // Ambil referensi ke ImageView menggunakan ID selectImagebtn
         ImageView uploadImageView = findViewById(R.id.selectImagebtn);
-
-        // Simpan ukuran asli
-        originalParams = (RelativeLayout.LayoutParams) uploadImageView.getLayoutParams();
 
         binding.selectImagebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,45 +59,33 @@ public class KeamananCreateActivity extends AppCompatActivity {
         });
 
         binding.btnkirim.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View view) {
                 kolomnamapelapor = binding.kolomnamapelapor.getText() != null ? binding.kolomnamapelapor.getText().toString() : "";
                 kolomnomorpelapor = binding.kolomnomorpelapor.getText() != null ? binding.kolomnomorpelapor.getText().toString() : "";
-                kolomtanggalkejadian = binding.kolomtanggalkejadian.getText() != null ? binding.kolomtanggalkejadian.getText().toString() : "";
                 kolomlokasikejadian = binding.kolomlokasikejadian.getText() != null ? binding.kolomlokasikejadian.getText().toString() : "";
+                kolomtanggalkejadian = binding.kolomtanggalkejadian.getText() != null ? binding.kolomtanggalkejadian.getText().toString() : "";
                 kolomketerangan = binding.kolomketerangan.getText() != null ? binding.kolomketerangan.getText().toString() : "";
 
                 String idUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                if (kolomnamapelapor.isEmpty() || kolomnomorpelapor.isEmpty() || kolomtanggalkejadian.isEmpty() || kolomlokasikejadian.isEmpty() || kolomketerangan.isEmpty() || imageUri == null) {
-                    // Tampilkan notifikasi untuk mengisi semua kolom dan memilih gambar
+                if (kolomketerangan.isEmpty() || kolomtanggalkejadian.isEmpty() || kolomnomorpelapor.isEmpty() || kolomlokasikejadian.isEmpty() || kolomnamapelapor.isEmpty()) {
                     Toast.makeText(KeamananCreateActivity.this, "Harap isi semua data", Toast.LENGTH_SHORT).show();
-                    return;
                 } else {
-                    // Validasi format tanggal
                     if (!isValidDate(kolomtanggalkejadian)) {
-                        // Tampilkan notifikasi untuk meminta pengguna menyesuaikan format tanggal
                         Toast.makeText(KeamananCreateActivity.this, "Format tanggal tidak valid. Harap sesuaikan dengan format DD-MM-YYYY", Toast.LENGTH_SHORT).show();
                         return;
                     }
-
-                    // Ambil referensi ke Firebase Database
                     db = FirebaseDatabase.getInstance();
                     reference = db.getReference("Laporan_keamanan");
 
-                    // Query untuk mendapatkan jumlah entri yang ada
                     reference.child(idUser).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            // Dapatkan jumlah entri yang ada
                             long entryCount = dataSnapshot.getChildrenCount();
 
-                            // Dapatkan idLaporan berikutnya dalam format string (1, 2, 3, ...)
                             String nextIdLaporan = String.valueOf(entryCount + 1);
 
-                            // Gunakan nextIdLaporan dalam DatabaseReference
                             DatabaseReference userEntryRef = reference.child(idUser).child(nextIdLaporan);
 
-                            // Format tanggal ke format yang disimpan di Firebase Database (yyyy-MM-dd)
                             SimpleDateFormat inputFormat = new SimpleDateFormat("dd-MM-yyyy");
                             SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -113,51 +93,71 @@ public class KeamananCreateActivity extends AppCompatActivity {
                                 Date date = inputFormat.parse(kolomtanggalkejadian);
                                 kolomtanggalkejadian = outputFormat.format(date);
 
-                                // Perbarui kolomtanggalkejadian yang disimpan di Firebase Database
-                                userEntryRef.child("kolomtanggalkejadian").setValue(kolomtanggalkejadian);
+                                userEntryRef.child("kolomtanggalkejadian").setValue((kolomtanggalkejadian));
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
 
-                            // Ambil URL gambar dari Uri gambar
                             String imageUrl = imageUri != null ? imageUri.toString() : "";
 
-                            // Buat objek data dan masukkan nilai ke dalamnya
                             Map<String, Object> data = new HashMap<>();
-                            data.put("imageUrl", imageUrl);
                             data.put("namapelapor", kolomnamapelapor);
                             data.put("nomorpelapor", kolomnomorpelapor);
                             data.put("tanggalkejadian", kolomtanggalkejadian);
                             data.put("lokasikejadian", kolomlokasikejadian);
                             data.put("keterangan", kolomketerangan);
 
-                            // Simpan data ke Firebase Database
                             userEntryRef.setValue(data);
 
-                            // Simpan gambar ke Firebase Storage
                             if (imageUri != null) {
                                 saveImageToStorage(imageUri, nextIdLaporan);
+                            }else{
+                                resetForm();
                             }
 
-                            // Setelah data dikirim, kosongkan gambar yang sudah dipilih
-                            uploadImageView.setImageResource(R.drawable.__icon__cloud_download_);
-                            imageUri = null;
 
-                            // Kembalikan ukuran asli setelah menghapus gambar
-                            uploadImageView.setLayoutParams(originalParams);
-
-                            Toast.makeText(KeamananCreateActivity.this, "Laporan Terkirim", Toast.LENGTH_SHORT).show();
-                            binding.kolomnamapelapor.setText("");
-                            binding.kolomnomorpelapor.setText("");
-                            binding.kolomtanggalkejadian.setText(""); // Setel ulang agar menampilkan tanggal yang sudah diformat
-                            binding.kolomlokasikejadian.setText("");
-                            binding.kolomketerangan.setText("");
                         }
 
+                        private void saveImageToStorage(Uri imageUri, String key) {
+                            StorageReference imageRef = storageRef.child(key);
+                            UploadTask uploadTask = imageRef.putFile(imageUri);
+
+                            uploadTask.addOnSuccessListener(taskSnapshot -> {
+                                imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                                    // Sekarang uri berisi URL gambar yang dapat Anda gunakan
+                                    String imageUrl = uri.toString();
+
+                                    // Lanjutkan dengan menyimpan URL gambar ke Realtime Database atau melakukan apa pun yang diperlukan
+                                    saveImageUrlToDatabase(key, imageUrl);
+                                });
+
+                            }).addOnFailureListener(e -> {
+                                Toast.makeText(KeamananCreateActivity.this, "Gagal Mengunggah gambar", Toast.LENGTH_SHORT).show();
+                            });
+                        }
+                        private void saveImageUrlToDatabase(String key, String imageUrl) {
+                            String idUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            DatabaseReference userEntryRef = reference.child(idUser).child(key);
+
+                            userEntryRef.child("imageUrl").setValue(imageUrl);
+
+                            resetForm();
+                        }
+                        private void resetForm() {
+                            // Tampilkan pesan atau lakukan tindakan lain jika diperlukan
+                            Toast.makeText(KeamananCreateActivity.this, "Laporan Terkirim", Toast.LENGTH_SHORT).show();
+
+                            // Reset nilai-nilai form
+                            binding.kolomnamapelapor.setText("");
+                            binding.kolomketerangan.setText("");
+                            binding.kolomlokasikejadian.setText("");
+                            binding.kolomnomorpelapor.setText("");
+                            binding.kolomtanggalkejadian.setText("");
+                        }
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
-                            // Tangani kesalahan dalam kueri
-                            Toast.makeText(KeamananCreateActivity.this, "Error fetching data", Toast.LENGTH_SHORT).show();
+
+                            Toast.makeText(KeamananCreateActivity.this, "Error Dalam Pengiriman Data", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -178,78 +178,33 @@ public class KeamananCreateActivity extends AppCompatActivity {
         if (requestCode == 100 && data != null && data.getData() != null) {
             imageUri = data.getData();
 
-            // Ambil referensi ke ImageView menggunakan ID selectImagebtn
             ImageView uploadImageView = findViewById(R.id.selectImagebtn);
 
-            // Set gambar ke ImageView menggunakan setImageURI
+            // Simpan parameter tata letak yang ada
+            originalParams = (RelativeLayout.LayoutParams) uploadImageView.getLayoutParams();
+
             uploadImageView.setImageURI(imageUri);
 
-            // Set layout params untuk mengubah panjang dan lebar gambar
             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
                     RelativeLayout.LayoutParams.WRAP_CONTENT,
                     RelativeLayout.LayoutParams.WRAP_CONTENT
             );
-
-            layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);  // Pusatkan gambar di RelativeLayout
+            layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
             uploadImageView.setLayoutParams(layoutParams);
         }
     }
 
-    private void saveImageToStorage(Uri imageUri, String key) {
-        // Simpan gambar ke Firebase Storage
-        StorageReference imageRef = storageRef.child(getOriginalFileName(imageUri)); // Simpan dengan nama file asli
-        UploadTask uploadTask = imageRef.putFile(imageUri);
 
-        // Tambahkan listener untuk menangani keberhasilan atau kegagalan unggah
-        uploadTask.addOnSuccessListener(taskSnapshot -> {
-            // Gambar berhasil diunggah
-            // Dapatkan URL gambar dari taskSnapshot.getDownloadUrl() dan tambahkan ke database jika diperlukan
-        }).addOnFailureListener(e -> {
-            // Gagal mengunggah gambar
-            Toast.makeText(KeamananCreateActivity.this, "Gagal mengunggah gambar", Toast.LENGTH_SHORT).show();
-        });
-    }
 
-    // Fungsi untuk memeriksa apakah format tanggal benar
     private boolean isValidDate(String input) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         dateFormat.setLenient(false);
-
         try {
-            // Parsing input sebagai tanggal
             dateFormat.parse(input);
             return true;
         } catch (ParseException e) {
-            // Jika ada kesalahan parsing, tanggal tidak valid
             return false;
         }
-    }
-
-    // Fungsi untuk mendapatkan nama file asli dari Uri
-    private String getOriginalFileName(Uri uri) {
-        String result = null;
-        if (uri.getScheme().equals("content")) {
-            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-            try {
-                if (cursor != null && cursor.moveToFirst()) {
-                    int columnIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
-                    if (columnIndex != -1) {
-                        result = cursor.getString(columnIndex);
-                    } else {
-                        // If DISPLAY_NAME is not available, use the last segment of the URI
-                        result = uri.getLastPathSegment();
-                    }
-                }
-            } finally {
-                if (cursor != null) {
-                    cursor.close();
-                }
-            }
-        }
-        if (result == null) {
-            result = uri.getLastPathSegment();
-        }
-        return result;
     }
 
     public void onBackPressed(View view) {
