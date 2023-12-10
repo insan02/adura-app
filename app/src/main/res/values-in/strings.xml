@@ -26,4 +26,5 @@
     <string name="lokasi_kej">Lokasi Kejadian</string>
     <string name="riwayatkeamanan">Riwayat Keamanan</string>
     <string name="riwayatmedis">Riwayat Medis</string>
+    <string name="detail_medis">Detail Laporan</string>
 </resources>
