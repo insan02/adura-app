@@ -1,35 +1,36 @@
 package com.example.aduraapp;
 
 import android.content.Intent;
-import android.app.Activity;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.OpenableColumns;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import android.net.Uri;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aduraapp.databinding.ActivityKeamanancreateBinding;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.annotations.Nullable;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
-public class KeamananCreateActivity extends Activity {
+public class KeamananCreateActivity extends AppCompatActivity {
 
     ActivityKeamanancreateBinding binding;
     Uri imageUri;
@@ -43,14 +44,14 @@ public class KeamananCreateActivity extends Activity {
     RelativeLayout.LayoutParams originalParams;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityKeamanancreateBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // Inisialisasi Firebase Storage
         storage = FirebaseStorage.getInstance();
-        storageRef = storage.getReference("images"); // Folder image di firebase store
+        storageRef = storage.getReference("images_keamanan"); // Folder image di firebase store
 
         // Ambil referensi ke ImageView menggunakan ID selectImagebtn
         ImageView uploadImageView = findViewById(R.id.selectImagebtn);
@@ -196,7 +197,7 @@ public class KeamananCreateActivity extends Activity {
 
     private void saveImageToStorage(Uri imageUri, String key) {
         // Simpan gambar ke Firebase Storage
-        StorageReference imageRef = storageRef.child(key); // Simpan dengan nama key sebagai nama file
+        StorageReference imageRef = storageRef.child(getOriginalFileName(imageUri)); // Simpan dengan nama file asli
         UploadTask uploadTask = imageRef.putFile(imageUri);
 
         // Tambahkan listener untuk menangani keberhasilan atau kegagalan unggah
@@ -222,6 +223,33 @@ public class KeamananCreateActivity extends Activity {
             // Jika ada kesalahan parsing, tanggal tidak valid
             return false;
         }
+    }
+
+    // Fungsi untuk mendapatkan nama file asli dari Uri
+    private String getOriginalFileName(Uri uri) {
+        String result = null;
+        if (uri.getScheme().equals("content")) {
+            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+            try {
+                if (cursor != null && cursor.moveToFirst()) {
+                    int columnIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                    if (columnIndex != -1) {
+                        result = cursor.getString(columnIndex);
+                    } else {
+                        // If DISPLAY_NAME is not available, use the last segment of the URI
+                        result = uri.getLastPathSegment();
+                    }
+                }
+            } finally {
+                if (cursor != null) {
+                    cursor.close();
+                }
+            }
+        }
+        if (result == null) {
+            result = uri.getLastPathSegment();
+        }
+        return result;
     }
 
     public void onBackPressed(View view) {

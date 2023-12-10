@@ -1,5 +1,7 @@
 package com.example.aduraapp;
 
+import android.net.Uri;
+
 public class KeamananRiwayat {
 
     private String nextIdLaporan; // Tambahkan properti idLaporan
@@ -11,6 +13,8 @@ public class KeamananRiwayat {
     private String imageUrl;
     private String keterangan;
     private String lokasikejadian;
+
+    private Uri imageUri;
 
     // Default constructor required for Firebase
     public KeamananRiwayat() {
@@ -70,5 +74,13 @@ public class KeamananRiwayat {
 
     public void setIdLaporan(String idLaporan) {
         this.nextIdLaporan = nextIdLaporan;
+    }
+
+    public Uri getImageUri() {
+        return imageUri;
+    }
+
+    public void setImageUri(Uri imageUri) {
+        this.imageUri = imageUri;
     }
 }
