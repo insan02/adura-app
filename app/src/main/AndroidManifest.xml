@@ -23,9 +23,6 @@
             android:name=".KeamananRiwayatList"
             android:exported="false" />
         <activity
-            android:name=".MedisRiwayatActivity"
-            android:exported="false" />
-        <activity
             android:name=".MenuCreateActivity"
             android:exported="false" />
         <activity

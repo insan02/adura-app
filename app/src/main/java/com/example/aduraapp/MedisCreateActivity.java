@@ -39,6 +39,7 @@ public class MedisCreateActivity extends Activity {
     FirebaseStorage storage;
     StorageReference storageRef;
     RelativeLayout.LayoutParams originalParams;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,19 +58,19 @@ public class MedisCreateActivity extends Activity {
             }
         });
 
-        binding.btnkirim.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-                kolomnamapelapor = binding.kolomnamapelapor.getText() != null ? binding.kolomnamapelapor.getText().toString():"";
-                kolomnomorpelapor = binding.kolomnomorpelapor.getText() !=null ? binding.kolomnomorpelapor.getText().toString():"";
-                kolomlokasikejadian = binding.kolomlokasikejadian.getText() != null ? binding.kolomlokasikejadian.getText().toString():"";
-                kolomtanggalkejadian = binding.kolomtanggalkejadian.getText() != null ? binding.kolomtanggalkejadian.getText().toString():"";
-                kolomketerangan = binding.kolomketerangan.getText() != null ? binding.kolomketerangan.getText().toString():"";
+        binding.btnkirim.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                kolomnamapelapor = binding.kolomnamapelapor.getText() != null ? binding.kolomnamapelapor.getText().toString() : "";
+                kolomnomorpelapor = binding.kolomnomorpelapor.getText() != null ? binding.kolomnomorpelapor.getText().toString() : "";
+                kolomlokasikejadian = binding.kolomlokasikejadian.getText() != null ? binding.kolomlokasikejadian.getText().toString() : "";
+                kolomtanggalkejadian = binding.kolomtanggalkejadian.getText() != null ? binding.kolomtanggalkejadian.getText().toString() : "";
+                kolomketerangan = binding.kolomketerangan.getText() != null ? binding.kolomketerangan.getText().toString() : "";
 
                 String idUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                if(kolomketerangan.isEmpty() || kolomtanggalkejadian.isEmpty()||kolomnomorpelapor.isEmpty()||kolomlokasikejadian.isEmpty()||kolomnamapelapor.isEmpty() ){
+                if (kolomketerangan.isEmpty() || kolomtanggalkejadian.isEmpty() || kolomnomorpelapor.isEmpty() || kolomlokasikejadian.isEmpty() || kolomnamapelapor.isEmpty()) {
                     Toast.makeText(MedisCreateActivity.this, "Harap isi semua data", Toast.LENGTH_SHORT).show();
-                }else{
-                    if(!isValidDate(kolomtanggalkejadian)){
+                } else {
+                    if (!isValidDate(kolomtanggalkejadian)) {
                         Toast.makeText(MedisCreateActivity.this, "Format tanggal tidak valid. Harap sesuaikan dengan format DD-MM-YYYY", Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -78,29 +79,29 @@ public class MedisCreateActivity extends Activity {
 
                     reference.child(idUser).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
-                        public void onDataChange( DataSnapshot dataSnapshot) {
+                        public void onDataChange(DataSnapshot dataSnapshot) {
                             long entryCount = dataSnapshot.getChildrenCount();
 
-                            String nextIdLaporan = String.valueOf(entryCount +1);
+                            String nextIdLaporan = String.valueOf(entryCount + 1);
 
                             DatabaseReference userEntryRef = reference.child(idUser).child(nextIdLaporan);
 
                             SimpleDateFormat inputFormat = new SimpleDateFormat("dd-MM-yyyy");
                             SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-                            try{
+                            try {
                                 Date date = inputFormat.parse(kolomtanggalkejadian);
                                 kolomtanggalkejadian = outputFormat.format(date);
 
                                 userEntryRef.child("kolomtanggalkejadian").setValue((kolomtanggalkejadian));
-                            }catch(ParseException e){
+                            } catch (ParseException e) {
                                 e.printStackTrace();
                             }
 
-                            String imageUrl = imageUri != null ? imageUri.toString():"";
+                            String imageUrl = imageUri != null ? imageUri.toString() : "";
 
                             Map<String, Object> data = new HashMap<>();
-                            data.put("imageUrl", imageUrl);
+                            data.put("namapelapor", kolomnamapelapor);
                             data.put("nomorpelapor", kolomnomorpelapor);
                             data.put("tanggalkejadian", kolomtanggalkejadian);
                             data.put("lokasikejadian", kolomlokasikejadian);
@@ -108,40 +109,69 @@ public class MedisCreateActivity extends Activity {
 
                             userEntryRef.setValue(data);
 
-                            if(imageUri != null){
+                            if (imageUri != null) {
                                 saveImageToStorage(imageUri, nextIdLaporan);
+                            }else{
+                                resetForm();
                             }
 
-                            uploadImageView.setImageResource(R.drawable.__icon__cloud_download_);
-                            imageUri = null;
 
-                            uploadImageView.setLayoutParams(originalParams);
+                        }
 
+                        private void saveImageToStorage(Uri imageUri, String key) {
+                            StorageReference imageRef = storageRef.child(key);
+                            UploadTask uploadTask = imageRef.putFile(imageUri);
+
+                            uploadTask.addOnSuccessListener(taskSnapshot -> {
+                                imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                                    // Sekarang uri berisi URL gambar yang dapat Anda gunakan
+                                    String imageUrl = uri.toString();
+
+                                    // Lanjutkan dengan menyimpan URL gambar ke Realtime Database atau melakukan apa pun yang diperlukan
+                                    saveImageUrlToDatabase(key, imageUrl);
+                                });
+
+                            }).addOnFailureListener(e -> {
+                                Toast.makeText(MedisCreateActivity.this, "Gagal Mengunggah gambar", Toast.LENGTH_SHORT).show();
+                            });
+                        }
+                        private void saveImageUrlToDatabase(String key, String imageUrl) {
+                            String idUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            DatabaseReference userEntryRef = reference.child(idUser).child(key);
+
+                            userEntryRef.child("imageUrl").setValue(imageUrl);
+
+                            resetForm();
+                        }
+                        private void resetForm() {
+                            // Tampilkan pesan atau lakukan tindakan lain jika diperlukan
                             Toast.makeText(MedisCreateActivity.this, "Laporan Terkirim", Toast.LENGTH_SHORT).show();
+
+                            // Reset nilai-nilai form
                             binding.kolomnamapelapor.setText("");
                             binding.kolomketerangan.setText("");
                             binding.kolomlokasikejadian.setText("");
                             binding.kolomnomorpelapor.setText("");
                             binding.kolomtanggalkejadian.setText("");
                         }
-
                         @Override
-                        public void onCancelled( DatabaseError databaseError) {
+                        public void onCancelled(DatabaseError databaseError) {
 
                             Toast.makeText(MedisCreateActivity.this, "Error Dalam Pengiriman Data", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
-                }
+            }
         });
     }
 
-    private void selectImage(){
+    private void selectImage() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, 100);
     }
+
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -164,16 +194,8 @@ public class MedisCreateActivity extends Activity {
         }
     }
 
-    private void saveImageToStorage(Uri imageUri, String key){
-        StorageReference imageRef = storageRef.child(key);
-        UploadTask uploadTask = imageRef.putFile(imageUri);
 
-        uploadTask.addOnSuccessListener(taskSnapshot -> {
 
-        }).addOnFailureListener(e->{
-            Toast.makeText(MedisCreateActivity.this, "Gagal Mengunggah gambar", Toast.LENGTH_SHORT).show();
-        });
-    }
     private boolean isValidDate(String input) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         dateFormat.setLenient(false);

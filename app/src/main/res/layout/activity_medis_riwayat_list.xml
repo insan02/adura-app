@@ -24,7 +24,10 @@
             android:layout_height="35dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/vector"></ImageView>
+            android:clickable="true"
+            android:onClick="onBackPressed"
+            android:src="@drawable/vector"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"></ImageView>
 
         <TextView
             android:layout_width="wrap_content"
