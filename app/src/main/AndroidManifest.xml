@@ -19,6 +19,9 @@
         android:theme="@style/Theme.AduraApp"
         tools:targetApi="31">
         <activity
+            android:name=".MedisUpdateData"
+            android:exported="false" />
+        <activity
             android:name=".MedisRiwayatList"
             android:exported="false" />
         <activity
