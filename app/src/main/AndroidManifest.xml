@@ -2,9 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,6 +18,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AduraApp"
         tools:targetApi="31">
+        <activity
+            android:name=".MedisUpdateData"
+            android:exported="false" />
+        <activity
+            android:name=".MedisRiwayatList"
+            android:exported="false" />
+        <activity
+            android:name=".KeamananRiwayatList"
+            android:exported="false" />
+        <activity
+            android:name=".MenuCreateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lin.name"
+                android:value="true" />
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -21,6 +46,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MedisCreateActivity"
+            android:exported="true" />
+        <activity
+            android:name=".kebakarancreateactivity"
+            android:exported="true" />
+        <activity
+            android:name=".KeamananCreateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".KeamananDetailRiwayatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".KeamananUpdateData"
+            android:exported="false" />
+        <activity
+            android:name=".MedisDetailRiwayatActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

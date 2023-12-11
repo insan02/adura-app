@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".KeamananCreateActivity">
+
+    <RelativeLayout
+        android:id="@+id/bg_top_keamanan"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/heading"
+        android:backgroundTint="#F7ECE11B"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image_back"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:onClick="onBackPressed"
+            android:src="@drawable/vector"
+            tools:ignore="TouchTargetSizeCheck"></ImageView>
+
+        <TextView
+            android:layout_width="101dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="155dp"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:text="Keamanan"
+            android:textAppearance="@style/kebakaran"></TextView>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/heading1"
+        android:layout_width="194dp"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/unggah_foto"
+        android:textAppearance="@style/unggah_foto"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bg_top_keamanan"></TextView>
+
+    <RelativeLayout
+        android:id="@+id/uploadbukti"
+        android:layout_width="200dp"
+        android:layout_height="105dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rectangle_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/heading1">
+
+        <ImageView
+            android:id="@+id/selectImagebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="57dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="62dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="62dp"
+            android:layout_marginBottom="14dp"
+            android:src="@drawable/__icon__cloud_download_"></ImageView>
+
+        <ImageView
+            android:id="@+id/uploadImageView"
+            android:layout_width="281dp"
+            android:layout_height="match_parent"
+            android:layout_alignStart="@+id/selectImagebtn"
+            android:layout_alignEnd="@+id/selectImagebtn"
+            android:layout_marginStart="-106dp"
+            android:layout_marginEnd="-99dp"
+            android:visibility="gone"
+            tools:src="@tools:sample/avatars" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/nama_pelapor"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/nama_pelapor"
+        android:textAppearance="@style/nama_pelapor"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/uploadbukti" />
+
+    <EditText
+        android:id="@+id/kolomnamapelapor"
+        android:layout_width="350dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:hint="Nama Pelapor"
+        android:minHeight="48dp"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nama_pelapor"></EditText>
+
+    <TextView
+        android:id="@+id/nomor_hp_pelapor"
+        android:layout_width="130dp"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/nomor_hp_pelapor"
+        android:textAppearance="@style/nomor_hp_pe"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/kolomnamapelapor" />
+
+    <EditText
+        android:id="@+id/kolomnomorpelapor"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:hint="Nomor HP Pelapor"
+        android:minHeight="48dp"
+        android:textSize="13sp"
+        android:inputType="phone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nomor_hp_pelapor">
+
+    </EditText>
+
+    <TextView
+        android:id="@+id/tanggal_kej"
+        android:layout_width="121dp"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:gravity="top"
+        android:text="@string/tanggal_kej"
+        android:textAppearance="@style/tanggal_kej"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/kolomnomorpelapor">
+
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/kolomtanggalkejadian"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:hint="DD-MM-YYYY"
+        android:minHeight="48dp"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tanggal_kej">
+
+    </EditText>
+
+
+    <EditText
+        android:id="@+id/kolomlokasikejadian"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:hint="Lokasi Kejadian"
+        android:minHeight="48dp"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lokasi_kej"></EditText>
+
+    <TextView
+        android:id="@+id/lokasi_kej"
+        android:layout_width="121dp"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:gravity="top"
+        android:text="@string/lokasi_kej"
+        android:textAppearance="@style/lokasi_keja"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/kolomtanggalkejadian">
+
+    </TextView>
+
+    <Button
+        android:id="@+id/btnkirim"
+        android:layout_width="137dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/corner_kirimsimpan"
+        android:text="Kirim"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kolomketerangan" />
+
+    <TextView
+        android:id="@+id/keterangan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="Keterangan"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kolomlokasikejadian" />
+
+    <EditText
+        android:id="@+id/kolomketerangan"
+        android:layout_width="350dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:ems="10"
+        android:hint="Keterangan"
+        android:inputType="text"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/keterangan" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

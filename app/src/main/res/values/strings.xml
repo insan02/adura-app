@@ -1,3 +1,34 @@
 <resources>
     <string name="app_name">Adura App</string>
+    <string name="logo_adura">Logo Adura</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirmpassword">Confirm Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="medis">Medic</string>
+    <string name="fotobukti">Upload Photo Evidence</string>
+    <string name="pelapor">Name</string>
+    <string name="pelapor_detail">Name          :</string>
+    <string name="hp_detail">Phone Number    :</string>
+    <string name="hp">Phone Number</string>
+    <string name="tanggal_detail">Date of Incident     :</string>
+    <string name="tanggal">Date of Incident</string>
+    <string name="lokasi_detail">Incident Location      :</string>
+    <string name="lokasi">Incident Location</string>
+    <string name="keterangan_detail">Explanation        :</string>
+    <string name="keterangan">Explanation</string>
+    <string name="simpan">Saved</string>
+    <string name="kirim">Send</string>
+    <string name="editmedis">Edit Medic</string>
+    <string name="edit">Edit</string>
+    <string name="hapus">Delete</string>
+    <string name="unggah_foto">Unggah Foto</string>
+    <string name="nama_pelapor">Nama Pelapor</string>
+    <string name="nomor_hp_pelapor">Nomor HP</string>
+    <string name="tanggal_kej">Tanggal Kejadian</string>
+    <string name="lokasi_kej">Lokasi Kejadian</string>
+    <string name="riwayatkeamanan">Riwayat Keamanan</string>
+    <string name="riwayatmedis">History of Medis</string>
+    <string name="detail_medis">Report Details</string>
 </resources>
