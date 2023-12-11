@@ -9,10 +9,15 @@
     <string name="register">Daftar</string>
     <string name="medis">Medis</string>
     <string name="fotobukti">Unggah Foto Bukti</string>
+    <string name="pelapor_detail">Nama Pelapor      :</string>
     <string name="pelapor">Nama Pelapor</string>
+    <string name="hp_detail">Nomor Hp               :</string>
     <string name="hp">Nomor Hp</string>
+    <string name="tanggal_detail">Tanggal Kejadian    :</string>
     <string name="tanggal">Tanggal Kejadian</string>
+    <string name="lokasi_detail">Lokasi Kejadian       :</string>
     <string name="lokasi">Lokasi Kejadian</string>
+    <string name="keterangan_detail">Keterangan         :</string>
     <string name="keterangan">Keterangan</string>
     <string name="simpan">Simpan</string>
     <string name="kirim">Kirim</string>

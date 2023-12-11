@@ -23,6 +23,12 @@ public class MedisDetailRiwayatActivity extends Activity {
         String nomorpelapor = getIntent().getStringExtra("nomorpelapor");
         String lokasikejadian = getIntent().getStringExtra("lokasikejadian");
 
+        String namapelapor_detail = getString(R.string.pelapor_detail);
+        String nomorpelapor_detail = getString(R.string.hp_detail);
+        String tanggalkejadian_detail = getString(R.string.tanggal_detail);
+        String lokasikejadian_detail = getString(R.string.lokasi_detail);
+        String keterangan_detail = getString(R.string.keterangan_detail);
+
         TextView tanggalkejadianTextView = findViewById(R.id.kolomtanggalkejadian);
         TextView keteranganTextView = findViewById(R.id.kolomketerangan);
         TextView namapelaporTextView = findViewById(R.id.kolomnamapelapor);
@@ -30,11 +36,11 @@ public class MedisDetailRiwayatActivity extends Activity {
         TextView lokasikejadianTextView = findViewById(R.id.kolomlokasikejadian);
         ImageView imageView = findViewById(R.id.imageUrl);
 
-        updateTextView(tanggalkejadianTextView, "Tanggal Kejadian: ", tanggalkejadian);
-        updateTextView(keteranganTextView, "Keterangan: ", keterangan);
-        updateTextView(namapelaporTextView, "Nama Pelapor: ", namapelapor);
-        updateTextView(nomorpelaporTextView, "Nomor Pelapor: ", nomorpelapor);
-        updateTextView(lokasikejadianTextView, "Lokasi Kejadian: ", lokasikejadian);
+        updateTextView(tanggalkejadianTextView, tanggalkejadian_detail, tanggalkejadian);
+        updateTextView(keteranganTextView, keterangan_detail, keterangan);
+        updateTextView(namapelaporTextView, namapelapor_detail, namapelapor);
+        updateTextView(nomorpelaporTextView, nomorpelapor_detail, nomorpelapor);
+        updateTextView(lokasikejadianTextView, lokasikejadian_detail, lokasikejadian);
         Log.d(TAG, imageUrl);
         Glide.with(this)
                 .load(imageUrl)

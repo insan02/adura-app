@@ -9,9 +9,14 @@
     <string name="medis">Medic</string>
     <string name="fotobukti">Upload Photo Evidence</string>
     <string name="pelapor">Name</string>
+    <string name="pelapor_detail">Name          :</string>
+    <string name="hp_detail">Phone Number    :</string>
     <string name="hp">Phone Number</string>
+    <string name="tanggal_detail">Date of Incident     :</string>
     <string name="tanggal">Date of Incident</string>
+    <string name="lokasi_detail">Incident Location      :</string>
     <string name="lokasi">Incident Location</string>
+    <string name="keterangan_detail">Explanation        :</string>
     <string name="keterangan">Explanation</string>
     <string name="simpan">Saved</string>
     <string name="kirim">Send</string>
