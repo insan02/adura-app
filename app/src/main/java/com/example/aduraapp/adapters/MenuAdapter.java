@@ -31,15 +31,16 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         this.listener = listener;
     }
 
-    public void setListMenu(ArrayList<Menu>listMenu) {
-
+    public void setListMenu(ArrayList<Menu> listMenu) {
         this.listMenu = listMenu;
+        notifyDataSetChanged();
     }
     @NonNull
     @Override
     public MenuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_menu, parent, false);
+
         return new MenuViewHolder(view);
     }
 
@@ -51,6 +52,9 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         holder.imageMenu.setImageResource(gambarId);
 
         holder.textNamaMenu.setText(menu.getNamaMenu());
+
+        holder.itemView.setBackgroundResource(menu.getBackgroundColor());
+
     }
 
 
