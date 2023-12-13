@@ -1,6 +1,7 @@
 package com.example.aduraapp;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.app.Activity;
 import android.content.pm.PackageManager;
@@ -52,6 +53,8 @@ public class KeamananCreateActivity extends Activity {
     private FusedLocationProviderClient fusedLocationClient;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 123;
     private static final int REQUEST_LOCATION_PERMISSION = 1;
+    private ProgressDialog progressDialog;
+    private static final int PROGRESS_DIALOG_DURATION = 10000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +67,14 @@ public class KeamananCreateActivity extends Activity {
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference("images");
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Mengirim laporan...");
+        progressDialog.setCancelable(false);
+
         ImageView uploadImageView = findViewById(R.id.selectImagebtn);
         ImageView locationImageView = findViewById(R.id.location);
+
+        originalParams = (RelativeLayout.LayoutParams) uploadImageView.getLayoutParams();
 
         locationImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +92,16 @@ public class KeamananCreateActivity extends Activity {
         });
 
         binding.btnkirim.setOnClickListener(new View.OnClickListener() {
+            private void showProgressDialog() {
+                progressDialog.show();
+            }
+
+            private void dismissProgressDialog() {
+                progressDialog.dismiss();
+            }
             public void onClick(View view) {
+                showProgressDialog();
+
                 kolomnamapelapor = binding.kolomnamapelapor.getText() != null ? binding.kolomnamapelapor.getText().toString() : "";
                 kolomnomorpelapor = binding.kolomnomorpelapor.getText() != null ? binding.kolomnomorpelapor.getText().toString() : "";
                 kolomlokasikejadian = binding.kolomlokasikejadian.getText() != null ? binding.kolomlokasikejadian.getText().toString() : "";
@@ -165,6 +183,9 @@ public class KeamananCreateActivity extends Activity {
 
                             userEntryRef.child("imageUrl").setValue(imageUrl);
 
+                            uploadImageView.setImageResource(R.drawable.__icon__cloud_download_);
+                            imageUri = null;
+                            uploadImageView.setLayoutParams(originalParams);
                             resetForm();
                         }
                         private void resetForm() {
@@ -177,12 +198,17 @@ public class KeamananCreateActivity extends Activity {
                             binding.kolomlokasikejadian.setText("");
                             binding.kolomnomorpelapor.setText("");
                             binding.kolomtanggalkejadian.setText("");
+
+                            dismissProgressDialog();
                         }
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
 
                             Toast.makeText(KeamananCreateActivity.this, "Error Dalam Pengiriman Data", Toast.LENGTH_SHORT).show();
                         }
+
+
+
                     });
                 }
             }
