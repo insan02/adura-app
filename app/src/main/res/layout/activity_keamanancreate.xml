@@ -182,7 +182,7 @@
 
     <EditText
         android:id="@+id/kolomlokasikejadian"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
@@ -244,5 +244,14 @@
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/keterangan" />
+
+    <ImageView
+        android:id="@+id/location"
+        android:layout_width="44dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/ic_location"
+        app:layout_constraintBottom_toBottomOf="@+id/kolomlokasikejadian"
+        app:layout_constraintStart_toEndOf="@+id/kolomlokasikejadian" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
