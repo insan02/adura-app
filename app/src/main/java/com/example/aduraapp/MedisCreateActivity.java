@@ -50,6 +50,8 @@ public class MedisCreateActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationClient;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 123;
     private static final int REQUEST_LOCATION_PERMISSION = 1;
+    double latitude;
+    double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +81,7 @@ public class MedisCreateActivity extends AppCompatActivity {
                 selectImage();
             }
         });
+
 
         binding.btnkirim.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -127,6 +130,8 @@ public class MedisCreateActivity extends AppCompatActivity {
                             data.put("nomorpelapor", kolomnomorpelapor);
                             data.put("tanggalkejadian", kolomtanggalkejadian);
                             data.put("lokasikejadian", kolomlokasikejadian);
+                            data.put("latitude", latitude);
+                            data.put("longitude", longitude);
                             data.put("keterangan", kolomketerangan);
 
                             userEntryRef.setValue(data);
@@ -144,7 +149,7 @@ public class MedisCreateActivity extends AppCompatActivity {
 
                             uploadTask.addOnSuccessListener(taskSnapshot -> {
                                 imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                                    // Sekarang uri berisi URL gambar yang dapat Anda gunakan
+                                    // Sekarang uri berisi URL gambar yang akan di gunakan
                                     String imageUrl = uri.toString();
 
                                     // Lanjutkan dengan menyimpan URL gambar ke Realtime Database atau melakukan apa pun yang diperlukan
@@ -210,8 +215,8 @@ public class MedisCreateActivity extends AppCompatActivity {
             fusedLocationClient.getLastLocation()
                     .addOnSuccessListener(this, location -> {
                         if (location != null) {
-                            double latitude = location.getLatitude();
-                            double longitude = location.getLongitude();
+                             latitude = location.getLatitude();
+                             longitude = location.getLongitude();
 
                             getAddressFromLocation(latitude, longitude);
                         }
