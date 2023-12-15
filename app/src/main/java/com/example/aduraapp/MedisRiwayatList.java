@@ -53,8 +53,12 @@ public class MedisRiwayatList extends AppCompatActivity {
 
                         MedisRiwayat medisRiwayat = dataSnapshot.getValue(MedisRiwayat.class);
                         if(medisRiwayat != null){
+
                             Log.d("Tag","Data Tanggal: " + medisRiwayat.getTanggalkejadian());
                             Log.d("Tag","Data Keterangan: " + medisRiwayat.getKeterangan());
+
+//                            untuk nyimpan id laporan
+                            medisRiwayat.setnextIdLaporan(dataSnapshot.getKey()); // Menggunakan setnextIdLaporan
 
                             list.add(medisRiwayat);
 

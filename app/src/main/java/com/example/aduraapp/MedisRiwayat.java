@@ -64,11 +64,12 @@ public class MedisRiwayat {
         this.lokasikejadian = lokasikejadian;
     }
 
+//    menyimpan id laporan
     public String getnextIdLaporan() {
         return nextIdLaporan;
     }
 
-    public void setIdLaporan(String idLaporan) {
+    public void setnextIdLaporan(String nextIdLaporan) {
         this.nextIdLaporan = nextIdLaporan;
     }
 }
