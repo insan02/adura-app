@@ -8,17 +8,23 @@ public class LaporanUpdate {
     private String keterangan;
     private String imageUrl;
 
+
+    private Double latitude;
+    private Double longitude;
+
     // Empty constructor (required for Firebase)
     public LaporanUpdate() {
     }
 
-    public LaporanUpdate(String namapelapor, String nomorpelapor, String tanggalkejadian, String lokasikejadian, String keterangan, String imageUrl) {
+    public LaporanUpdate(String namapelapor, String nomorpelapor, String tanggalkejadian, String lokasikejadian, String keterangan, String imageUrl,Double latitude, Double longitude) {
         this.namapelapor = namapelapor;
         this.nomorpelapor = nomorpelapor;
         this.tanggalkejadian = tanggalkejadian;
         this.lokasikejadian = lokasikejadian;
         this.keterangan = keterangan;
         this.imageUrl = imageUrl;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     // Getter and setter methods
@@ -69,4 +75,21 @@ public class LaporanUpdate {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
 }
+

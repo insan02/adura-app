@@ -64,6 +64,9 @@ public class KeamananUpdateData extends AppCompatActivity {
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 123;
     private static final int REQUEST_LOCATION_PERMISSION = 1;
     private ProgressDialog progressDialog;
+    double latitude;
+    double longitude;
+    String imageUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +118,6 @@ public class KeamananUpdateData extends AppCompatActivity {
         imageView = findViewById(R.id.uploadImageView);
         String tanggalkejadian = getIntent().getStringExtra("tanggalkejadian");
         String keterangan = getIntent().getStringExtra("keterangan");
-        String imageUrl = getIntent().getStringExtra("imageUrl");
 
         String nomorpelapor = getIntent().getStringExtra("nomorpelapor");
         String lokasikejadian = getIntent().getStringExtra("lokasikejadian");
@@ -138,7 +140,7 @@ public class KeamananUpdateData extends AppCompatActivity {
                     String tanggalkejadian = dataSnapshot.child("tanggalkejadian").getValue(String.class);
                     String lokasikejadian = dataSnapshot.child("lokasikejadian").getValue(String.class);
                     String keterangan = dataSnapshot.child("keterangan").getValue(String.class);
-                    String imageUrl = dataSnapshot.child("imageUrl").getValue(String.class);
+                     imageUrl = dataSnapshot.child("imageUrl").getValue(String.class);
 
                     Log.d("TAG", "pk: "+nextIdLaporan);
 
@@ -185,8 +187,8 @@ public class KeamananUpdateData extends AppCompatActivity {
             fusedLocationClient.getLastLocation()
                     .addOnSuccessListener(this, location -> {
                         if (location != null) {
-                            double latitude = location.getLatitude();
-                            double longitude = location.getLongitude();
+                             latitude = location.getLatitude();
+                             longitude = location.getLongitude();
 
                             getAddressFromLocation(latitude, longitude);
                         }
@@ -296,7 +298,7 @@ public class KeamananUpdateData extends AppCompatActivity {
                         // Get the download URL of the uploaded image
                         imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                             // Buat objek data baru dengan URL gambar yang baru
-                            LaporanUpdate data = new LaporanUpdate(namapelapor, nomorpelapor, tanggalkejadian, lokasikejadian, keterangan, uri.toString());
+                            LaporanUpdate data = new LaporanUpdate(namapelapor, nomorpelapor, tanggalkejadian, lokasikejadian, keterangan, uri.toString(), latitude, longitude);
 
                             // Update data ke Firebase Database
                             reference.setValue(data)
@@ -323,7 +325,7 @@ public class KeamananUpdateData extends AppCompatActivity {
                     });
         } else {
             // Jika user tidak memilih gambar baru, update data tanpa mengganti gambar
-            LaporanUpdate data = new LaporanUpdate(namapelapor, nomorpelapor, tanggalkejadian, lokasikejadian, keterangan, "");
+            LaporanUpdate data = new LaporanUpdate(namapelapor, nomorpelapor, tanggalkejadian, lokasikejadian, keterangan, imageUrl, latitude, longitude);
 
             // Update data ke Firebase Database
             reference.setValue(data)

@@ -41,7 +41,7 @@ public class MedisCreateActivity extends AppCompatActivity {
 
     private ActivityMediscreateBinding binding;
     private Uri imageUri;
-    private String kolomnamapelapor, kolomnomorpelapor, kolomtanggalkejadian, kolomlokasikejadian, kolomketerangan;
+    private String kolomnamapelapor, kolomnomorpelapor, kolomtanggalkejadian, kolomlokasikejadian, kolomketerangan, status;
     private FirebaseDatabase db;
     private DatabaseReference reference;
     private FirebaseStorage storage;
@@ -124,7 +124,7 @@ public class MedisCreateActivity extends AppCompatActivity {
                             }
 
                             String imageUrl = imageUri != null ? imageUri.toString() : "";
-
+                            status = "Not Verified";
                             Map<String, Object> data = new HashMap<>();
                             data.put("namapelapor", kolomnamapelapor);
                             data.put("nomorpelapor", kolomnomorpelapor);
@@ -133,6 +133,7 @@ public class MedisCreateActivity extends AppCompatActivity {
                             data.put("latitude", latitude);
                             data.put("longitude", longitude);
                             data.put("keterangan", kolomketerangan);
+                            data.put("status", status);
 
                             userEntryRef.setValue(data);
 
