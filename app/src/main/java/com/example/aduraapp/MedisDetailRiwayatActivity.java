@@ -54,7 +54,7 @@ public class MedisDetailRiwayatActivity extends Activity {
                 .fitCenter()
                 .into(imageView);
 
-        btnEdit = findViewById(R.id.btnedit);
+        btnEdit = findViewById(R.id.btnsimpan);
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

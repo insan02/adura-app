@@ -82,12 +82,12 @@
         <ImageView
             android:id="@+id/uploadImageView"
             android:layout_width="281dp"
-            android:layout_height="match_parent"
+            android:layout_height="281dp"
             android:layout_alignStart="@+id/selectImagebtn"
             android:layout_alignEnd="@+id/selectImagebtn"
             android:layout_marginStart="-106dp"
             android:layout_marginEnd="-99dp"
-            android:visibility="gone"
+            android:visibility="visible"
             tools:src="@tools:sample/avatars" />
 
     </RelativeLayout>
@@ -112,7 +112,6 @@
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
-        android:hint="Nama Pelapor"
         android:minHeight="48dp"
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -138,12 +137,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
-        android:hint="Nomor HP Pelapor"
+        android:inputType="phone"
         android:minHeight="48dp"
         android:textSize="13sp"
-        android:inputType="phone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nomor_hp_pelapor">
+        app:layout_constraintTop_toBottomOf="@id/nomor_hp_pelapor"
+        tools:ignore="SpeakableTextPresentCheck">
 
     </EditText>
 
@@ -171,7 +170,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
-        android:hint="DD-MM-YYYY"
         android:minHeight="48dp"
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -182,11 +180,11 @@
 
     <EditText
         android:id="@+id/kolomlokasikejadian"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
-        android:hint="Lokasi Kejadian"
+        android:hint=""
         android:minHeight="48dp"
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -209,13 +207,23 @@
 
     </TextView>
 
+    <ImageView
+        android:id="@+id/location"
+        android:layout_width="44dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/ic_location"
+        app:layout_constraintBottom_toBottomOf="@+id/kolomlokasikejadian"
+        app:layout_constraintStart_toEndOf="@+id/kolomlokasikejadian" />
+
     <Button
-        android:id="@+id/btnedit"
+        android:id="@+id/btnsimpan"
         android:layout_width="137dp"
         android:layout_height="48dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/corner_kirimsimpan"
         android:text="Simpan"
+        android:onClick="onButtonSimpanClicked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -239,10 +247,10 @@
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
         android:ems="10"
-        android:hint="Keterangan"
         android:inputType="text"
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/keterangan" />
+        app:layout_constraintTop_toBottomOf="@+id/keterangan"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

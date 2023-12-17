@@ -68,7 +68,7 @@ public class KeamananRiwayat {
         return nextIdLaporan;
     }
 
-    public void setIdLaporan(String idLaporan) {
+    public void setnextIdLaporan(String nextIdLaporan) {
         this.nextIdLaporan = nextIdLaporan;
     }
 }

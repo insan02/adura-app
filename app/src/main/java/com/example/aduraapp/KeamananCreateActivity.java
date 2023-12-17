@@ -54,7 +54,6 @@ public class KeamananCreateActivity extends Activity {
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 123;
     private static final int REQUEST_LOCATION_PERMISSION = 1;
     private ProgressDialog progressDialog;
-    private static final int PROGRESS_DIALOG_DURATION = 10000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

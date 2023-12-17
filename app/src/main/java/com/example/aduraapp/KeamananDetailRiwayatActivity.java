@@ -2,18 +2,19 @@ package com.example.aduraapp;
 
 import static androidx.constraintlayout.widget.ConstraintLayoutStates.TAG;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
 public class KeamananDetailRiwayatActivity extends Activity {
+    private Button btnEdit;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keamanandetailriwayat);
@@ -24,6 +25,9 @@ public class KeamananDetailRiwayatActivity extends Activity {
         String namapelapor = getIntent().getStringExtra("namapelapor");
         String nomorpelapor = getIntent().getStringExtra("nomorpelapor");
         String lokasikejadian = getIntent().getStringExtra("lokasikejadian");
+
+        String nextIdLaporan = getIntent().getStringExtra("nextIdLaporan");
+        Log.d("TAG", "id: "+nextIdLaporan);
 
         TextView tanggalkejadianTextView = findViewById(R.id.kolomtanggalkejadian);
         TextView keteranganTextView = findViewById(R.id.kolomketerangan);
@@ -42,6 +46,24 @@ public class KeamananDetailRiwayatActivity extends Activity {
                 .load(imageUrl)
                 .fitCenter()
                 .into(imageView);
+
+        btnEdit = findViewById(R.id.btnsimpan);
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Membuka activity MedisUpdateData dan mengirimkan primary key sebagai data tambahan
+                Intent intent = new Intent(KeamananDetailRiwayatActivity.this, KeamananUpdateData.class);
+                intent.putExtra("primaryKey", nextIdLaporan);
+                intent.putExtra("tanggalkejadian", tanggalkejadian);
+                intent.putExtra("keterangan", keterangan);
+                intent.putExtra("imageUrl", imageUrl);
+                intent.putExtra("namapelapor", namapelapor);
+                intent.putExtra("nomorpelapor", nomorpelapor);
+                intent.putExtra("lokasikejadian", lokasikejadian);
+
+                startActivity(intent);
+            }
+        });
 
     }
 
