@@ -10,11 +10,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MedisDetailRiwayatActivity extends Activity {
     private Button btnEdit;
+    private Button btnHapus;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medisdetailriwayat);
@@ -55,6 +64,14 @@ public class MedisDetailRiwayatActivity extends Activity {
                 .into(imageView);
 
         btnEdit = findViewById(R.id.btnsimpan);
+        btnHapus = findViewById(R.id.btnhapus);
+
+        btnHapus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteData(nextIdLaporan);
+            }
+        });
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,6 +86,24 @@ public class MedisDetailRiwayatActivity extends Activity {
                 intent.putExtra("lokasikejadian", lokasikejadian);
 
                 startActivity(intent);
+            }
+        });
+    }
+
+    private void deleteData(String nextIdLaporan) {
+        String idUser = FirebaseAuth.getInstance().getUid();
+        DatabaseReference deleteref = FirebaseDatabase.getInstance().getReference("Laporan_medis").child(idUser).child(nextIdLaporan);
+
+        deleteref.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(MedisDetailRiwayatActivity.this, "Data Berhasil Dihapus", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(MedisDetailRiwayatActivity.this, "Data Gagal Dihapus" + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
