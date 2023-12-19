@@ -46,8 +46,8 @@
         android:layout_height="20dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         android:text="@string/unggah_foto"
         android:textAppearance="@style/unggah_foto"
         android:textStyle="bold"
@@ -57,7 +57,7 @@
     <RelativeLayout
         android:id="@+id/uploadbukti"
         android:layout_width="200dp"
-        android:layout_height="105dp"
+        android:layout_height="130dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="8dp"
@@ -81,12 +81,12 @@
 
         <ImageView
             android:id="@+id/uploadImageView"
-            android:layout_width="281dp"
-            android:layout_height="281dp"
+            android:layout_width="291dp"
+            android:layout_height="291dp"
             android:layout_alignStart="@+id/selectImagebtn"
             android:layout_alignEnd="@+id/selectImagebtn"
             android:layout_marginStart="-106dp"
-            android:layout_marginEnd="-99dp"
+            android:layout_marginEnd="-106dp"
             android:visibility="visible"
             tools:src="@tools:sample/avatars" />
 
@@ -109,7 +109,7 @@
     <EditText
         android:id="@+id/kolomnamapelapor"
         android:layout_width="350dp"
-        android:layout_height="48dp"
+        android:layout_height="35dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
         android:minHeight="48dp"
@@ -134,7 +134,7 @@
     <EditText
         android:id="@+id/kolomnomorpelapor"
         android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
         android:inputType="phone"
@@ -167,11 +167,12 @@
     <EditText
         android:id="@+id/kolomtanggalkejadian"
         android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
         android:minHeight="48dp"
         android:textSize="13sp"
+        android:inputType="date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tanggal_kej">
 
@@ -181,7 +182,7 @@
     <EditText
         android:id="@+id/kolomlokasikejadian"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
         android:hint=""
@@ -244,7 +245,7 @@
     <EditText
         android:id="@+id/kolomketerangan"
         android:layout_width="350dp"
-        android:layout_height="48dp"
+        android:layout_height="65dp"
         android:layout_marginStart="24dp"
         android:ems="10"
         android:inputType="text"

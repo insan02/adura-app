@@ -10,11 +10,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
+import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class KeamananDetailRiwayatActivity extends Activity {
     private Button btnEdit;
+    private Button btnHapus;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keamanandetailriwayat);
@@ -48,10 +59,11 @@ public class KeamananDetailRiwayatActivity extends Activity {
                 .into(imageView);
 
         btnEdit = findViewById(R.id.btnsimpan);
+        btnHapus = findViewById(R.id.btnhapus);
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Membuka activity MedisUpdateData dan mengirimkan primary key sebagai data tambahan
+                // Membuka activity KeamananUpdateData dan mengirimkan primary key sebagai data tambahan
                 Intent intent = new Intent(KeamananDetailRiwayatActivity.this, KeamananUpdateData.class);
                 intent.putExtra("primaryKey", nextIdLaporan);
                 intent.putExtra("tanggalkejadian", tanggalkejadian);
@@ -65,6 +77,13 @@ public class KeamananDetailRiwayatActivity extends Activity {
             }
         });
 
+        btnHapus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteData(nextIdLaporan);
+            }
+        });
+
     }
 
     private void updateTextView(TextView textView,String prefix, String value ) {
@@ -73,6 +92,49 @@ public class KeamananDetailRiwayatActivity extends Activity {
         } else {
             textView.setVisibility(View.GONE);
         }
+    }
+
+    private void deleteData(String nextIdLaporan) {
+        // Konfirmasi sebelum menghapus data
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Konfirmasi");
+        builder.setMessage("Apakah Anda yakin ingin menghapus laporan ini?");
+        builder.setPositiveButton("Hapus", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // Panggil metode performDelete jika pengguna mengonfirmasi penghapusan
+                performDelete(nextIdLaporan);
+            }
+        });
+        builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // Batal menghapus, tidak melakukan apa-apa
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void performDelete(String nextIdLaporan) {
+        String idUser = FirebaseAuth.getInstance().getUid();
+        DatabaseReference deleteref = FirebaseDatabase.getInstance().getReference("Laporan_keamanan")
+                .child(idUser)
+                .child(nextIdLaporan);
+
+        deleteref.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(KeamananDetailRiwayatActivity.this, "Laporan Berhasil Dihapus", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(KeamananDetailRiwayatActivity.this, "Laporan Gagal Dihapus" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void onBackPressed(View view) {

@@ -160,7 +160,11 @@ public class KeamananCreateActivity extends Activity {
                         }
 
                         private void saveImageToStorage(Uri imageUri, String key) {
-                            StorageReference imageRef = storageRef.child(key);
+                            // Gunakan timestamp sebagai nama file unik
+                            String timestamp = String.valueOf(System.currentTimeMillis());
+                            String imageName = "image_" + timestamp;
+
+                            StorageReference imageRef = storageRef.child(imageName);
                             UploadTask uploadTask = imageRef.putFile(imageUri);
 
                             uploadTask.addOnSuccessListener(taskSnapshot -> {
@@ -176,6 +180,7 @@ public class KeamananCreateActivity extends Activity {
                                 Toast.makeText(KeamananCreateActivity.this, "Gagal Mengunggah gambar", Toast.LENGTH_SHORT).show();
                             });
                         }
+
                         private void saveImageUrlToDatabase(String key, String imageUrl) {
                             String idUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
                             DatabaseReference userEntryRef = reference.child(idUser).child(key);
@@ -187,6 +192,7 @@ public class KeamananCreateActivity extends Activity {
                             uploadImageView.setLayoutParams(originalParams);
                             resetForm();
                         }
+
                         private void resetForm() {
                             // Tampilkan pesan atau lakukan tindakan lain jika diperlukan
                             Toast.makeText(KeamananCreateActivity.this, "Laporan Terkirim", Toast.LENGTH_SHORT).show();

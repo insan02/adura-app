@@ -46,7 +46,7 @@
         android:layout_height="20dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
         android:text="@string/unggah_foto"
         android:textAppearance="@style/unggah_foto"
@@ -57,7 +57,7 @@
     <RelativeLayout
         android:id="@+id/uploadbukti"
         android:layout_width="200dp"
-        android:layout_height="105dp"
+        android:layout_height="115dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="8dp"
@@ -109,7 +109,7 @@
     <EditText
         android:id="@+id/kolomnamapelapor"
         android:layout_width="350dp"
-        android:layout_height="48dp"
+        android:layout_height="35dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
         android:hint="Nama Pelapor"
@@ -135,13 +135,13 @@
     <EditText
         android:id="@+id/kolomnomorpelapor"
         android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
         android:hint="Nomor HP Pelapor"
+        android:inputType="phone"
         android:minHeight="48dp"
         android:textSize="13sp"
-        android:inputType="phone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nomor_hp_pelapor">
 
@@ -168,9 +168,10 @@
     <EditText
         android:id="@+id/kolomtanggalkejadian"
         android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
+        android:inputType="date"
         android:hint="DD-MM-YYYY"
         android:minHeight="48dp"
         android:textSize="13sp"
@@ -183,7 +184,7 @@
     <EditText
         android:id="@+id/kolomlokasikejadian"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
         android:hint="Lokasi Kejadian"
@@ -236,7 +237,7 @@
     <EditText
         android:id="@+id/kolomketerangan"
         android:layout_width="350dp"
-        android:layout_height="48dp"
+        android:layout_height="65dp"
         android:layout_marginStart="24dp"
         android:ems="10"
         android:hint="Keterangan"

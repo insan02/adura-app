@@ -18,9 +18,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/image_back"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:src="@drawable/vector"
+        android:onClick="onBackPressed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.077"
@@ -58,7 +60,7 @@
     <ImageView
         android:id="@+id/gambar"
         android:layout_width="200dp"
-        android:layout_height="105dp"
+        android:layout_height="150dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/rectangle_23"
         app:layout_constraintEnd_toEndOf="@+id/rectangle_2"

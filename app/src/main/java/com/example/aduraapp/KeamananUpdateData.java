@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -106,7 +108,25 @@ public class KeamananUpdateData extends AppCompatActivity {
         binding.btnsimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateData();
+                AlertDialog.Builder builder = new AlertDialog.Builder(KeamananUpdateData.this);
+                builder.setTitle("Konfirmasi");
+                builder.setMessage("Apakah Anda yakin ingin memperbarui laporan?");
+                builder.setPositiveButton("Simpan", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        updateData();
+                    }
+                });
+                builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // Batal memperbarui, tidak melakukan apa-apa
+                        dismissProgressDialog();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 
@@ -304,7 +324,7 @@ public class KeamananUpdateData extends AppCompatActivity {
                             reference.setValue(data)
                                     .addOnSuccessListener(aVoid -> {
                                         // Data berhasil diperbarui
-                                        Toast.makeText(this, "Data berhasil diperbarui", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(this, "Laporan berhasil diperbarui", Toast.LENGTH_SHORT).show();
                                         dismissProgressDialog();
 
                                         Intent intent = new Intent(KeamananUpdateData.this, KeamananRiwayatList.class);
@@ -313,7 +333,7 @@ public class KeamananUpdateData extends AppCompatActivity {
                                     })
                                     .addOnFailureListener(e -> {
                                         // Gagal memperbarui data
-                                        Toast.makeText(this, "Gagal memperbarui data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(this, "Gagal memperbarui laporan " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                         dismissProgressDialog();
                                     });
                         });
@@ -331,7 +351,7 @@ public class KeamananUpdateData extends AppCompatActivity {
             reference.setValue(data)
                     .addOnSuccessListener(aVoid -> {
                         // Data berhasil diperbarui
-                        Toast.makeText(this, "Data berhasil diperbarui", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Laporan berhasil diperbarui", Toast.LENGTH_SHORT).show();
                         dismissProgressDialog();
 
                         Intent intent = new Intent(KeamananUpdateData.this, KeamananRiwayatList.class);
@@ -340,7 +360,7 @@ public class KeamananUpdateData extends AppCompatActivity {
                     })
                     .addOnFailureListener(e -> {
                         // Gagal memperbarui data
-                        Toast.makeText(this, "Gagal memperbarui data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Gagal memperbarui laporan " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         dismissProgressDialog();
                     });
         }
@@ -353,6 +373,11 @@ public class KeamananUpdateData extends AppCompatActivity {
 
     private void dismissProgressDialog() {
         progressDialog.dismiss();
+    }
+
+    public void onBackPressed(View view) {
+        super.onBackPressed();
+        finish();
     }
 
 
