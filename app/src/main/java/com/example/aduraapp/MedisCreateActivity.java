@@ -145,7 +145,10 @@ public class MedisCreateActivity extends AppCompatActivity {
                         }
 
                         private void saveImageToStorage(Uri imageUri, String key) {
-                            StorageReference imageRef = storageRef.child(key);
+                            String timestamp = String.valueOf(System.currentTimeMillis());
+                            String imageName = "image_" + timestamp;
+
+                            StorageReference imageRef = storageRef.child(imageName);
                             UploadTask uploadTask = imageRef.putFile(imageUri);
 
                             uploadTask.addOnSuccessListener(taskSnapshot -> {
@@ -154,18 +157,19 @@ public class MedisCreateActivity extends AppCompatActivity {
                                     String imageUrl = uri.toString();
 
                                     // Lanjutkan dengan menyimpan URL gambar ke Realtime Database atau melakukan apa pun yang diperlukan
-                                    saveImageUrlToDatabase(key, imageUrl);
+                                    saveImageUrlToDatabase(key, imageUrl, imageName);
                                 });
                             }).addOnFailureListener(e -> {
                                 Toast.makeText(MedisCreateActivity.this, "Gagal Mengunggah gambar", Toast.LENGTH_SHORT).show();
                             });
                         }
 
-                        private void saveImageUrlToDatabase(String key, String imageUrl) {
+                        private void saveImageUrlToDatabase(String key, String imageUrl, String imageName) {
                             String idUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
                             DatabaseReference userEntryRef = reference.child(idUser).child(key);
 
                             userEntryRef.child("imageUrl").setValue(imageUrl);
+                            userEntryRef.child("imageName").setValue(imageName);
 
                             resetForm();
                         }
@@ -276,7 +280,6 @@ public class MedisCreateActivity extends AppCompatActivity {
 
             ImageView uploadImageView = findViewById(R.id.selectImagebtn);
 
-            // Simpan parameter tata letak yang ada
             originalParams = (RelativeLayout.LayoutParams) uploadImageView.getLayoutParams();
 
             uploadImageView.setImageURI(imageUri);

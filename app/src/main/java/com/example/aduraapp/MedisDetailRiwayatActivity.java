@@ -3,6 +3,8 @@ package com.example.aduraapp;
 import static androidx.constraintlayout.widget.ConstraintLayoutStates.TAG;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,17 +22,22 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class MedisDetailRiwayatActivity extends Activity {
     private Button btnEdit;
     private Button btnHapus;
+    private String imageUrl;
+    private String imageName;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medisdetailriwayat);
 
         String tanggalkejadian = getIntent().getStringExtra("tanggalkejadian");
         String keterangan = getIntent().getStringExtra("keterangan");
-        String imageUrl = getIntent().getStringExtra("imageUrl");
+         imageUrl = getIntent().getStringExtra("imageUrl");
+         imageName  = getIntent().getStringExtra("imageName");
         String namapelapor = getIntent().getStringExtra("namapelapor");
         String nomorpelapor = getIntent().getStringExtra("nomorpelapor");
         String lokasikejadian = getIntent().getStringExtra("lokasikejadian");
@@ -38,6 +45,7 @@ public class MedisDetailRiwayatActivity extends Activity {
 //        idlaporan
         String nextIdLaporan = getIntent().getStringExtra("nextIdLaporan");
         Log.d("TAG", "id: "+nextIdLaporan);
+        Log.d("TAG", "imageName: "+imageName);
 
         String namapelapor_detail = getString(R.string.pelapor_detail);
         String nomorpelapor_detail = getString(R.string.hp_detail);
@@ -69,7 +77,7 @@ public class MedisDetailRiwayatActivity extends Activity {
         btnHapus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteData(nextIdLaporan);
+                deleteData(nextIdLaporan, imageName);
             }
         });
         btnEdit.setOnClickListener(new View.OnClickListener() {
@@ -90,15 +98,52 @@ public class MedisDetailRiwayatActivity extends Activity {
         });
     }
 
-    private void deleteData(String nextIdLaporan) {
+    private void deleteData(String nextIdLaporan, String imageName){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Konfirmasi");
+        builder.setMessage("Apakah Anda yakin ingin menghapus laporan ini?");
+        builder.setPositiveButton("Hapus", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // Panggil metode performDelete jika pengguna mengonfirmasi penghapusan
+                performDelete(nextIdLaporan, imageName);
+            }
+        });
+        builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // Batal menghapus, tidak melakukan apa-apa
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void performDelete(String nextIdLaporan, String imageName) {
+
         String idUser = FirebaseAuth.getInstance().getUid();
+
+        String storagePath = "images/" + imageName;
         DatabaseReference deleteref = FirebaseDatabase.getInstance().getReference("Laporan_medis").child(idUser).child(nextIdLaporan);
+
+        StorageReference storageref = FirebaseStorage.getInstance().getReference().child(storagePath);
 
         deleteref.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                Toast.makeText(MedisDetailRiwayatActivity.this, "Data Berhasil Dihapus", Toast.LENGTH_SHORT).show();
-                finish();
+                storageref.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(MedisDetailRiwayatActivity.this, "Data dan gambar Berhasil Dihapus", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(MedisDetailRiwayatActivity.this, "Gagal menghapus gambar" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -106,6 +151,7 @@ public class MedisDetailRiwayatActivity extends Activity {
                 Toast.makeText(MedisDetailRiwayatActivity.this, "Data Gagal Dihapus" + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     private void updateTextView(TextView textView,String prefix, String value ) {
