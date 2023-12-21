@@ -18,9 +18,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/image_back"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:src="@drawable/vector"
+        android:onClick="onBackPressed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.077"
@@ -58,7 +60,7 @@
     <ImageView
         android:id="@+id/gambar"
         android:layout_width="200dp"
-        android:layout_height="105dp"
+        android:layout_height="150dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/rectangle_23"
         app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
@@ -112,7 +114,7 @@
     <TextView
         android:id="@+id/kolomlokasikejadian"
         android:layout_width="260dp"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="25dp"
@@ -137,7 +139,7 @@
         app:layout_constraintTop_toBottomOf="@+id/kolomlokasikejadian" />
 
     <Button
-        android:id="@+id/btnedit"
+        android:id="@+id/btnsimpan"
         android:layout_width="118dp"
         android:layout_height="48dp"
         android:layout_marginTop="28dp"

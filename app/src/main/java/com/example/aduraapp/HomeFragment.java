@@ -60,19 +60,23 @@ public class HomeFragment extends Fragment {
         // Add sample menu items; replace with your actual data
         listMenu.add(new Menu(
                 R.drawable.ic_buku,
-                "Panduan"
+                "Panduan",
+                R.color.white
         ));
         listMenu.add(new Menu(
                 R.drawable.ic_medis,
-                "Medis"
+                "Medis",
+                R.color.blue
         ));
         listMenu.add(new Menu(
                 R.drawable.ic_keamanan,
-                "Keamanan"
+                "Keamanan",
+                R.color.kuning
         ));
         listMenu.add(new Menu(
                 R.drawable.ic_kebakaran,
-                "Kebakaran"
+                "Kebakaran",
+                R.color.merah
         ));
 
         return listMenu;

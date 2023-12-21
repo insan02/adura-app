@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="16dp"
+    app:circularflow_radiusInDP="16dp"
     tools:context=".HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -13,6 +14,20 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <!-- Set bghome ImageView at the bottom to make it the background -->
+
+        <ImageView
+            android:id="@+id/bghome"
+            android:layout_width="373dp"
+            android:layout_height="151dp"
+            android:layout_marginBottom="116dp"
+            android:src="@drawable/bg_topmedislist"
+            app:circularflow_radiusInDP="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/rv_menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/hijau" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_menu"
@@ -28,17 +43,48 @@
             app:layout_constraintVertical_bias="0.0"
             tools:listitem="@layout/item_menu" />
 
+        <TextView
+            android:id="@+id/textGreeting"
+            android:layout_width="177dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="72dp"
+            android:fontFamily="serif"
+            android:text="Selamat datang di"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textGreeting2"
+            android:layout_width="179dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="108dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Adura"
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#FFFDFD"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/imageLogoAdura"
-            android:layout_width="98dp"
-            android:layout_height="66dp"
+            android:layout_width="159dp"
+            android:layout_height="118dp"
             app:layout_constraintBottom_toTopOf="@+id/rv_menu"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.96"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.143"
+            app:layout_constraintVertical_bias="0.281"
             app:srcCompat="@drawable/logo_adura" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MedisCreateActivity">
+
     <RelativeLayout
         android:id="@+id/topmedis"
         android:layout_width="match_parent"
@@ -19,13 +20,13 @@
             android:id="@+id/imageView"
             android:layout_width="51dp"
             android:layout_height="39dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_marginStart="22dp"
             android:layout_marginTop="18dp"
             android:clickable="true"
             android:onClick="onBackPressed"
             android:src="@drawable/vector"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <TextView
@@ -205,15 +206,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7"
         app:layout_constraintVertical_bias="0.019" />
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/kolomlokasikejadian"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        tools:ignore="SpeakableTextPresentCheck" />
-
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
@@ -253,6 +245,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/kolomketerangan" />
 
+
+
+    <ImageView
+        android:id="@+id/location"
+        android:layout_width="56dp"
+        android:layout_height="54dp"
+        android:clickable="true"
+        app:layout_constraintStart_toEndOf="@+id/kolomlokasikejadian"
+        app:layout_constraintTop_toTopOf="@+id/kolomlokasikejadian"
+        app:srcCompat="@drawable/ic_location" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

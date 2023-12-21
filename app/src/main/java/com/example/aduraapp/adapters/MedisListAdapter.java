@@ -49,6 +49,10 @@ public class MedisListAdapter extends RecyclerView.Adapter<MedisListAdapter.MyVi
                 intent.putExtra("namapelapor", MedisRiwayat.getNamapelapor());
                 intent.putExtra("nomorpelapor", MedisRiwayat.getNomorpelapor());
                 intent.putExtra("lokasikejadian", MedisRiwayat.getLokasikejadian());
+                intent.putExtra("imageName", MedisRiwayat.getImageName());
+
+//                menyimpan id laporan
+                intent.putExtra("nextIdLaporan", MedisRiwayat.getnextIdLaporan());
                 context.startActivity(intent);
             }
         });

@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -54,6 +55,7 @@ dependencies {
     annotationProcessor("com.github.bumptech.glide:compiler:4.14.2")
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("androidx.appcompat:appcompat:1.3.1")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
 
 
 

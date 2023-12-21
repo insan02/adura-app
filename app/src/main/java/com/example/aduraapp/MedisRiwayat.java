@@ -11,6 +11,8 @@ public class MedisRiwayat {
     private String imageUrl;
     private String keterangan;
     private String lokasikejadian;
+    private String imageName;
+
 
     // Default constructor required for Firebase
     public MedisRiwayat() {
@@ -64,11 +66,20 @@ public class MedisRiwayat {
         this.lokasikejadian = lokasikejadian;
     }
 
+//    menyimpan id laporan
     public String getnextIdLaporan() {
         return nextIdLaporan;
     }
 
-    public void setIdLaporan(String idLaporan) {
+    public void setnextIdLaporan(String nextIdLaporan) {
         this.nextIdLaporan = nextIdLaporan;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 }

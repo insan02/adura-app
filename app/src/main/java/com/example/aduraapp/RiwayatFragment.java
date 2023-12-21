@@ -57,16 +57,19 @@ public class RiwayatFragment extends Fragment {
 
         listMenu.add(new Menu(
                 R.drawable.ic_medis,
-                "Medis"
+                "Medis",
+                R.color.blue
 
         ));
         listMenu.add(new Menu(
                 R.drawable.ic_keamanan,
-                "Keamanan"
+                "Keamanan",
+                R.color.kuning
         ));
         listMenu.add(new Menu(
                 R.drawable.ic_kebakaran,
-                "Kebakaran"
+                "Kebakaran",
+                R.color.merah
         ));
         // Add more menu items as needed
 

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.View;
 
 import com.example.aduraapp.adapters.KeamananListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -61,6 +62,8 @@ public class KeamananRiwayatList extends AppCompatActivity {
                             Log.d("Tag", "Data Tanggal: " + keamananRiwayat.getTanggalkejadian());
                             Log.d("Tag", "Data Keterangan: " + keamananRiwayat.getKeterangan());
 
+                            keamananRiwayat.setnextIdLaporan(dataSnapshot.getKey());
+
                             list.add(keamananRiwayat);
                         } else {
                             Log.e("Tag", "KeamananRiwayat is null");
@@ -76,5 +79,9 @@ public class KeamananRiwayatList extends AppCompatActivity {
                 }
             });
         }
+    }
+    public void onBackPressed(View view) {
+        super.onBackPressed();
+        finish();
     }
 }

@@ -21,12 +21,9 @@ import com.example.aduraapp.models.Menu;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements MenuAdapter.ItemMenuClickListener{
-
-    private RecyclerView rvMenu;
+public class MainActivity extends AppCompatActivity{
 
     private boolean isLoggedIn = false;
-//    TextView textGreeting;
 
     private ActivityMainBinding binding;
 
@@ -37,19 +34,10 @@ public class MainActivity extends AppCompatActivity implements MenuAdapter.ItemM
         View view = binding.getRoot();
         setContentView(view);
 
-        rvMenu = findViewById(R.id.rv_menu);
-        if (rvMenu != null) {
-            MenuAdapter adapter = new MenuAdapter(getMenu());
-            adapter.setListener(this);
-            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-            rvMenu.setLayoutManager(layoutManager);
-            rvMenu.setAdapter(adapter);
-        }
 
         replaceFragment(new HomeFragment());
 
         Intent mainIntent = getIntent();
-        String Username = mainIntent.getStringExtra("USERNAME");
         isLoggedIn = mainIntent.getBooleanExtra("IS_LOGGED_IN", false);
 
         if (!isLoggedIn) {
@@ -58,20 +46,14 @@ public class MainActivity extends AppCompatActivity implements MenuAdapter.ItemM
             finish();
         }
 
-//        textGreeting = binding.textGreeting;//findViewById(R.id.textGreeting);
-//        textGreeting.setText("Hello, " + Username);
-
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.home) {
                 replaceFragment(new HomeFragment());
-                binding.textGreeting.setText("Hello, " + Username);
             } else if (itemId == R.id.riwayat) {
                 replaceFragment(new RiwayatFragment());
-                binding.textGreeting.setText("");
             } else if (itemId == R.id.profil) {
                 replaceFragment(new ProfilFragment());
-                binding.textGreeting.setText("");//
             }
             return true;
         });
@@ -84,22 +66,4 @@ public class MainActivity extends AppCompatActivity implements MenuAdapter.ItemM
         fragmentTransaction.commit();
     }
 
-    public ArrayList<Menu> getMenu(){
-        ArrayList<Menu> listMenu = new ArrayList<>();
-        listMenu.add(new Menu(
-                R.drawable.ic_keamanan,
-                "Panduan"
-        ));
-        listMenu.add(new Menu(
-                R.drawable.ic_keamanan,
-                "Medis"
-        ));
-        return listMenu;
-    }
-
-
-    @Override
-    public void onItemMenuClick(Menu menu) {
-        Toast.makeText(this, "Buat Laporan" + menu.getNamaMenu(), Toast.LENGTH_SHORT).show();
-    }
 }

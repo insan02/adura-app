@@ -1,7 +1,12 @@
 package com.example.aduraapp;
 
+import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.app.Activity;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -10,8 +15,12 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.aduraapp.databinding.ActivityKeamanancreateBinding;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,22 +32,30 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class KeamananCreateActivity extends Activity {
 
     ActivityKeamanancreateBinding binding;
     Uri imageUri;
-    String kolomnamapelapor, kolomnomorpelapor, kolomtanggalkejadian, kolomlokasikejadian, kolomketerangan;
+    String kolomnamapelapor, kolomnomorpelapor, kolomtanggalkejadian, kolomlokasikejadian, kolomketerangan, status;
     FirebaseDatabase db;
     DatabaseReference reference;
     FirebaseStorage storage;
     StorageReference storageRef;
     RelativeLayout.LayoutParams originalParams;
+    private FusedLocationProviderClient fusedLocationClient;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 123;
+    private static final int REQUEST_LOCATION_PERMISSION = 1;
+    double latitude;
+    double longitude;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +63,27 @@ public class KeamananCreateActivity extends Activity {
         binding = ActivityKeamanancreateBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference("images");
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Mengirim laporan...");
+        progressDialog.setCancelable(false);
+
         ImageView uploadImageView = findViewById(R.id.selectImagebtn);
+        ImageView locationImageView = findViewById(R.id.location);
+
+        originalParams = (RelativeLayout.LayoutParams) uploadImageView.getLayoutParams();
+
+        locationImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Periksa dan minta izin lokasi
+                checkLocationPermission();
+            }
+        });
 
         binding.selectImagebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +93,16 @@ public class KeamananCreateActivity extends Activity {
         });
 
         binding.btnkirim.setOnClickListener(new View.OnClickListener() {
+            private void showProgressDialog() {
+                progressDialog.show();
+            }
+
+            private void dismissProgressDialog() {
+                progressDialog.dismiss();
+            }
             public void onClick(View view) {
+                showProgressDialog();
+
                 kolomnamapelapor = binding.kolomnamapelapor.getText() != null ? binding.kolomnamapelapor.getText().toString() : "";
                 kolomnomorpelapor = binding.kolomnomorpelapor.getText() != null ? binding.kolomnomorpelapor.getText().toString() : "";
                 kolomlokasikejadian = binding.kolomlokasikejadian.getText() != null ? binding.kolomlokasikejadian.getText().toString() : "";
@@ -99,13 +142,16 @@ public class KeamananCreateActivity extends Activity {
                             }
 
                             String imageUrl = imageUri != null ? imageUri.toString() : "";
-
+                            status = "Not Verified";
                             Map<String, Object> data = new HashMap<>();
                             data.put("namapelapor", kolomnamapelapor);
                             data.put("nomorpelapor", kolomnomorpelapor);
                             data.put("tanggalkejadian", kolomtanggalkejadian);
                             data.put("lokasikejadian", kolomlokasikejadian);
+                            data.put("latitude", latitude);
+                            data.put("longitude", longitude);
                             data.put("keterangan", kolomketerangan);
+                            data.put("status", status);
 
                             userEntryRef.setValue(data);
 
@@ -119,7 +165,11 @@ public class KeamananCreateActivity extends Activity {
                         }
 
                         private void saveImageToStorage(Uri imageUri, String key) {
-                            StorageReference imageRef = storageRef.child(key);
+                            // Gunakan timestamp sebagai nama file unik
+                            String timestamp = String.valueOf(System.currentTimeMillis());
+                            String imageName = "image_" + timestamp;
+
+                            StorageReference imageRef = storageRef.child(imageName);
                             UploadTask uploadTask = imageRef.putFile(imageUri);
 
                             uploadTask.addOnSuccessListener(taskSnapshot -> {
@@ -128,21 +178,24 @@ public class KeamananCreateActivity extends Activity {
                                     String imageUrl = uri.toString();
 
                                     // Lanjutkan dengan menyimpan URL gambar ke Realtime Database atau melakukan apa pun yang diperlukan
-                                    saveImageUrlToDatabase(key, imageUrl);
+                                    saveImageUrlToDatabase(key, imageUrl, imageName);
                                 });
 
                             }).addOnFailureListener(e -> {
                                 Toast.makeText(KeamananCreateActivity.this, "Gagal Mengunggah gambar", Toast.LENGTH_SHORT).show();
                             });
                         }
-                        private void saveImageUrlToDatabase(String key, String imageUrl) {
+
+                        private void saveImageUrlToDatabase(String key, String imageUrl, String imageName) {
                             String idUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
                             DatabaseReference userEntryRef = reference.child(idUser).child(key);
 
                             userEntryRef.child("imageUrl").setValue(imageUrl);
+                            userEntryRef.child("imageName").setValue(imageName);
 
                             resetForm();
                         }
+
                         private void resetForm() {
                             // Tampilkan pesan atau lakukan tindakan lain jika diperlukan
                             Toast.makeText(KeamananCreateActivity.this, "Laporan Terkirim", Toast.LENGTH_SHORT).show();
@@ -153,16 +206,84 @@ public class KeamananCreateActivity extends Activity {
                             binding.kolomlokasikejadian.setText("");
                             binding.kolomnomorpelapor.setText("");
                             binding.kolomtanggalkejadian.setText("");
+
+                            uploadImageView.setImageResource(R.drawable.__icon__cloud_download_);
+                            imageUri = null;
+                            uploadImageView.setLayoutParams(originalParams);
+
+                            dismissProgressDialog();
                         }
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
 
                             Toast.makeText(KeamananCreateActivity.this, "Error Dalam Pengiriman Data", Toast.LENGTH_SHORT).show();
                         }
+
+
+
                     });
                 }
             }
         });
+    }
+
+    private void checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            // Izin sudah diberikan, dapatkan lokasi
+            getLocation();
+        } else {
+            // Izin belum diberikan, minta izin
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    private void getLocation() {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            fusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(this, location -> {
+                        if (location != null) {
+                            latitude = location.getLatitude();
+                            longitude = location.getLongitude();
+
+                            getAddressFromLocation(latitude, longitude);
+                        }
+                    });
+        } else {
+            // Jika izin belum diberikan, minta izin kepada pengguna
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
+        }
+    }
+
+    private void getAddressFromLocation(double latitude, double longitude) {
+        Geocoder geocoder = new Geocoder(this);
+        try {
+            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            if (addresses.size() > 0) {
+                // Dapatkan alamat dari hasil geocoder
+                Address address = addresses.get(0);
+                String addressLine = address.getAddressLine(0);
+
+                // Tampilkan alamat di kolom lokasi
+                binding.kolomlokasikejadian.setText(addressLine);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == REQUEST_LOCATION_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Izin diberikan, panggil getLocation lagi
+                getLocation();
+            } else {
+                // Izin ditolak, Anda dapat memberikan informasi kepada pengguna atau mengambil tindakan lain yang sesuai
+                Toast.makeText(this, "Izin lokasi ditolak. Aplikasi membutuhkan izin ini untuk bekerja dengan baik.", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private void selectImage() {
