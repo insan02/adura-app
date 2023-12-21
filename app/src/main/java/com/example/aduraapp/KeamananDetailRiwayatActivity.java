@@ -22,23 +22,29 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class KeamananDetailRiwayatActivity extends Activity {
     private Button btnEdit;
     private Button btnHapus;
+    private String imageUrl;
+    private String imageName;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keamanandetailriwayat);
 
         String tanggalkejadian = getIntent().getStringExtra("tanggalkejadian");
         String keterangan = getIntent().getStringExtra("keterangan");
-        String imageUrl = getIntent().getStringExtra("imageUrl");
+        imageUrl = getIntent().getStringExtra("imageUrl");
+        imageName  = getIntent().getStringExtra("imageName");
         String namapelapor = getIntent().getStringExtra("namapelapor");
         String nomorpelapor = getIntent().getStringExtra("nomorpelapor");
         String lokasikejadian = getIntent().getStringExtra("lokasikejadian");
 
         String nextIdLaporan = getIntent().getStringExtra("nextIdLaporan");
         Log.d("TAG", "id: "+nextIdLaporan);
+        Log.d("TAG", "imageName: "+imageName);
 
         TextView tanggalkejadianTextView = findViewById(R.id.kolomtanggalkejadian);
         TextView keteranganTextView = findViewById(R.id.kolomketerangan);
@@ -80,7 +86,7 @@ public class KeamananDetailRiwayatActivity extends Activity {
         btnHapus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteData(nextIdLaporan);
+                deleteData(nextIdLaporan, imageName);
             }
         });
 
@@ -94,7 +100,7 @@ public class KeamananDetailRiwayatActivity extends Activity {
         }
     }
 
-    private void deleteData(String nextIdLaporan) {
+    private void deleteData(String nextIdLaporan, String imageName) {
         // Konfirmasi sebelum menghapus data
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Konfirmasi");
@@ -103,7 +109,7 @@ public class KeamananDetailRiwayatActivity extends Activity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 // Panggil metode performDelete jika pengguna mengonfirmasi penghapusan
-                performDelete(nextIdLaporan);
+                performDelete(nextIdLaporan, imageName);
             }
         });
         builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
@@ -117,24 +123,38 @@ public class KeamananDetailRiwayatActivity extends Activity {
         dialog.show();
     }
 
-    private void performDelete(String nextIdLaporan) {
+    private void performDelete(String nextIdLaporan, String imageName) {
+
         String idUser = FirebaseAuth.getInstance().getUid();
-        DatabaseReference deleteref = FirebaseDatabase.getInstance().getReference("Laporan_keamanan")
-                .child(idUser)
-                .child(nextIdLaporan);
+
+        String storagePath = "images/" + imageName;
+        DatabaseReference deleteref = FirebaseDatabase.getInstance().getReference("Laporan_keamanan").child(idUser).child(nextIdLaporan);
+
+        StorageReference storageref = FirebaseStorage.getInstance().getReference().child(storagePath);
 
         deleteref.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                Toast.makeText(KeamananDetailRiwayatActivity.this, "Laporan Berhasil Dihapus", Toast.LENGTH_SHORT).show();
-                finish();
+                storageref.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(KeamananDetailRiwayatActivity.this, "Data dan gambar Berhasil Dihapus", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(KeamananDetailRiwayatActivity.this, "Gagal menghapus gambar" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(KeamananDetailRiwayatActivity.this, "Laporan Gagal Dihapus" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(KeamananDetailRiwayatActivity.this, "Data Gagal Dihapus" + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     public void onBackPressed(View view) {

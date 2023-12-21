@@ -44,7 +44,7 @@ public class KeamananCreateActivity extends Activity {
 
     ActivityKeamanancreateBinding binding;
     Uri imageUri;
-    String kolomnamapelapor, kolomnomorpelapor, kolomtanggalkejadian, kolomlokasikejadian, kolomketerangan;
+    String kolomnamapelapor, kolomnomorpelapor, kolomtanggalkejadian, kolomlokasikejadian, kolomketerangan, status;
     FirebaseDatabase db;
     DatabaseReference reference;
     FirebaseStorage storage;
@@ -53,6 +53,8 @@ public class KeamananCreateActivity extends Activity {
     private FusedLocationProviderClient fusedLocationClient;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 123;
     private static final int REQUEST_LOCATION_PERMISSION = 1;
+    double latitude;
+    double longitude;
     private ProgressDialog progressDialog;
 
     @Override
@@ -140,13 +142,16 @@ public class KeamananCreateActivity extends Activity {
                             }
 
                             String imageUrl = imageUri != null ? imageUri.toString() : "";
-
+                            status = "Not Verified";
                             Map<String, Object> data = new HashMap<>();
                             data.put("namapelapor", kolomnamapelapor);
                             data.put("nomorpelapor", kolomnomorpelapor);
                             data.put("tanggalkejadian", kolomtanggalkejadian);
                             data.put("lokasikejadian", kolomlokasikejadian);
+                            data.put("latitude", latitude);
+                            data.put("longitude", longitude);
                             data.put("keterangan", kolomketerangan);
+                            data.put("status", status);
 
                             userEntryRef.setValue(data);
 
@@ -173,7 +178,7 @@ public class KeamananCreateActivity extends Activity {
                                     String imageUrl = uri.toString();
 
                                     // Lanjutkan dengan menyimpan URL gambar ke Realtime Database atau melakukan apa pun yang diperlukan
-                                    saveImageUrlToDatabase(key, imageUrl);
+                                    saveImageUrlToDatabase(key, imageUrl, imageName);
                                 });
 
                             }).addOnFailureListener(e -> {
@@ -181,15 +186,13 @@ public class KeamananCreateActivity extends Activity {
                             });
                         }
 
-                        private void saveImageUrlToDatabase(String key, String imageUrl) {
+                        private void saveImageUrlToDatabase(String key, String imageUrl, String imageName) {
                             String idUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
                             DatabaseReference userEntryRef = reference.child(idUser).child(key);
 
                             userEntryRef.child("imageUrl").setValue(imageUrl);
+                            userEntryRef.child("imageName").setValue(imageName);
 
-                            uploadImageView.setImageResource(R.drawable.__icon__cloud_download_);
-                            imageUri = null;
-                            uploadImageView.setLayoutParams(originalParams);
                             resetForm();
                         }
 
@@ -203,6 +206,10 @@ public class KeamananCreateActivity extends Activity {
                             binding.kolomlokasikejadian.setText("");
                             binding.kolomnomorpelapor.setText("");
                             binding.kolomtanggalkejadian.setText("");
+
+                            uploadImageView.setImageResource(R.drawable.__icon__cloud_download_);
+                            imageUri = null;
+                            uploadImageView.setLayoutParams(originalParams);
 
                             dismissProgressDialog();
                         }
@@ -235,8 +242,8 @@ public class KeamananCreateActivity extends Activity {
             fusedLocationClient.getLastLocation()
                     .addOnSuccessListener(this, location -> {
                         if (location != null) {
-                            double latitude = location.getLatitude();
-                            double longitude = location.getLongitude();
+                            latitude = location.getLatitude();
+                            longitude = location.getLongitude();
 
                             getAddressFromLocation(latitude, longitude);
                         }

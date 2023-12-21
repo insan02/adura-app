@@ -9,6 +9,8 @@ public class KeamananRiwayat {
     private String nomorpelapor;
     private String tanggalkejadian;
     private String imageUrl;
+    private String imageName;
+
     private String keterangan;
     private String lokasikejadian;
 
@@ -46,6 +48,13 @@ public class KeamananRiwayat {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
     public String getKeterangan() {
