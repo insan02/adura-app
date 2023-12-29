@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.example.aduraapp.adapters.MenuAdapter;
 import com.example.aduraapp.databinding.ActivityMainBinding;
 import com.example.aduraapp.models.Menu;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 
 import java.lang.reflect.Array;
@@ -24,6 +26,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity{
 
     private boolean isLoggedIn = false;
+    private static final String TAG = "MainActivity";
 
     private ActivityMainBinding binding;
 
@@ -56,6 +59,18 @@ public class MainActivity extends AppCompatActivity{
                 replaceFragment(new ProfilFragment());
             }
             return true;
+        });
+
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                Log.e(TAG, "Fetching FCM registration token failed", task.getException());
+                return;
+            }
+
+            String token = task.getResult();
+
+            Log.d(TAG, "Token: " + token);
+
         });
     }
 
