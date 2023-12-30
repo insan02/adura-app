@@ -34,8 +34,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // Use current timestamp as a unique request code
         int uniqueRequestCode = (int) System.currentTimeMillis();
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, uniqueRequestCode, intent,
-                PendingIntent.FLAG_UPDATE_CURRENT); // Use FLAG_UPDATE_CURRENT
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_MUTABLE); // Use FLAG_UPDATE_CURRENT
 
         String channelId = "My channel ID";
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
