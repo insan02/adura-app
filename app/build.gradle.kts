@@ -52,6 +52,7 @@ dependencies {
     implementation("com.google.firebase:protolite-well-known-types:18.0.0")
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("com.github.bumptech.glide:glide:4.14.2")
+    implementation("com.google.firebase:firebase-messaging:23.4.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.14.2")
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("androidx.appcompat:appcompat:1.3.1")
