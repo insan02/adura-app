@@ -46,7 +46,7 @@ public class MapsActivity extends FragmentActivity implements LocationListener, 
     private Timer doubleTapTimer;
     private String tipe_laporan;
     private Button loc;
-    private String addressLine;
+    private String addressLine,nextidlaporan ;
     private boolean doubleTap = false;
 
     @Override
@@ -119,6 +119,18 @@ public class MapsActivity extends FragmentActivity implements LocationListener, 
                     intent.putExtra("ADDRESS", addressLine);
                     intent.putExtra("LATITUDE", latitude);
                     intent.putExtra("LONGITUDE", longitude);
+                    startActivity(intent);
+                }
+                if("MedisUpdate".equals(tipe_laporan)){
+                    nextidlaporan = getIntent().getStringExtra("nextidlaporan");
+                    double latitude = marker.getPosition().getLatitude();
+                    double longitude = marker.getPosition().getLongitude();
+                    getAddressFromLocation(latitude, longitude);
+                    Intent intent = new Intent(MapsActivity.this, MedisUpdateData.class);
+                    intent.putExtra("ADDRESS", addressLine);
+                    intent.putExtra("LATITUDE", latitude);
+                    intent.putExtra("LONGITUDE", longitude);
+                    intent.putExtra("primaryKey", nextidlaporan);
                     startActivity(intent);
                 }
             }
