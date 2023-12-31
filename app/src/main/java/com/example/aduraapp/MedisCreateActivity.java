@@ -271,7 +271,7 @@ public class MedisCreateActivity extends AppCompatActivity {
 
         if (requestCode == REQUEST_LOCATION_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Izin diberikan, panggil getLocation lagi
+
                 tipe_laporan = "MedisCreate";
                 Intent intent = new Intent(MedisCreateActivity.this, MapsActivity.class);
                 intent.putExtra("TIPE_LAPORAN", tipe_laporan);

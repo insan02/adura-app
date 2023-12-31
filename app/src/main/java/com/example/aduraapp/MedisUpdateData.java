@@ -58,7 +58,7 @@ public class MedisUpdateData extends AppCompatActivity {
     double latitude;
     double longitude;
     private ProgressDialog progressDialog;
-    private String imageUrl;
+    private String imageUrl, tipe_laporan, address, nextIdLaporan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,12 +89,13 @@ public class MedisUpdateData extends AppCompatActivity {
         String lokasikejadian = getIntent().getStringExtra("lokasikejadian");
 
 //        idlaporan
-        String nextIdLaporan = getIntent().getStringExtra("primaryKey");
+        nextIdLaporan = getIntent().getStringExtra("primaryKey");
         String idUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         db = FirebaseDatabase.getInstance();
         reference = db.getReference("Laporan_medis").child(idUser).child(nextIdLaporan);
-    
+        Intent intent = getIntent();
+
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -117,6 +118,13 @@ public class MedisUpdateData extends AppCompatActivity {
                     kolomtanggalkejadian.setText(tanggalkejadian);
                     kolomnomorpelapor.setText(nomorpelapor);
                     kolomlokasikejadian.setText(lokasikejadian);
+                    if(intent != null & getIntent().hasExtra("ADDRESS")){
+                        address = getIntent().getStringExtra("ADDRESS");
+                        latitude = getIntent().getDoubleExtra("LATITUDE", 0.0);
+                        longitude = getIntent().getDoubleExtra("LONGITUDE",0.0);
+                        kolomlokasikejadian.setText(address);
+                        Log.d("TAG", "alamat dari: "+address);
+                    }
                     kolomketerangan.setText(keterangan);
                                             if (!isDestroyed() && !isFinishing()) {
                     Glide.with(MedisUpdateData.this)
@@ -233,49 +241,30 @@ public class MedisUpdateData extends AppCompatActivity {
 
     private void checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-            getLocation();
+            tipe_laporan = "MedisUpdate";
+            Intent intent = new Intent(MedisUpdateData.this, MapsActivity.class);
+            intent.putExtra("TIPE_LAPORAN", tipe_laporan);
+            intent.putExtra("nextidlaporan", nextIdLaporan);
+            startActivity(intent);
         }else {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},LOCATION_PERMISSION_REQUEST_CODE);
         }
     }
 
-    private void getLocation() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED){
-            fusedLocationClient.getLastLocation()
-                    .addOnSuccessListener(this, location->{
-                        if (location!= null){
-                            latitude = location.getLatitude();
-                            longitude = location.getLongitude();
 
-                            getAddressFromLocation(latitude, longitude);
-                        }
-                    });
-        }else{
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
-        }
-    }
 
-    private void getAddressFromLocation(double latitude, double longitude) {
-        Geocoder geocoder = new Geocoder(this);
-        try{
-            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
-            if(addresses.size()>0){
-                Address address = addresses.get(0);
-                String addressline = address.getAddressLine(0);
 
-                kolomlokasikejadian.setText(addressline);
-            }
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         if (requestCode == REQUEST_LOCATION_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                getLocation();
+                tipe_laporan = "MedisUpdate";
+                Intent intent = new Intent(MedisUpdateData.this, MapsActivity.class);
+                intent.putExtra("TIPE_LAPORAN", tipe_laporan);
+                intent.putExtra("nextidlaporan", nextIdLaporan);
+                startActivity(intent);
             } else {
                 // Izin ditolak, Anda dapat memberikan informasi kepada pengguna atau mengambil tindakan lain yang sesuai
                 Toast.makeText(this, "Izin lokasi ditolak. Aplikasi membutuhkan izin ini untuk bekerja dengan baik.", Toast.LENGTH_SHORT).show();

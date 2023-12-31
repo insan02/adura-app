@@ -111,6 +111,20 @@ public class MapsActivity extends FragmentActivity implements LocationListener, 
                     intent.putExtra("LONGITUDE", longitude);
                     startActivity(intent);
                 }
+                if ("MedisUpdate".equals(tipe_laporan)) {
+                    double latitude = marker.getPosition().getLatitude();
+                    double longitude = marker.getPosition().getLongitude();
+                    getAddressFromLocation(latitude, longitude);
+
+                    String nextIdLaporan = getIntent().getStringExtra("nextidlaporan");
+                    Intent intent = new Intent(MapsActivity.this, MedisUpdateData.class);
+                    intent.putExtra("ADDRESS", addressLine);
+                    intent.putExtra("LATITUDE", latitude);
+                    intent.putExtra("LONGITUDE", longitude);
+                    intent.putExtra("primaryKey", nextIdLaporan);
+                    startActivity(intent);
+                }
+
             }
         });
     }
