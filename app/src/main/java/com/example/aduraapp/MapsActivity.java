@@ -111,6 +111,7 @@ public class MapsActivity extends FragmentActivity implements LocationListener, 
                     intent.putExtra("LONGITUDE", longitude);
                     startActivity(intent);
                 }
+
                 if ("MedisUpdate".equals(tipe_laporan)) {
                     double latitude = marker.getPosition().getLatitude();
                     double longitude = marker.getPosition().getLongitude();
@@ -125,6 +126,17 @@ public class MapsActivity extends FragmentActivity implements LocationListener, 
                     startActivity(intent);
                 }
 
+
+                if("KeamananCreate".equals(tipe_laporan)){
+                    double latitude = marker.getPosition().getLatitude();
+                    double longitude = marker.getPosition().getLongitude();
+                    getAddressFromLocation(latitude, longitude);
+                    Intent intent = new Intent(MapsActivity.this, KeamananCreateActivity.class);
+                    intent.putExtra("ADDRESS", addressLine);
+                    intent.putExtra("LATITUDE", latitude);
+                    intent.putExtra("LONGITUDE", longitude);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -189,6 +201,9 @@ public class MapsActivity extends FragmentActivity implements LocationListener, 
             mapView.invalidate();
         }
     }
+
+
+
 
     // Implementasi method-method lainnya
 }
