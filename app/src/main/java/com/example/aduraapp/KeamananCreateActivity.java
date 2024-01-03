@@ -254,39 +254,6 @@ public class KeamananCreateActivity extends Activity {
         }
     }
 
-//    private void getLocation() {
-//        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-//            fusedLocationClient.getLastLocation()
-//                    .addOnSuccessListener(this, location -> {
-//                        if (location != null) {
-//                            latitude = location.getLatitude();
-//                            longitude = location.getLongitude();
-//
-//                            getAddressFromLocation(latitude, longitude);
-//                        }
-//                    });
-//        } else {
-//            // Jika izin belum diberikan, minta izin kepada pengguna
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
-//        }
-//    }
-//
-//    private void getAddressFromLocation(double latitude, double longitude) {
-//        Geocoder geocoder = new Geocoder(this);
-//        try {
-//            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
-//            if (addresses.size() > 0) {
-//                // Dapatkan alamat dari hasil geocoder
-//                Address address = addresses.get(0);
-//                String addressLine = address.getAddressLine(0);
-//
-//                // Tampilkan alamat di kolom lokasi
-//                binding.kolomlokasikejadian.setText(addressLine);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -349,7 +316,6 @@ public class KeamananCreateActivity extends Activity {
     }
 
     public void onBackPressed(View view) {
-        super.onBackPressed();
-        finish();
+        onBackPressed();
     }
 }

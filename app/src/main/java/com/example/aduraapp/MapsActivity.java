@@ -111,16 +111,6 @@ public class MapsActivity extends FragmentActivity implements LocationListener, 
                     intent.putExtra("LONGITUDE", longitude);
                     startActivity(intent);
                 }
-                if("KeamananCreate".equals(tipe_laporan)){
-                    double latitude = marker.getPosition().getLatitude();
-                    double longitude = marker.getPosition().getLongitude();
-                    getAddressFromLocation(latitude, longitude);
-                    Intent intent = new Intent(MapsActivity.this, KeamananCreateActivity.class);
-                    intent.putExtra("ADDRESS", addressLine);
-                    intent.putExtra("LATITUDE", latitude);
-                    intent.putExtra("LONGITUDE", longitude);
-                    startActivity(intent);
-                }
                 if("MedisUpdate".equals(tipe_laporan)){
                     nextidlaporan = getIntent().getStringExtra("nextidlaporan");
                     double latitude = marker.getPosition().getLatitude();
@@ -133,6 +123,29 @@ public class MapsActivity extends FragmentActivity implements LocationListener, 
                     intent.putExtra("primaryKey", nextidlaporan);
                     startActivity(intent);
                 }
+                if("KeamananCreate".equals(tipe_laporan)){
+                    double latitude = marker.getPosition().getLatitude();
+                    double longitude = marker.getPosition().getLongitude();
+                    getAddressFromLocation(latitude, longitude);
+                    Intent intent = new Intent(MapsActivity.this, KeamananCreateActivity.class);
+                    intent.putExtra("ADDRESS", addressLine);
+                    intent.putExtra("LATITUDE", latitude);
+                    intent.putExtra("LONGITUDE", longitude);
+                    startActivity(intent);
+                }
+                if("KeamananUpdate".equals(tipe_laporan)){
+                    nextidlaporan = getIntent().getStringExtra("nextidlaporan");
+                    double latitude = marker.getPosition().getLatitude();
+                    double longitude = marker.getPosition().getLongitude();
+                    getAddressFromLocation(latitude, longitude);
+                    Intent intent = new Intent(MapsActivity.this, KeamananUpdateData.class);
+                    intent.putExtra("ADDRESS", addressLine);
+                    intent.putExtra("LATITUDE", latitude);
+                    intent.putExtra("LONGITUDE", longitude);
+                    intent.putExtra("primaryKey", nextidlaporan);
+                    startActivity(intent);
+                }
+
             }
         });
     }
