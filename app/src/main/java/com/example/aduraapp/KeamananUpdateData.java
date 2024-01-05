@@ -68,7 +68,7 @@ public class KeamananUpdateData extends AppCompatActivity {
     private ProgressDialog progressDialog;
     double latitude;
     double longitude;
-    String imageUrl;
+    private String imageUrl, tipe_laporan, address, nextIdLaporan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,11 +144,12 @@ public class KeamananUpdateData extends AppCompatActivity {
 
 
         // Retrieve the user ID from Firebase
-        String nextIdLaporan = getIntent().getStringExtra("primaryKey");
+        nextIdLaporan = getIntent().getStringExtra("primaryKey");
         String idUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         db = FirebaseDatabase.getInstance();
         reference = db.getReference("Laporan_keamanan").child(idUser).child(nextIdLaporan);
+        Intent intent = getIntent();
 
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -176,6 +177,13 @@ public class KeamananUpdateData extends AppCompatActivity {
                     kolomnomorpelapor.setText(nomorpelapor);
                     kolomlokasikejadian.setText(lokasikejadian);
                     kolomketerangan.setText(keterangan);
+                    if(intent != null & getIntent().hasExtra("ADDRESS")){
+                        address = getIntent().getStringExtra("ADDRESS");
+                        latitude = getIntent().getDoubleExtra("LATITUDE", 0.0);
+                        longitude = getIntent().getDoubleExtra("LONGITUDE",0.0);
+                        kolomlokasikejadian.setText(address);
+                        Log.d("TAG", "alamat dari: "+address);
+                    }
                     if (!isDestroyed() && !isFinishing()) {
                         Glide.with(KeamananUpdateData.this)
                                 .load(imageUrl)
@@ -193,57 +201,28 @@ public class KeamananUpdateData extends AppCompatActivity {
     }
 
     private void checkLocationPermission() {
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            // Izin sudah diberikan, dapatkan lokasi
-            getLocation();
-        } else {
-            // Izin belum diberikan, minta izin
-            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            tipe_laporan = "KeamananUpdate";
+            Intent intent = new Intent(KeamananUpdateData.this, MapsActivity.class);
+            intent.putExtra("TIPE_LAPORAN", tipe_laporan);
+            intent.putExtra("nextidlaporan", nextIdLaporan);
+            startActivity(intent);
+        }else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},LOCATION_PERMISSION_REQUEST_CODE);
         }
     }
 
-    private void getLocation() {
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            fusedLocationClient.getLastLocation()
-                    .addOnSuccessListener(this, location -> {
-                        if (location != null) {
-                             latitude = location.getLatitude();
-                             longitude = location.getLongitude();
-
-                            getAddressFromLocation(latitude, longitude);
-                        }
-                    });
-        } else {
-            // Jika izin belum diberikan, minta izin kepada pengguna
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
-        }
-    }
-
-    private void getAddressFromLocation(double latitude, double longitude) {
-        Geocoder geocoder = new Geocoder(this);
-        try {
-            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
-            if (addresses.size() > 0) {
-                // Dapatkan alamat dari hasil geocoder
-                Address address = addresses.get(0);
-                String addressLine = address.getAddressLine(0);
-
-                // Tampilkan alamat di kolom lokasi
-                binding.kolomlokasikejadian.setText(addressLine);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         if (requestCode == REQUEST_LOCATION_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Izin diberikan, panggil getLocation lagi
-                getLocation();
+
+                tipe_laporan = "KeamananUpdate";
+                Intent intent = new Intent(KeamananUpdateData.this, MapsActivity.class);
+                intent.putExtra("TIPE_LAPORAN", tipe_laporan);
+                intent.putExtra("nextidlaporan", nextIdLaporan);
+                startActivity(intent);
             } else {
                 // Izin ditolak, Anda dapat memberikan informasi kepada pengguna atau mengambil tindakan lain yang sesuai
                 Toast.makeText(this, "Izin lokasi ditolak. Aplikasi membutuhkan izin ini untuk bekerja dengan baik.", Toast.LENGTH_SHORT).show();

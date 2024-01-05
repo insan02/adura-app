@@ -7,7 +7,9 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -50,6 +52,8 @@ public class MedisCreateActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationClient;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 123;
     private static final int REQUEST_LOCATION_PERMISSION = 1;
+    private String tipe_laporan, address;
+    private double locX, locY;
     double latitude;
     double longitude;
 
@@ -66,6 +70,15 @@ public class MedisCreateActivity extends AppCompatActivity {
 
         ImageView uploadImageView = findViewById(R.id.selectImagebtn);
         ImageView locationImageView = findViewById(R.id.location);
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            address = getIntent().getStringExtra("ADDRESS");
+            latitude = getIntent().getDoubleExtra("LATITUDE", 0.0);
+            longitude = getIntent().getDoubleExtra("LONGITUDE",0.0);
+            binding.kolomlokasikejadian.setText(address);
+            Log.d("TAG", "alamat dari: "+address);
+        }
 
         locationImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -208,46 +221,49 @@ public class MedisCreateActivity extends AppCompatActivity {
     private void checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             // Izin sudah diberikan, dapatkan lokasi
-            getLocation();
+            tipe_laporan = "MedisCreate";
+            Intent intent = new Intent(MedisCreateActivity.this, MapsActivity.class);
+            intent.putExtra("TIPE_LAPORAN", tipe_laporan);
+            startActivity(intent);
         } else {
             // Izin belum diberikan, minta izin
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
         }
     }
 
-    private void getLocation() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            fusedLocationClient.getLastLocation()
-                    .addOnSuccessListener(this, location -> {
-                        if (location != null) {
-                             latitude = location.getLatitude();
-                             longitude = location.getLongitude();
-
-                            getAddressFromLocation(latitude, longitude);
-                        }
-                    });
-        } else {
-            // Jika izin belum diberikan, minta izin kepada pengguna
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
-        }
-    }
-
-    private void getAddressFromLocation(double latitude, double longitude) {
-        Geocoder geocoder = new Geocoder(this);
-        try {
-            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
-            if (addresses.size() > 0) {
-                // Dapatkan alamat dari hasil geocoder
-                Address address = addresses.get(0);
-                String addressLine = address.getAddressLine(0);
-
-                // Tampilkan alamat di kolom lokasi
-                binding.kolomlokasikejadian.setText(addressLine);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void getLocation() {
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+//            fusedLocationClient.getLastLocation()
+//                    .addOnSuccessListener(this, location -> {
+//                        if (location != null) {
+//                             latitude = location.getLatitude();
+//                             longitude = location.getLongitude();
+//
+//                            getAddressFromLocation(latitude, longitude);
+//                        }
+//                    });
+//        } else {
+//            // Jika izin belum diberikan, minta izin kepada pengguna
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
+//        }
+//    }
+//
+//    private void getAddressFromLocation(double latitude, double longitude) {
+//        Geocoder geocoder = new Geocoder(this);
+//        try {
+//            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+//            if (addresses.size() > 0) {
+//                // Dapatkan alamat dari hasil geocoder
+//                Address address = addresses.get(0);
+//                String addressLine = address.getAddressLine(0);
+//
+//                // Tampilkan alamat di kolom lokasi
+//                binding.kolomlokasikejadian.setText(addressLine);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -255,8 +271,11 @@ public class MedisCreateActivity extends AppCompatActivity {
 
         if (requestCode == REQUEST_LOCATION_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Izin diberikan, panggil getLocation lagi
-                getLocation();
+
+                tipe_laporan = "MedisCreate";
+                Intent intent = new Intent(MedisCreateActivity.this, MapsActivity.class);
+                intent.putExtra("TIPE_LAPORAN", tipe_laporan);
+                startActivity(intent);
             } else {
                 // Izin ditolak, Anda dapat memberikan informasi kepada pengguna atau mengambil tindakan lain yang sesuai
                 Toast.makeText(this, "Izin lokasi ditolak. Aplikasi membutuhkan izin ini untuk bekerja dengan baik.", Toast.LENGTH_SHORT).show();

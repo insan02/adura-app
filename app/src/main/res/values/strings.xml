@@ -31,4 +31,5 @@
     <string name="riwayatkeamanan">Riwayat Keamanan</string>
     <string name="riwayatmedis">History of Medis</string>
     <string name="detail_medis">Report Details</string>
+    <string name="msg_token_fmt">Your message with token: %s</string>
 </resources>
