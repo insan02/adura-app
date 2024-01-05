@@ -34,6 +34,9 @@
             android:name=".MedisRiwayatList"
             android:exported="false" />
         <activity
+            android:name=".KebakaranRiwayatList"
+            android:exported="false" />
+        <activity
             android:name=".KeamananRiwayatList"
             android:exported="false" />
         <activity
