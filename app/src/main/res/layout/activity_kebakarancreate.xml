@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    tools:context=".KebakaranCreateActivity">
 
     <RelativeLayout
         app:layout_constraintStart_toStartOf="parent"
@@ -34,196 +35,216 @@
             android:text="Kebakaran"
             android:textAppearance="@style/kebakaran"
             android:gravity="center">
-           </TextView>
+        </TextView>
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/heading1"
-        android:layout_width="194dp"
-        android:layout_height="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="56dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="5dp"
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/fotobukti"
-        android:textAppearance="@style/unggah_foto"
-        app:layout_constraintTop_toBottomOf="@id/bg_top_keamanan"
-        app:layout_constraintStart_toStartOf="parent">
-    </TextView>
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.139" />
+
 
     <RelativeLayout
         android:id="@+id/uploadbukti"
-        android:layout_width="282dp"
-        android:layout_height="99dp"
+        android:layout_width="200dp"
+        android:layout_height="105dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/rectangle_2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/heading1">
+        app:layout_constraintTop_toBottomOf="@id/textView2">
 
         <ImageView
-            android:layout_width="76dp"
-            android:layout_height="70dp"
+            android:id="@+id/selectImagebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="57dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginLeft="102dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginEnd="102dp"
+            android:layout_marginLeft="62dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="62dp"
             android:layout_marginBottom="14dp"
             android:src="@drawable/__icon__cloud_download_"></ImageView>
+
+        <ImageView
+            android:id="@+id/uploadImageView"
+            android:layout_width="281dp"
+            android:layout_height="match_parent"
+            android:layout_alignStart="@+id/selectImagebtn"
+            android:layout_alignEnd="@+id/selectImagebtn"
+            android:layout_marginStart="-106dp"
+            android:layout_marginEnd="-99dp"
+            android:visibility="gone"
+            tools:src="@tools:sample/avatars" />
+
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/nama_pelapor"
-        android:layout_width="100dp"
-        android:layout_height="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/pelapor"
-        android:textAppearance="@style/nama_pelapor"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/uploadbukti" />
 
-    <EditText
-        android:id="@+id/kolomnamapelapor"
-        android:layout_width="305dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nama_pelapor"
-        tools:ignore="SpeakableTextPresentCheck"></EditText>
-
-    <TextView
-        android:id="@+id/nomor_hp_pelapor"
-        android:layout_width="130dp"
-        android:layout_height="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/hp"
-        android:textAppearance="@style/nomor_hp_pe"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/kolomnamapelapor" />
-
-    <EditText
-        android:id="@+id/kolomnomorpelapor"
-        android:layout_width="305dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nomor_hp_pelapor"
-        tools:ignore="SpeakableTextPresentCheck">
-
-    </EditText>
-
-    <TextView
-        android:id="@+id/tanggal_kej"
-        android:layout_width="121dp"
-        android:layout_height="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="5dp"
-        android:gravity="top"
-        android:text="@string/tanggal"
-        android:textAppearance="@style/tanggal_kej"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/kolomnomorpelapor">
-
-
-    </TextView>
-
-    <EditText
-        android:id="@+id/kolomtanggalkejadian"
-        android:layout_width="305dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tanggal_kej"
-        tools:ignore="SpeakableTextPresentCheck">
-
-    </EditText>
-
-    <TextView
-        android:id="@+id/lokasi_kej"
-        android:layout_width="121dp"
-        android:layout_height="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="5dp"
-        android:gravity="top"
-        android:text="@string/lokasi"
-        android:textAppearance="@style/lokasi_keja"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/kolomtanggalkejadian">
-
-    </TextView>
-
-    <EditText
-        android:id="@+id/kolomlokasikejadian"
-        android:layout_width="305dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lokasi_kej"
-        tools:ignore="SpeakableTextPresentCheck">
-
-    </EditText>
-
-    <TextView
-        android:id="@+id/keterangan"
-        android:layout_width="121dp"
-        android:layout_height="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="5dp"
-        android:gravity="top"
-        android:text="@string/keterangan"
-        android:textAppearance="@style/keterangan"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/kolomlokasikejadian">
-
-    </TextView>
-
-    <EditText
-        android:id="@+id/editTextTextMultiLine"
-        android:layout_width="301dp"
+    <Button
+        android:id="@+id/btnkirim"
+        android:layout_width="137dp"
         android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/corner_kirimsimpan"
+        android:text="@string/kirim"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kolomketerangan"
+        app:layout_constraintVertical_bias="0.659" />
+
+    <EditText
+        android:id="@+id/kolomketerangan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:ems="18"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintHorizontal_bias="0.411"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/keterangan"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
-        android:id="@+id/button_kirim"
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginBottom="468dp"
+        android:text="@string/pelapor"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.037"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <AutoCompleteTextView
+        android:id="@+id/kolomlokasikejadian"
+        android:layout_width="321dp"
+        android:layout_height="48dp"
+        android:hint="Ketik lokasi atau pilih dari peta..."
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.155"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:layout_constraintVertical_bias="0.015" />
+
+    <EditText
+        android:id="@+id/kolomtanggalkejadian"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/corner_kirimsimpan"
-        android:text="@string/kirim"
+        android:ems="10"
+        android:hint="dd-mm-yyyy"
+        android:inputType="date"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.007"
+        tools:ignore="SpeakableTextPresentCheck" />
 
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/tanggal"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kolomnomorpelapor" />
 
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/lokasi"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kolomtanggalkejadian" />
+
+    <ImageView
+        android:id="@+id/location"
+        android:layout_width="56dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="4dp"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/kolomlokasikejadian"
+        app:srcCompat="@drawable/ic_location"
+        tools:layout_editor_absoluteY="473dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/keterangan"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kolomlokasikejadian" />
+
+    <EditText
+        android:id="@+id/kolomnamapelapor"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
+        android:ems="18"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/kolomnomorpelapor"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginBottom="391dp"
+        android:ems="18"
+        android:inputType="phone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.352"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.037"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kolomnamapelapor" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

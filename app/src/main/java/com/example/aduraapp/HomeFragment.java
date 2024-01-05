@@ -37,7 +37,7 @@ public class HomeFragment extends Fragment {
                     startActivity(medisIntent);
                 }
                 if (menu.getNamaMenu().equals("Kebakaran")) {
-                    Intent kebakaranIntent = new Intent(requireContext(), kebakarancreateactivity.class);
+                    Intent kebakaranIntent = new Intent(requireContext(), KebakaranCreateActivity.class);
                     kebakaranIntent.putExtra("Nama_Menu", menu.getNamaMenu());
                     startActivity(kebakaranIntent);
                 }

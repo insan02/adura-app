@@ -62,7 +62,7 @@
             android:name=".MedisCreateActivity"
             android:exported="true" />
         <activity
-            android:name=".kebakarancreateactivity"
+            android:name=".KebakaranCreateActivity"
             android:exported="true" />
         <activity
             android:name=".KeamananCreateActivity"
