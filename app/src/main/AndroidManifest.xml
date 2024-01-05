@@ -74,6 +74,12 @@
             android:name=".KeamananUpdateData"
             android:exported="false" />
         <activity
+            android:name=".KebakaranDetailRiwayatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".KebakaranUpdateData"
+            android:exported="false" />
+        <activity
             android:name=".MedisDetailRiwayatActivity"
             android:exported="false" />
         <service
