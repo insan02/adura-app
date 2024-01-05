@@ -44,6 +44,11 @@ public class RiwayatFragment extends Fragment {
                     medisIntent.putExtra("Nama_Menu", menu.getNamaMenu());
                     startActivity(medisIntent);
                 }
+                if (menu.getNamaMenu().equals("Kebakaran")) {
+                    Intent kebakaranIntent = new Intent(requireContext(), KebakaranRiwayatList.class);
+                    kebakaranIntent.putExtra("Nama_Menu", menu.getNamaMenu());
+                    startActivity(kebakaranIntent);
+                }
             }
         });
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());

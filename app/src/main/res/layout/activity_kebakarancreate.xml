@@ -191,11 +191,12 @@
         android:layout_height="54dp"
         android:layout_marginStart="4dp"
         android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/kolomlokasikejadian"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/kolomlokasikejadian"
-        app:srcCompat="@drawable/ic_location"
-        tools:layout_editor_absoluteY="473dp" />
+        app:layout_constraintTop_toTopOf="@+id/kolomlokasikejadian"
+        app:srcCompat="@drawable/ic_location" />
 
     <TextView
         android:id="@+id/textView8"
