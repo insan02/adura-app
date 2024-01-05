@@ -43,6 +43,9 @@
             android:name=".MenuCreateActivity"
             android:exported="false" />
         <activity
+            android:name=".PanduanActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <meta-data

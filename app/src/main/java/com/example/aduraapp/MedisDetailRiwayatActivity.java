@@ -3,8 +3,6 @@ package com.example.aduraapp;
 import static androidx.constraintlayout.widget.ConstraintLayoutStates.TAG;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +11,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 import androidx.annotation.NonNull;
 
@@ -36,35 +36,28 @@ public class MedisDetailRiwayatActivity extends Activity {
 
         String tanggalkejadian = getIntent().getStringExtra("tanggalkejadian");
         String keterangan = getIntent().getStringExtra("keterangan");
-         imageUrl = getIntent().getStringExtra("imageUrl");
-         imageName  = getIntent().getStringExtra("imageName");
+        imageUrl = getIntent().getStringExtra("imageUrl");
+        imageName  = getIntent().getStringExtra("imageName");
         String namapelapor = getIntent().getStringExtra("namapelapor");
         String nomorpelapor = getIntent().getStringExtra("nomorpelapor");
         String lokasikejadian = getIntent().getStringExtra("lokasikejadian");
 
-//        idlaporan
         String nextIdLaporan = getIntent().getStringExtra("nextIdLaporan");
         Log.d("TAG", "id: "+nextIdLaporan);
         Log.d("TAG", "imageName: "+imageName);
-
-        String namapelapor_detail = getString(R.string.pelapor_detail);
-        String nomorpelapor_detail = getString(R.string.hp_detail);
-        String tanggalkejadian_detail = getString(R.string.tanggal_detail);
-        String lokasikejadian_detail = getString(R.string.lokasi_detail);
-        String keterangan_detail = getString(R.string.keterangan_detail);
 
         TextView tanggalkejadianTextView = findViewById(R.id.kolomtanggalkejadian);
         TextView keteranganTextView = findViewById(R.id.kolomketerangan);
         TextView namapelaporTextView = findViewById(R.id.kolomnamapelapor);
         TextView nomorpelaporTextView = findViewById(R.id.kolomnomorpelapor);
         TextView lokasikejadianTextView = findViewById(R.id.kolomlokasikejadian);
-        ImageView imageView = findViewById(R.id.imageUrl);
+        ImageView imageView = findViewById(R.id.gambar);
 
-        updateTextView(tanggalkejadianTextView, tanggalkejadian_detail, tanggalkejadian);
-        updateTextView(keteranganTextView, keterangan_detail, keterangan);
-        updateTextView(namapelaporTextView, namapelapor_detail, namapelapor);
-        updateTextView(nomorpelaporTextView, nomorpelapor_detail, nomorpelapor);
-        updateTextView(lokasikejadianTextView, lokasikejadian_detail, lokasikejadian);
+        updateTextView(tanggalkejadianTextView, "Tanggal Kejadian: ", tanggalkejadian);
+        updateTextView(keteranganTextView, "Keterangan: ", keterangan);
+        updateTextView(namapelaporTextView, "Nama Pelapor: ", namapelapor);
+        updateTextView(nomorpelaporTextView, "Nomor Pelapor: ", nomorpelapor);
+        updateTextView(lokasikejadianTextView, "Lokasi Kejadian: ", lokasikejadian);
         Log.d(TAG, imageUrl);
         Glide.with(this)
                 .load(imageUrl)
@@ -73,17 +66,9 @@ public class MedisDetailRiwayatActivity extends Activity {
 
         btnEdit = findViewById(R.id.btnsimpan);
         btnHapus = findViewById(R.id.btnhapus);
-
-        btnHapus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                deleteData(nextIdLaporan, imageName);
-            }
-        });
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Membuka activity MedisUpdateData dan mengirimkan primary key sebagai data tambahan
                 Intent intent = new Intent(MedisDetailRiwayatActivity.this, MedisUpdateData.class);
                 intent.putExtra("primaryKey", nextIdLaporan);
                 intent.putExtra("tanggalkejadian", tanggalkejadian);
@@ -96,9 +81,26 @@ public class MedisDetailRiwayatActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        btnHapus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteData(nextIdLaporan, imageName);
+            }
+        });
+
     }
 
-    private void deleteData(String nextIdLaporan, String imageName){
+    private void updateTextView(TextView textView,String prefix, String value ) {
+        if (value != null && !value.isEmpty()) {
+            textView.setText(prefix + value);
+        } else {
+            textView.setVisibility(View.GONE);
+        }
+    }
+
+    private void deleteData(String nextIdLaporan, String imageName) {
+        // Konfirmasi sebelum menghapus data
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Konfirmasi");
         builder.setMessage("Apakah Anda yakin ingin menghapus laporan ini?");
@@ -154,16 +156,13 @@ public class MedisDetailRiwayatActivity extends Activity {
 
     }
 
-    private void updateTextView(TextView textView,String prefix, String value ) {
-        if (value != null && !value.isEmpty()) {
-            textView.setText(prefix + value);
-        } else {
-            textView.setVisibility(View.GONE);
-        }
-    }
-
     public void onBackPressed(View view) {
         super.onBackPressed();
         finish();
+    }
+
+    public void onButtonEditClicked(View view){
+        Intent editIntent = new Intent(this,MedisUpdateData.class);
+        startActivity(editIntent);
     }
 }

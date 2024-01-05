@@ -45,6 +45,10 @@ public class HomeFragment extends Fragment {
                     Intent keamananIntent = new Intent(requireContext(), KeamananCreateActivity.class);
                     keamananIntent.putExtra("Nama_Menu", menu.getNamaMenu());
                     startActivity(keamananIntent);
+                }if (menu.getNamaMenu().equals("Panduan")) {
+                    Intent keamananIntent = new Intent(requireContext(), PanduanActivity.class);
+                    keamananIntent.putExtra("Nama_Menu", menu.getNamaMenu());
+                    startActivity(keamananIntent);
                 }
             }
         });

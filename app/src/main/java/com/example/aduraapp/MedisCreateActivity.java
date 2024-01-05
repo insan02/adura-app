@@ -70,6 +70,7 @@ public class MedisCreateActivity extends AppCompatActivity {
 
         ImageView uploadImageView = findViewById(R.id.selectImagebtn);
         ImageView locationImageView = findViewById(R.id.location);
+        originalParams = (RelativeLayout.LayoutParams) uploadImageView.getLayoutParams();
 
         Intent intent = getIntent();
         if (intent != null) {
