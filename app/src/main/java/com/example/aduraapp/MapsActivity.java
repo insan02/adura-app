@@ -150,7 +150,7 @@ public class MapsActivity extends FragmentActivity implements LocationListener, 
                     double latitude = marker.getPosition().getLatitude();
                     double longitude = marker.getPosition().getLongitude();
                     getAddressFromLocation(latitude, longitude);
-                    Intent intent = new Intent(MapsActivity.this, KebakaranUpdateData.class);
+                    Intent intent = new Intent(MapsActivity.this, KebakaranCreateActivity.class);
                     intent.putExtra("ADDRESS", addressLine);
                     intent.putExtra("LATITUDE", latitude);
                     intent.putExtra("LONGITUDE", longitude);
