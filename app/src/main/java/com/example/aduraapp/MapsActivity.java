@@ -133,12 +133,22 @@ public class MapsActivity extends FragmentActivity implements LocationListener, 
                     startActivity(intent);
                 }
                 if("KeamananCreate".equals(tipe_laporan)){
+                    String namaPelapor = getIntent().getStringExtra("NAMA_PELAPOR");
+                    String nomorPelapor = getIntent().getStringExtra("NOMOR_PELAPOR");
+                    String tanggalKejadian = getIntent().getStringExtra("TANGGAL_KEJADIAN");
+                    String keterangan = getIntent().getStringExtra("KETERANGAN");
+                    String imageUri = getIntent().getStringExtra("IMAGE_URI");
                     double latitude = marker.getPosition().getLatitude();
                     double longitude = marker.getPosition().getLongitude();
                     getAddressFromLocation(latitude, longitude);
                     Intent intent = new Intent(MapsActivity.this, KeamananCreateActivity.class);
                     intent.putExtra("ADDRESS", addressLine);
                     intent.putExtra("LATITUDE", latitude);
+                    intent.putExtra("NAMA_PELAPOR", namaPelapor);
+                    intent.putExtra("NOMOR_PELAPOR", nomorPelapor);
+                    intent.putExtra("TANGGAL_KEJADIAN", tanggalKejadian);
+                    intent.putExtra("KETERANGAN", keterangan);
+                    intent.putExtra("IMAGE_URI", imageUri);
                     intent.putExtra("LONGITUDE", longitude);
                     startActivity(intent);
                 }
@@ -182,22 +192,22 @@ public class MapsActivity extends FragmentActivity implements LocationListener, 
             }
         });
     }
-        private void getAddressFromLocation(double latitude, double longitude) {
-            Geocoder geocoder = new Geocoder(this);
-            try {
-                List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
-                if (addresses.size() > 0) {
-                    // Dapatkan alamat dari hasil geocoder
-                    Address address = addresses.get(0);
-                    addressLine = address.getAddressLine(0);
+    private void getAddressFromLocation(double latitude, double longitude) {
+        Geocoder geocoder = new Geocoder(this);
+        try {
+            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            if (addresses.size() > 0) {
+                // Dapatkan alamat dari hasil geocoder
+                Address address = addresses.get(0);
+                addressLine = address.getAddressLine(0);
 
-                    // Tampilkan atau gunakan alamat sesuai kebutuhan
-                    Log.d("MapsActivity", "Address: " + addressLine);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+                // Tampilkan atau gunakan alamat sesuai kebutuhan
+                Log.d("MapsActivity", "Address: " + addressLine);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
 
     @Override

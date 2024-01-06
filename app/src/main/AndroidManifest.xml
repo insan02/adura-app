@@ -88,6 +88,9 @@
         <activity
             android:name=".MedisDetailRiwayatActivity"
             android:exported="false" />
+        <activity
+            android:name=".GantiPasswordActivity"
+            android:exported="false" />
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">
