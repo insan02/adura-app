@@ -23,13 +23,22 @@ public class ProfilFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profil, container, false);
 
         Button buttonGantiPassword = view.findViewById(R.id.buttonGantiPassword);
-
+        Button buttonEdit = view.findViewById(R.id.buttonEdit);
         // Set click listeners for each button
         buttonGantiPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start PanduanActivity
                 Intent intent = new Intent(getActivity(), GantiPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start PanduanActivity
+                Intent intent = new Intent(getActivity(), GantiUsernameActivity.class);
                 startActivity(intent);
             }
         });

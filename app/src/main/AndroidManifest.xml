@@ -91,6 +91,9 @@
         <activity
             android:name=".GantiPasswordActivity"
             android:exported="false" />
+        <activity
+            android:name=".GantiUsernameActivity"
+            android:exported="false" />
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">

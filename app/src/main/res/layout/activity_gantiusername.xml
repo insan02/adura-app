@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GantiUsernameActivity">
+
+    <RelativeLayout
+        android:id="@+id/bg_top_keamanan"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/heading"
+        android:backgroundTint="#41d953"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image_back"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:onClick="onBackPressed"
+            android:src="@drawable/vector"
+            tools:ignore="TouchTargetSizeCheck"></ImageView>
+
+        <TextView
+            android:layout_width="101dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="155dp"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:text="Profil"
+            android:textAppearance="@style/kebakaran"></TextView>
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/editTextPasswordLama"
+        android:layout_width="264dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="4dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Masukkan Username Baru"
+        app:layout_constraintStart_toStartOf="@+id/textViewPasswordLama"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPasswordLama" />
+
+    <TextView
+        android:id="@+id/textViewPasswordLama"
+        android:layout_width="176dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="112dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Ganti Username"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bg_top_keamanan" />
+
+    <Button
+        android:id="@+id/buttonSimpan"
+        android:layout_width="137dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="#526CF6"
+        android:text="Simpan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.371"
+        app:layout_constraintStart_toStartOf="@+id/editTextPasswordLama"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordLama" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
