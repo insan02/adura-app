@@ -41,18 +41,18 @@
     </RelativeLayout>
 
     <EditText
-        android:id="@+id/editTextPasswordLama"
+        android:id="@+id/editTextUsername"
         android:layout_width="264dp"
         android:layout_height="51dp"
         android:layout_marginTop="4dp"
         android:ems="10"
         android:inputType="text"
         android:hint="Masukkan Username Baru"
-        app:layout_constraintStart_toStartOf="@+id/textViewPasswordLama"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPasswordLama" />
+        app:layout_constraintStart_toStartOf="@+id/textViewUsername"
+        app:layout_constraintTop_toBottomOf="@+id/textViewUsername" />
 
     <TextView
-        android:id="@+id/textViewPasswordLama"
+        android:id="@+id/textViewUsername"
         android:layout_width="176dp"
         android:layout_height="30dp"
         android:layout_marginStart="56dp"
@@ -74,7 +74,7 @@
         android:text="Simpan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.371"
-        app:layout_constraintStart_toStartOf="@+id/editTextPasswordLama"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordLama" />
+        app:layout_constraintStart_toStartOf="@+id/editTextUsername"
+        app:layout_constraintTop_toBottomOf="@+id/editTextUsername" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
