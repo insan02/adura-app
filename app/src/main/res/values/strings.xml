@@ -53,4 +53,5 @@
     <string name="textviewtitle4point1">- After the user sees the report history list, the user clicks on one of the reports to display the details</string>
     <string name="textviewtitle4point2">- User presses the delete button</string>
     <string name="textviewtitle4point3">- Deleted report</string>
+    <string name="profil">Profile</string>
 </resources>
