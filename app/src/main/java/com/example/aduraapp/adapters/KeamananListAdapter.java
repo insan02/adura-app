@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aduraapp.KeamananDetailRiwayatActivity;
-import com.example.aduraapp.KeamananRiwayat;
+import com.example.aduraapp.models.KeamananRiwayat;
 import com.example.aduraapp.R;
 
 import java.util.ArrayList;

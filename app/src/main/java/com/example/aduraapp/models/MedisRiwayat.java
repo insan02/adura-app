@@ -1,4 +1,4 @@
-package com.example.aduraapp;
+package com.example.aduraapp.models;
 
 public class MedisRiwayat {
 

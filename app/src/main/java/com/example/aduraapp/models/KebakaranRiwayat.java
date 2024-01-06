@@ -1,6 +1,6 @@
-package com.example.aduraapp;
+package com.example.aduraapp.models;
 
-public class KeamananRiwayat {
+public class KebakaranRiwayat {
 
     private String nextIdLaporan; // Tambahkan properti idLaporan
 
@@ -15,7 +15,7 @@ public class KeamananRiwayat {
     private String lokasikejadian;
 
     // Default constructor required for Firebase
-    public KeamananRiwayat() {
+    public KebakaranRiwayat() {
     }
 
     public String getNamapelapor() {

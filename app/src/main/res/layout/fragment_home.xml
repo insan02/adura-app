@@ -21,34 +21,22 @@
             android:id="@+id/bghome"
             android:layout_width="373dp"
             android:layout_height="151dp"
-            android:layout_marginBottom="116dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="6dp"
             android:src="@drawable/bg_topmedislist"
             app:circularflow_radiusInDP="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/rv_menu"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:tint="@color/hijau" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_menu"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="310dp"
-            android:onClick="onItemMenuClick"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:listitem="@layout/item_menu" />
+            app:tint="@color/hijau" />
 
         <TextView
             android:id="@+id/textGreeting"
             android:layout_width="177dp"
             android:layout_height="37dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="72dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="76dp"
             android:fontFamily="serif"
             android:text="Selamat datang di"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -61,8 +49,7 @@
             android:id="@+id/textGreeting2"
             android:layout_width="179dp"
             android:layout_height="51dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="108dp"
+            android:layout_marginStart="44dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:text="Adura"
             android:textAllCaps="false"
@@ -71,19 +58,68 @@
             android:textSize="40sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textGreeting" />
 
         <ImageView
             android:id="@+id/imageLogoAdura"
             android:layout_width="159dp"
             android:layout_height="118dp"
-            app:layout_constraintBottom_toTopOf="@+id/rv_menu"
+            app:layout_constraintBottom_toBottomOf="@+id/bghome"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.96"
+            app:layout_constraintHorizontal_bias="0.884"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.281"
+            app:layout_constraintVertical_bias="0.814"
             app:srcCompat="@drawable/logo_adura" />
+
+
+        <Button
+            android:id="@+id/buttonPanduan"
+            android:layout_width="341dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="104dp"
+            android:drawableTop="@drawable/ic_buku"
+            android:text="Panduan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bghome" />
+
+        <Button
+            android:id="@+id/buttonMedis"
+            android:layout_width="341dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#526CF6"
+            android:drawableTop="@drawable/ic_medis"
+            android:text="Medis"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonPanduan" />
+
+        <Button
+            android:id="@+id/buttonKeamanan"
+            android:layout_width="341dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#F7ECE11B"
+            android:drawableTop="@drawable/ic_keamanan"
+            android:text="Keamanan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonMedis" />
+
+        <Button
+            android:id="@+id/buttonKebakaran"
+            android:layout_width="341dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#F03B3B"
+            android:drawableTop="@drawable/ic_kebakaran"
+            android:text="Kebakaran"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonKeamanan" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aduraapp.MedisDetailRiwayatActivity;
-import com.example.aduraapp.MedisRiwayat;
+import com.example.aduraapp.models.MedisRiwayat;
 import com.example.aduraapp.R;
 
 import java.util.ArrayList;

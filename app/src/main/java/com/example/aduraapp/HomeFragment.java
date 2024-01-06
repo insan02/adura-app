@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,62 +28,50 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        rvMenu = view.findViewById(R.id.rv_menu);
-        MenuAdapter adapter = new MenuAdapter(getMenu(), new MenuAdapter.ItemMenuClickListener() {
+
+        // Find the buttons in the layout
+        Button buttonPanduan = view.findViewById(R.id.buttonPanduan);
+        Button buttonMedis = view.findViewById(R.id.buttonMedis);
+        Button buttonKeamanan = view.findViewById(R.id.buttonKeamanan);
+        Button buttonKebakaran = view.findViewById(R.id.buttonKebakaran);
+
+        // Set click listeners for each button
+        buttonPanduan.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemMenuClick(Menu menu) {
-                if (menu.getNamaMenu().equals("Medis")) {
-                    Intent medisIntent = new Intent(requireContext(), MedisCreateActivity.class);
-                    medisIntent.putExtra("Nama_Menu", menu.getNamaMenu());
-                    startActivity(medisIntent);
-                }
-                if (menu.getNamaMenu().equals("Kebakaran")) {
-                    Intent kebakaranIntent = new Intent(requireContext(), KebakaranCreateActivity.class);
-                    kebakaranIntent.putExtra("Nama_Menu", menu.getNamaMenu());
-                    startActivity(kebakaranIntent);
-                }
-                if (menu.getNamaMenu().equals("Keamanan")) {
-                    Intent keamananIntent = new Intent(requireContext(), KeamananCreateActivity.class);
-                    keamananIntent.putExtra("Nama_Menu", menu.getNamaMenu());
-                    startActivity(keamananIntent);
-                }if (menu.getNamaMenu().equals("Panduan")) {
-                    Intent keamananIntent = new Intent(requireContext(), PanduanActivity.class);
-                    keamananIntent.putExtra("Nama_Menu", menu.getNamaMenu());
-                    startActivity(keamananIntent);
-                }
+            public void onClick(View v) {
+                // Start PanduanActivity
+                Intent intent = new Intent(getActivity(), PanduanActivity.class);
+                startActivity(intent);
             }
         });
-        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
-        rvMenu.setLayoutManager(layoutManager);
-        rvMenu.setAdapter(adapter);
+
+        buttonMedis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start KebakaranActivity
+                Intent intent = new Intent(getActivity(), KebakaranCreateActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonKeamanan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start KeamananActivity
+                Intent intent = new Intent(getActivity(), KeamananCreateActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonKebakaran.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start KeamananActivity
+                Intent intent = new Intent(getActivity(), KebakaranCreateActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
-    }
-
-    private ArrayList<Menu> getMenu() {
-        ArrayList<Menu> listMenu = new ArrayList<>();
-
-        // Add sample menu items; replace with your actual data
-        listMenu.add(new Menu(
-                R.drawable.ic_buku,
-                "Panduan",
-                R.color.white
-        ));
-        listMenu.add(new Menu(
-                R.drawable.ic_medis,
-                "Medis",
-                R.color.blue
-        ));
-        listMenu.add(new Menu(
-                R.drawable.ic_keamanan,
-                "Keamanan",
-                R.color.kuning
-        ));
-        listMenu.add(new Menu(
-                R.drawable.ic_kebakaran,
-                "Kebakaran",
-                R.color.merah
-        ));
-
-        return listMenu;
     }
 }
