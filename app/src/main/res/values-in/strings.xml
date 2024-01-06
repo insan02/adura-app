@@ -34,5 +34,25 @@
     <string name="detail_medis">Detail Laporan</string>
     <string name="msg_token_fmt">Your message with token: %s</string>
     <string name="riwayatkebakaran">Riwayat Kebakaran</string>
+    <string name="panduan">Panduan</string>
+    <string name="textviewtitle1">1. User membuat laporan</string>
+    <string name="textviewtitle1point1">- user menuju halaman home</string>
+    <string name="textviewtitle1point2">- user mengklik jenis laporan sesuai dengan yang akan dilaporkan</string>
+    <string name="textviewtitle1point3">- user mengisi semua data yang diminta tanpa terkecuali</string>
+    <string name="textviewtitle1point4">- untuk mengisi kolom lokasi kejadian, user bisa mengetik manual atau memanfaatkan fitur maps aplikasi dengan cara menekan icon lokasi</string>
+    <string name="textviewtitle1point5">- user menekan button kirim</string>
+    <string name="textviewtitle2">2. Melihat riwayat laporan</string>
+    <string name="textviewtitle2point1">- user menuju halaman riwayat</string>
+    <string name="textviewtitle2point2">- user mengklik jenis laporan sesuai dengan yang ingin dilihat</string>
+    <string name="textviewtitle2point3">- user melihat list riwayat laporan</string>
+    <string name="textviewtitle3">3. User mengedit laporan</string>
+    <string name="textviewtitle3point1">- Setelah user melihat list riwayat laporan, user mengklik salah satu laporan untuk menampilkan detail</string>
+    <string name="textviewtitle3point2">- User memilih button edit</string>
+    <string name="textviewtitle3point3">- User mengisi memperbarui data yang akan diedit</string>
+    <string name="textviewtitle3point4">- User menekan button simpan</string>
+    <string name="textviewtitle4">4. User menghapus laporan</string>
+    <string name="textviewtitle4point1">- Setelah user melihat list riwayat laporan, user mengklik salah satu laporan untuk menampilkan detail</string>
+    <string name="textviewtitle4point2">- User menekan button hapus</string>
+    <string name="textviewtitle4point3">- Laporan terhapus</string>
 
 </resources>

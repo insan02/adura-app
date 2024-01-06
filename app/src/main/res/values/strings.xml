@@ -33,4 +33,24 @@
     <string name="detail_medis">Report Details</string>
     <string name="msg_token_fmt">Your message with token: %s</string>
     <string name="riwayatkebakaran">history of fire incident</string>
+    <string name="panduan">Guide</string>
+    <string name="textviewtitle1">1. User creates a report</string>
+    <string name="textviewtitle1point1">- user goes to the home page</string>
+    <string name="textviewtitle1point2">- The user clicks on the report type according to what will be reported</string>
+    <string name="textviewtitle1point3">- the user fills in all the requested data without exception</string>
+    <string name="textviewtitle1point4">- To fill in the incident location column, the user can type manually or use the application\'s maps feature by pressing the location icon</string>
+    <string name="textviewtitle1point5">- The user presses the send button</string>
+    <string name="textviewtitle2">2. View report history</string>
+    <string name="textviewtitle2point1">- user goes to history page</string>
+    <string name="textviewtitle2point2">- The user clicks on the type of report that he wants to see</string>
+    <string name="textviewtitle2point3">- user sees a list of report history</string>
+    <string name="textviewtitle3">3. User edits the report</string>
+    <string name="textviewtitle3point1">- After the user sees the report history list, the user clicks on one of the reports to display the details</string>
+    <string name="textviewtitle3point2">- User selects edit button</string>
+    <string name="textviewtitle3point3">- User fills in updated data to be edited</string>
+    <string name="textviewtitle3point4">- User presses the save button</string>
+    <string name="textviewtitle4">4. User deletes the report</string>
+    <string name="textviewtitle4point1">- After the user sees the report history list, the user clicks on one of the reports to display the details</string>
+    <string name="textviewtitle4point2">- User presses the delete button</string>
+    <string name="textviewtitle4point3">- Deleted report</string>
 </resources>
