@@ -49,7 +49,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Start KebakaranActivity
-                Intent intent = new Intent(getActivity(), KebakaranCreateActivity.class);
+                Intent intent = new Intent(getActivity(), MedisCreateActivity.class);
                 startActivity(intent);
             }
         });

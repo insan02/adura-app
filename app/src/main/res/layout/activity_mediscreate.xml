@@ -196,7 +196,7 @@
 
     <AutoCompleteTextView
         android:id="@+id/kolomlokasikejadian"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="Ketik lokasi atau pilih dari peta..."
         android:minHeight="48dp"
@@ -250,8 +250,9 @@
 
     <ImageView
         android:id="@+id/location"
-        android:layout_width="56dp"
-        android:layout_height="54dp"
+        android:layout_width="44dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="10dp"
         android:clickable="true"
         app:layout_constraintStart_toEndOf="@+id/kolomlokasikejadian"
         app:layout_constraintTop_toTopOf="@+id/kolomlokasikejadian"

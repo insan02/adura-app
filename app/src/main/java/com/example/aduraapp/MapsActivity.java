@@ -102,6 +102,11 @@ public class MapsActivity extends FragmentActivity implements LocationListener, 
             @Override
             public void onClick(View view) {
                 if("MedisCreate".equals(tipe_laporan)){
+                    String namaPelapor = getIntent().getStringExtra("NAMA_PELAPOR");
+                    String nomorPelapor = getIntent().getStringExtra("NOMOR_PELAPOR");
+                    String tanggalKejadian = getIntent().getStringExtra("TANGGAL_KEJADIAN");
+                    String imageUri = getIntent().getStringExtra("IMAGE_URI");
+
                     double latitude = marker.getPosition().getLatitude();
                     double longitude = marker.getPosition().getLongitude();
                     getAddressFromLocation(latitude, longitude);
@@ -109,6 +114,10 @@ public class MapsActivity extends FragmentActivity implements LocationListener, 
                     intent.putExtra("ADDRESS", addressLine);
                     intent.putExtra("LATITUDE", latitude);
                     intent.putExtra("LONGITUDE", longitude);
+                    intent.putExtra("NAMA_PELAPOR", namaPelapor);
+                    intent.putExtra("NOMOR_PELAPOR", nomorPelapor);
+                    intent.putExtra("TANGGAL_KEJADIAN", tanggalKejadian);
+                    intent.putExtra("IMAGE_URI", imageUri);
                     startActivity(intent);
                 }
                 if("MedisUpdate".equals(tipe_laporan)){
