@@ -8,6 +8,8 @@ public class KeamananRiwayat {
 
     private String nomorpelapor;
     private String tanggalkejadian;
+
+    private String status;
     private String imageUrl;
     private String imageName;
 
@@ -79,5 +81,13 @@ public class KeamananRiwayat {
 
     public void setnextIdLaporan(String nextIdLaporan) {
         this.nextIdLaporan = nextIdLaporan;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

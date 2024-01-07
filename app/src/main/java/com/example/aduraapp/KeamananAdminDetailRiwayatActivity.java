@@ -42,12 +42,14 @@ public class KeamananAdminDetailRiwayatActivity extends Activity {
         String nomorpelapor = getIntent().getStringExtra("nomorpelapor");
         String lokasikejadian = getIntent().getStringExtra("lokasikejadian");
         Log.d("TAG", "imageName: "+imageName);
+        String status = getIntent().getStringExtra("status");
 
         TextView tanggalkejadianTextView = findViewById(R.id.kolomtanggalkejadian);
         TextView keteranganTextView = findViewById(R.id.kolomketerangan);
         TextView namapelaporTextView = findViewById(R.id.kolomnamapelapor);
         TextView nomorpelaporTextView = findViewById(R.id.kolomnomorpelapor);
         TextView lokasikejadianTextView = findViewById(R.id.kolomlokasikejadian);
+        TextView statusTextView = findViewById(R.id.kolomstatus);
         ImageView imageView = findViewById(R.id.gambar);
 
         updateTextView(tanggalkejadianTextView, "Tanggal Kejadian: ", tanggalkejadian);
@@ -55,6 +57,7 @@ public class KeamananAdminDetailRiwayatActivity extends Activity {
         updateTextView(namapelaporTextView, "Nama Pelapor: ", namapelapor);
         updateTextView(nomorpelaporTextView, "Nomor Pelapor: ", nomorpelapor);
         updateTextView(lokasikejadianTextView, "Lokasi Kejadian: ", lokasikejadian);
+        updateTextView(statusTextView, "Status: ", status);
         Log.d(TAG, imageUrl);
         Glide.with(this)
                 .load(imageUrl)

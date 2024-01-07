@@ -9,6 +9,7 @@ public class KeamananAdminRiwayat {
     private String tanggalkejadian;
     private String imageUrl;
     private String imageName;
+    private String status;
 
     private String keterangan;
     private String lokasikejadian;
@@ -64,12 +65,18 @@ public class KeamananAdminRiwayat {
         this.keterangan = keterangan;
     }
 
-    public String getLokasikejadian() {
-        return lokasikejadian;
-    }
+    public String getLokasikejadian() {return lokasikejadian;}
 
     public void setLokasikejadian(String lokasikejadian) {
         this.lokasikejadian = lokasikejadian;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }
