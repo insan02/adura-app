@@ -32,8 +32,8 @@
 
     <View
         android:id="@+id/rectangle_2"
-        android:layout_width="313dp"
-        android:layout_height="513dp"
+        android:layout_width="317dp"
+        android:layout_height="533dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="28dp"
@@ -137,6 +137,19 @@
         app:layout_constraintHorizontal_bias="0.255"
         app:layout_constraintStart_toStartOf="@+id/rectangle_2"
         app:layout_constraintTop_toBottomOf="@+id/kolomlokasikejadian" />
+
+    <TextView
+        android:id="@+id/kolomstatus"
+        android:layout_width="259dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Status           :"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
+        app:layout_constraintHorizontal_bias="0.22"
+        app:layout_constraintStart_toStartOf="@+id/rectangle_2"
+        app:layout_constraintTop_toBottomOf="@+id/kolomketerangan" />
 
     <Button
         android:id="@+id/btnsimpan"

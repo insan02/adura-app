@@ -55,6 +55,7 @@ public class KeamananListAdapter extends RecyclerView.Adapter<KeamananListAdapte
                 intent.putExtra("nomorpelapor", KeamananRiwayat.getNomorpelapor());
                 intent.putExtra("lokasikejadian", KeamananRiwayat.getLokasikejadian());
                 intent.putExtra("nextIdLaporan", KeamananRiwayat.getnextIdLaporan());
+                intent.putExtra("status", KeamananRiwayat.getStatus());
                 context.startActivity(intent);
             }
         });
