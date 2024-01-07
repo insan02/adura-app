@@ -10,20 +10,20 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.aduraapp.KeamananAdminDetailRiwayatActivity;
+import com.example.aduraapp.MedisAdminDetailRiwayatActivity;
 import com.example.aduraapp.R;
-import com.example.aduraapp.models.KeamananAdminRiwayat;
+import com.example.aduraapp.models.MedisAdminRiwayat;
 
 import java.util.ArrayList;
 
-public class KeamananAdminListAdapter extends RecyclerView.Adapter<KeamananAdminListAdapter.MyViewHolder> {
+public class MedisAdminListAdapter extends RecyclerView.Adapter<MedisAdminListAdapter.MyViewHolder> {
 
     Context context;
 
-    ArrayList<KeamananAdminRiwayat> list;
+    ArrayList<MedisAdminRiwayat> list;
 
 
-    public KeamananAdminListAdapter(Context context, ArrayList<KeamananAdminRiwayat> list) {
+    public MedisAdminListAdapter(Context context, ArrayList<MedisAdminRiwayat> list) {
         this.context = context;
         this.list = list;
     }
@@ -31,29 +31,29 @@ public class KeamananAdminListAdapter extends RecyclerView.Adapter<KeamananAdmin
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item_keamanan_adminriwayat,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.item_medis_adminriwayat,parent,false);
         return  new MyViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        KeamananAdminRiwayat KeamananAdminRiwayat = list.get(position);
-        holder.kolomtanggalkejadian.setText(KeamananAdminRiwayat.getTanggalkejadian());
-        holder.kolomketerangan.setText(KeamananAdminRiwayat.getKeterangan());
+        MedisAdminRiwayat MedisAdminRiwayat = list.get(position);
+        holder.kolomtanggalkejadian.setText(MedisAdminRiwayat.getTanggalkejadian());
+        holder.kolomketerangan.setText(MedisAdminRiwayat.getKeterangan());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Handle item click here
-                Intent intent = new Intent(context, KeamananAdminDetailRiwayatActivity.class);
-                intent.putExtra("tanggalkejadian", KeamananAdminRiwayat.getTanggalkejadian());
-                intent.putExtra("keterangan", KeamananAdminRiwayat.getKeterangan());
-                intent.putExtra("imageUrl", KeamananAdminRiwayat.getImageUrl());
-                intent.putExtra("imageName", KeamananAdminRiwayat.getImageName());
-                intent.putExtra("namapelapor", KeamananAdminRiwayat.getNamapelapor());
-                intent.putExtra("nomorpelapor", KeamananAdminRiwayat.getNomorpelapor());
-                intent.putExtra("lokasikejadian", KeamananAdminRiwayat.getLokasikejadian());
+                Intent intent = new Intent(context, MedisAdminDetailRiwayatActivity.class);
+                intent.putExtra("tanggalkejadian", MedisAdminRiwayat.getTanggalkejadian());
+                intent.putExtra("keterangan", MedisAdminRiwayat.getKeterangan());
+                intent.putExtra("imageUrl", MedisAdminRiwayat.getImageUrl());
+                intent.putExtra("imageName", MedisAdminRiwayat.getImageName());
+                intent.putExtra("namapelapor", MedisAdminRiwayat.getNamapelapor());
+                intent.putExtra("nomorpelapor", MedisAdminRiwayat.getNomorpelapor());
+                intent.putExtra("lokasikejadian", MedisAdminRiwayat.getLokasikejadian());
                 context.startActivity(intent);
             }
         });

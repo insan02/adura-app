@@ -40,6 +40,11 @@ public class RiwayatAdminFragment extends Fragment {
                     keamananIntent.putExtra("Nama_Menu", menu.getNamaMenu());
                     startActivity(keamananIntent);
                 }
+                if (menu.getNamaMenu().equals("Medis")) {
+                    Intent keamananIntent = new Intent(requireContext(), MedisAdminRiwayatList.class);
+                    keamananIntent.putExtra("Nama_Menu", menu.getNamaMenu());
+                    startActivity(keamananIntent);
+                }
             }
         });
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());

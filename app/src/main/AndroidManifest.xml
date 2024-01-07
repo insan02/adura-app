@@ -98,7 +98,13 @@
             android:name=".KeamananAdminRiwayatList"
             android:exported="false" />
         <activity
+            android:name=".MedisAdminRiwayatList"
+            android:exported="false" />
+        <activity
             android:name=".KeamananAdminDetailRiwayatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MedisAdminDetailRiwayatActivity"
             android:exported="false" />
         <activity
             android:name=".MainAdminActivity"
