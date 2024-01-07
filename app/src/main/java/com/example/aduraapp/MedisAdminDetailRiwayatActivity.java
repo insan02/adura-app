@@ -26,8 +26,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 public class MedisAdminDetailRiwayatActivity extends Activity {
-    private Button btnEdit;
-    private Button btnHapus;
+    private Button btnterima;
+    private Button btntolak;
     private String imageUrl;
     private String imageName;
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,8 @@ public class MedisAdminDetailRiwayatActivity extends Activity {
                 .fitCenter()
                 .into(imageView);
 
-
+        btnterima = findViewById(R.id.btnterima);
+        btntolak = findViewById(R.id.btntolak);
     }
 
     private void updateTextView(TextView textView,String prefix, String value ) {

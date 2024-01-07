@@ -11,7 +11,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="2dp">
 
         <!-- Set bghome ImageView at the bottom to make it the background -->
 
@@ -44,6 +46,34 @@
             app:tint="@color/blue" />
 
         <ImageView
+            android:id="@+id/bghome20"
+            android:layout_width="307dp"
+            android:layout_height="85dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="412dp"
+            android:layout_marginEnd="6dp"
+            android:src="@drawable/bg_topkeamananlist"
+            app:circularflow_radiusInDP="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/kuning" />
+
+        <ImageView
+            android:id="@+id/bghome21"
+            android:layout_width="307dp"
+            android:layout_height="85dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="516dp"
+            android:layout_marginEnd="6dp"
+            android:src="@drawable/bg_topkebakaranlist"
+            app:circularflow_radiusInDP="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/merah" />
+
+        <ImageView
             android:id="@+id/bghome2"
             android:layout_width="56dp"
             android:layout_height="55dp"
@@ -66,7 +96,7 @@
             android:layout_width="56dp"
             android:layout_height="55dp"
             android:layout_marginStart="6dp"
-            android:layout_marginTop="444dp"
+            android:layout_marginTop="480dp"
             android:layout_marginEnd="6dp"
             android:rotation="-46"
             android:rotationX="25"
@@ -74,25 +104,7 @@
             android:src="@drawable/bg_topmedislist"
             app:circularflow_radiusInDP="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.268"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bghome"
-            app:tint="#8DE18282" />
-
-        <ImageView
-            android:id="@+id/bghome16"
-            android:layout_width="56dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="264dp"
-            android:layout_marginEnd="6dp"
-            android:rotation="-8"
-            android:rotationX="-42"
-            android:rotationY="21"
-            android:src="@drawable/bg_topmedislist"
-            app:circularflow_radiusInDP="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.163"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bghome"
             app:tint="#8DE18282" />
@@ -120,7 +132,7 @@
             android:layout_width="56dp"
             android:layout_height="55dp"
             android:layout_marginStart="6dp"
-            android:layout_marginTop="444dp"
+            android:layout_marginTop="480dp"
             android:layout_marginEnd="6dp"
             android:rotation="-46"
             android:rotationX="-38"
@@ -128,28 +140,10 @@
             android:src="@drawable/bg_topmedislist"
             app:circularflow_radiusInDP="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.72"
+            app:layout_constraintHorizontal_bias="0.795"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bghome"
             app:tint="#82A8E1" />
-
-        <ImageView
-            android:id="@+id/bghome7"
-            android:layout_width="56dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="344dp"
-            android:layout_marginEnd="6dp"
-            android:rotation="71"
-            android:rotationX="-38"
-            android:rotationY="8"
-            android:src="@drawable/bg_topmedislist"
-            app:circularflow_radiusInDP="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.606"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bghome"
-            app:tint="#82E18E" />
 
         <ImageView
             android:id="@+id/bghome10"
@@ -169,43 +163,11 @@
             app:tint="#8AFAD629" />
 
         <ImageView
-            android:id="@+id/bghome13"
-            android:layout_width="56dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="416dp"
-            android:layout_marginEnd="6dp"
-            android:rotationX="-38"
-            android:rotationY="-21"
-            android:src="@drawable/bg_topmedislist"
-            app:circularflow_radiusInDP="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.962"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bghome"
-            app:tint="#8AFAD629" />
-
-        <ImageView
-            android:id="@+id/bghome15"
-            android:layout_width="56dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="408dp"
-            android:layout_marginEnd="336dp"
-            android:rotation="-17"
-            android:rotationX="4"
-            android:rotationY="4"
-            android:src="@drawable/bg_topmedislist"
-            app:circularflow_radiusInDP="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bghome"
-            app:tint="#82E18E" />
-
-        <ImageView
             android:id="@+id/bghome9"
             android:layout_width="56dp"
             android:layout_height="55dp"
             android:layout_marginStart="6dp"
-            android:layout_marginTop="344dp"
+            android:layout_marginTop="432dp"
             android:layout_marginEnd="6dp"
             android:rotation="-17"
             android:rotationX="4"
@@ -213,7 +175,7 @@
             android:src="@drawable/bg_topmedislist"
             app:circularflow_radiusInDP="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.201"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bghome"
             app:tint="#82A8E1" />
@@ -263,12 +225,12 @@
 
         <TextView
             android:id="@+id/textGreeting3"
-            android:layout_width="179dp"
-            android:layout_height="51dp"
+            android:layout_width="125dp"
+            android:layout_height="53dp"
             android:layout_marginStart="72dp"
             android:layout_marginTop="228dp"
             android:fontFamily="sans-serif-condensed-medium"
-            android:text="Medis"
+            android:text="Medis :"
             android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="#FFFDFD"
@@ -276,6 +238,38 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textGreeting" />
+
+        <TextView
+            android:id="@+id/textGreeting4"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="36dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Keamanan : "
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#FFFDFD"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bghome19" />
+
+        <TextView
+            android:id="@+id/textGreeting5"
+            android:layout_width="181dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Kebakaran : "
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#FFFDFD"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bghome20" />
 
         <ImageView
             android:id="@+id/imageLogoAdura"
@@ -288,6 +282,42 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.814"
             app:srcCompat="@drawable/logo_adura" />
+
+        <TextView
+            android:id="@+id/textmedis"
+            android:layout_width="21dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="148dp"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            app:layout_constraintStart_toEndOf="@+id/textGreeting3"
+            app:layout_constraintTop_toBottomOf="@+id/bghome" />
+
+        <TextView
+            android:id="@+id/textkeamanan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="32dp"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            app:layout_constraintStart_toEndOf="@+id/textGreeting4"
+            app:layout_constraintTop_toBottomOf="@+id/bghome19" />
+
+        <TextView
+            android:id="@+id/textkebakaran"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            app:layout_constraintStart_toEndOf="@+id/textGreeting5"
+            app:layout_constraintTop_toBottomOf="@+id/bghome20" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
