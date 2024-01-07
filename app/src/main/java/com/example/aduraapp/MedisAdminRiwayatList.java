@@ -53,6 +53,9 @@ public class MedisAdminRiwayatList extends AppCompatActivity {
                             // Log and add to the list
                             Log.d("Tag", "Data Tanggal: " + medisadminRiwayat.getTanggalkejadian());
                             Log.d("Tag", "Data Keterangan: " + medisadminRiwayat.getKeterangan());
+                            medisadminRiwayat.setnextIdLaporan(childSnapshot.getKey());
+                            medisadminRiwayat.setidUser(dataSnapshot.getKey()); // Menggunakan setnextIdLaporan
+
                             list.add(medisadminRiwayat);
                         } else {
                             Log.e("Tag", "MedisRiwayat is null");

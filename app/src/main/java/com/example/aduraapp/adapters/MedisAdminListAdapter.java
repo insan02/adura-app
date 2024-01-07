@@ -54,6 +54,9 @@ public class MedisAdminListAdapter extends RecyclerView.Adapter<MedisAdminListAd
                 intent.putExtra("namapelapor", MedisAdminRiwayat.getNamapelapor());
                 intent.putExtra("nomorpelapor", MedisAdminRiwayat.getNomorpelapor());
                 intent.putExtra("lokasikejadian", MedisAdminRiwayat.getLokasikejadian());
+
+                intent.putExtra("nextIdLaporan", MedisAdminRiwayat.getnextIdLaporan());
+                intent.putExtra("idUser", MedisAdminRiwayat.getidUser());
                 context.startActivity(intent);
             }
         });
