@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="16dp"
+    app:circularflow_radiusInDP="16dp"
+    tools:context=".HomeAdminFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Set bghome ImageView at the bottom to make it the background -->
+
+        <ImageView
+            android:id="@+id/bghome"
+            android:layout_width="373dp"
+            android:layout_height="151dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="6dp"
+            android:src="@drawable/bg_topmedislist"
+            app:circularflow_radiusInDP="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/hijau" />
+
+        <ImageView
+            android:id="@+id/bghome19"
+            android:layout_width="307dp"
+            android:layout_height="85dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="312dp"
+            android:layout_marginEnd="6dp"
+            android:src="@drawable/bg_topmedislist"
+            app:circularflow_radiusInDP="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/blue" />
+
+        <ImageView
+            android:id="@+id/bghome2"
+            android:layout_width="56dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="6dp"
+            android:rotation="21"
+            android:rotationX="4"
+            android:rotationY="-46"
+            android:src="@drawable/bg_topmedislist"
+            app:circularflow_radiusInDP="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.361"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bghome"
+            app:tint="#8DE18282" />
+
+        <ImageView
+            android:id="@+id/bghome17"
+            android:layout_width="56dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="444dp"
+            android:layout_marginEnd="6dp"
+            android:rotation="-46"
+            android:rotationX="25"
+            android:rotationY="4"
+            android:src="@drawable/bg_topmedislist"
+            app:circularflow_radiusInDP="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.268"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bghome"
+            app:tint="#8DE18282" />
+
+        <ImageView
+            android:id="@+id/bghome16"
+            android:layout_width="56dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="264dp"
+            android:layout_marginEnd="6dp"
+            android:rotation="-8"
+            android:rotationX="-42"
+            android:rotationY="21"
+            android:src="@drawable/bg_topmedislist"
+            app:circularflow_radiusInDP="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bghome"
+            app:tint="#8DE18282" />
+
+        <ImageView
+            android:id="@+id/bghome3"
+            android:layout_width="56dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="6dp"
+            android:rotation="-46"
+            android:rotationX="-38"
+            android:rotationY="8"
+            android:src="@drawable/bg_topmedislist"
+            app:circularflow_radiusInDP="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.851"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bghome"
+            app:tint="#82A8E1" />
+
+        <ImageView
+            android:id="@+id/bghome18"
+            android:layout_width="56dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="444dp"
+            android:layout_marginEnd="6dp"
+            android:rotation="-46"
+            android:rotationX="-38"
+            android:rotationY="8"
+            android:src="@drawable/bg_topmedislist"
+            app:circularflow_radiusInDP="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.72"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bghome"
+            app:tint="#82A8E1" />
+
+        <ImageView
+            android:id="@+id/bghome7"
+            android:layout_width="56dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="344dp"
+            android:layout_marginEnd="6dp"
+            android:rotation="71"
+            android:rotationX="-38"
+            android:rotationY="8"
+            android:src="@drawable/bg_topmedislist"
+            app:circularflow_radiusInDP="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.606"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bghome"
+            app:tint="#82E18E" />
+
+        <ImageView
+            android:id="@+id/bghome10"
+            android:layout_width="56dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="6dp"
+            android:rotationX="-38"
+            android:rotationY="-21"
+            android:src="@drawable/bg_topmedislist"
+            app:circularflow_radiusInDP="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bghome"
+            app:tint="#8AFAD629" />
+
+        <ImageView
+            android:id="@+id/bghome13"
+            android:layout_width="56dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="416dp"
+            android:layout_marginEnd="6dp"
+            android:rotationX="-38"
+            android:rotationY="-21"
+            android:src="@drawable/bg_topmedislist"
+            app:circularflow_radiusInDP="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.962"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bghome"
+            app:tint="#8AFAD629" />
+
+        <ImageView
+            android:id="@+id/bghome15"
+            android:layout_width="56dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="408dp"
+            android:layout_marginEnd="336dp"
+            android:rotation="-17"
+            android:rotationX="4"
+            android:rotationY="4"
+            android:src="@drawable/bg_topmedislist"
+            app:circularflow_radiusInDP="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bghome"
+            app:tint="#82E18E" />
+
+        <ImageView
+            android:id="@+id/bghome9"
+            android:layout_width="56dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="344dp"
+            android:layout_marginEnd="6dp"
+            android:rotation="-17"
+            android:rotationX="4"
+            android:rotationY="4"
+            android:src="@drawable/bg_topmedislist"
+            app:circularflow_radiusInDP="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.201"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bghome"
+            app:tint="#82A8E1" />
+
+        <ImageView
+            android:id="@+id/bghome14"
+            android:layout_width="56dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="264dp"
+            android:layout_marginEnd="376dp"
+            android:rotation="59"
+            android:rotationY="46"
+            android:src="@drawable/bg_topmedislist"
+            app:circularflow_radiusInDP="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bghome"
+            app:tint="#8DE18282" />
+
+        <TextView
+            android:id="@+id/textGreeting"
+            android:layout_width="177dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="60dp"
+            android:fontFamily="serif"
+            android:text="Selamat datang di"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textGreeting2"
+            android:layout_width="179dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="44dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Adura"
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#FFFDFD"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textGreeting" />
+
+        <TextView
+            android:id="@+id/textGreeting3"
+            android:layout_width="179dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="228dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Medis"
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#FFFDFD"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textGreeting" />
+
+        <ImageView
+            android:id="@+id/imageLogoAdura"
+            android:layout_width="159dp"
+            android:layout_height="118dp"
+            app:layout_constraintBottom_toBottomOf="@+id/bghome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.884"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.814"
+            app:srcCompat="@drawable/logo_adura" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
