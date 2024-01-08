@@ -149,13 +149,13 @@
             app:tint="@color/hijau" />
 
         <TextView
-            android:id="@+id/textGreeting"
+            android:id="@+id/textRiwayat"
             android:layout_width="282dp"
             android:layout_height="53dp"
-            android:layout_marginStart="80dp"
+            android:layout_marginStart="72dp"
             android:layout_marginTop="36dp"
             android:fontFamily="serif"
-            android:text="Daftar Laporan Masuk"
+            android:text="Riwayat Laporan Anda"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="@color/white"
             android:textSize="24sp"
