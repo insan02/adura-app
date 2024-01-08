@@ -48,6 +48,7 @@ public class KebakaranUpdateData extends AppCompatActivity {
     private Button btnkirim;
     private DatabaseReference reference;
     private FirebaseDatabase db;
+    private String status;
     FirebaseStorage storage;
     StorageReference storageRef;
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -73,6 +74,7 @@ public class KebakaranUpdateData extends AppCompatActivity {
         location = findViewById(R.id.location);
         btnkirim = findViewById(R.id.btnkirim);
 
+        status = "Not Verified";
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference("images");
 
@@ -183,7 +185,7 @@ public class KebakaranUpdateData extends AppCompatActivity {
             imageRef.putFile(newImageUri)
                     .addOnSuccessListener(taskSnapshot -> {
                         imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                            LaporanUpdate data = new LaporanUpdate(namapelapor, nomorpelapor, tanggalkejadian, lokasikejadian, keterangan, uri.toString(), latitude,longitude);
+                            LaporanUpdate data = new LaporanUpdate(namapelapor, nomorpelapor, tanggalkejadian, lokasikejadian, keterangan, uri.toString(), latitude,longitude, status);
 
                             // Update data ke Firebase Database
                             reference.setValue(data)
@@ -210,7 +212,7 @@ public class KebakaranUpdateData extends AppCompatActivity {
                     });
         }else{
             // Jika user tidak memilih gambar baru, update data tanpa mengganti gambar
-            LaporanUpdate data = new LaporanUpdate(namapelapor, nomorpelapor, tanggalkejadian, lokasikejadian, keterangan, imageUrl, latitude, longitude);
+            LaporanUpdate data = new LaporanUpdate(namapelapor, nomorpelapor, tanggalkejadian, lokasikejadian, keterangan, imageUrl, latitude, longitude, status);
 
             // Update data ke Firebase Database
             reference.setValue(data)

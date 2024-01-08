@@ -55,6 +55,7 @@ public class KebakaranListAdapter extends RecyclerView.Adapter<KebakaranListAdap
                 intent.putExtra("nomorpelapor", KebakaranRiwayat.getNomorpelapor());
                 intent.putExtra("lokasikejadian", KebakaranRiwayat.getLokasikejadian());
                 intent.putExtra("nextIdLaporan", KebakaranRiwayat.getnextIdLaporan());
+                intent.putExtra("status", KebakaranRiwayat.getStatus());
                 context.startActivity(intent);
             }
         });

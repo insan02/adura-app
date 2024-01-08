@@ -2,6 +2,7 @@ package com.example.aduraapp.models;
 
 public class KebakaranRiwayat {
 
+    private String status;
     private String nextIdLaporan; // Tambahkan properti idLaporan
 
     private String namapelapor;
@@ -79,5 +80,12 @@ public class KebakaranRiwayat {
 
     public void setnextIdLaporan(String nextIdLaporan) {
         this.nextIdLaporan = nextIdLaporan;
+    }
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

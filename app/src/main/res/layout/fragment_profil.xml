@@ -130,20 +130,6 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewUsername" />
 
         <Button
-            android:id="@+id/buttonLogout"
-            android:layout_width="103dp"
-            android:layout_height="59dp"
-            android:layout_marginTop="36dp"
-            android:backgroundTint="#F03B3B"
-            android:fontFamily="sans-serif-black"
-            android:text="Logout"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.95"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bg_top_keamanan" />
-
-        <Button
             android:id="@+id/buttonGantiPassword"
             android:layout_width="147dp"
             android:layout_height="55dp"

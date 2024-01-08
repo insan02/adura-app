@@ -7,6 +7,7 @@ public class LaporanUpdate {
     private String lokasikejadian;
     private String keterangan;
     private String imageUrl;
+    private String status;
 
 
     private Double latitude;
@@ -16,7 +17,7 @@ public class LaporanUpdate {
     public LaporanUpdate() {
     }
 
-    public LaporanUpdate(String namapelapor, String nomorpelapor, String tanggalkejadian, String lokasikejadian, String keterangan, String imageUrl,Double latitude, Double longitude) {
+    public LaporanUpdate(String namapelapor, String nomorpelapor, String tanggalkejadian, String lokasikejadian, String keterangan, String imageUrl,Double latitude, Double longitude, String status) {
         this.namapelapor = namapelapor;
         this.nomorpelapor = nomorpelapor;
         this.tanggalkejadian = tanggalkejadian;
@@ -25,6 +26,7 @@ public class LaporanUpdate {
         this.imageUrl = imageUrl;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.status = status;
     }
 
     // Getter and setter methods
@@ -89,6 +91,13 @@ public class LaporanUpdate {
 
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
+    }
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }

@@ -56,6 +56,7 @@ public class KeamananUpdateData extends AppCompatActivity {
     private EditText kolomnomorpelapor;
     private EditText kolomtanggalkejadian;
     private EditText kolomlokasikejadian;
+    private String status;
     private EditText kolomketerangan;
     private ImageView imageView;
     Uri imageUri;
@@ -75,7 +76,7 @@ public class KeamananUpdateData extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityKeamananupdatedataBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        status = "Not Verified";
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         storage = FirebaseStorage.getInstance();
@@ -297,7 +298,7 @@ public class KeamananUpdateData extends AppCompatActivity {
                         // Get the download URL of the uploaded image
                         imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                             // Buat objek data baru dengan URL gambar yang baru
-                            LaporanUpdate data = new LaporanUpdate(namapelapor, nomorpelapor, tanggalkejadian, lokasikejadian, keterangan, uri.toString(), latitude, longitude);
+                            LaporanUpdate data = new LaporanUpdate(namapelapor, nomorpelapor, tanggalkejadian, lokasikejadian, keterangan, uri.toString(), latitude, longitude, status);
 
                             // Update data ke Firebase Database
                             reference.setValue(data)
@@ -324,7 +325,7 @@ public class KeamananUpdateData extends AppCompatActivity {
                     });
         } else {
             // Jika user tidak memilih gambar baru, update data tanpa mengganti gambar
-            LaporanUpdate data = new LaporanUpdate(namapelapor, nomorpelapor, tanggalkejadian, lokasikejadian, keterangan, imageUrl, latitude, longitude);
+            LaporanUpdate data = new LaporanUpdate(namapelapor, nomorpelapor, tanggalkejadian, lokasikejadian, keterangan, imageUrl, latitude, longitude, status);
 
             // Update data ke Firebase Database
             reference.setValue(data)

@@ -38,6 +38,7 @@ import java.util.List;
 
 public class MedisUpdateData extends AppCompatActivity {
     private EditText kolomnamapelapor;
+    private String status;
     private EditText kolomnomorpelapor;
     private EditText kolomtanggalkejadian;
     private EditText kolomlokasikejadian;
@@ -72,6 +73,7 @@ public class MedisUpdateData extends AppCompatActivity {
         selectImageBtn = findViewById(R.id.selectImagebtn);
         location = findViewById(R.id.location);
         btnkirim = findViewById(R.id.btnkirim);
+        status = "Not Verified";
 
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference("images");
@@ -183,7 +185,7 @@ public class MedisUpdateData extends AppCompatActivity {
             imageRef.putFile(newImageUri)
                     .addOnSuccessListener(taskSnapshot -> {
                         imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                            LaporanUpdate data = new LaporanUpdate(namapelapor, nomorpelapor, tanggalkejadian, lokasikejadian, keterangan, uri.toString(), latitude,longitude);
+                            LaporanUpdate data = new LaporanUpdate(namapelapor, nomorpelapor, tanggalkejadian, lokasikejadian, keterangan, uri.toString(), latitude,longitude, status);
 
                             // Update data ke Firebase Database
                             reference.setValue(data)
@@ -210,7 +212,7 @@ public class MedisUpdateData extends AppCompatActivity {
                     });
         }else{
             // Jika user tidak memilih gambar baru, update data tanpa mengganti gambar
-            LaporanUpdate data = new LaporanUpdate(namapelapor, nomorpelapor, tanggalkejadian, lokasikejadian, keterangan, imageUrl, latitude, longitude);
+            LaporanUpdate data = new LaporanUpdate(namapelapor, nomorpelapor, tanggalkejadian, lokasikejadian, keterangan, imageUrl, latitude, longitude, status);
 
             // Update data ke Firebase Database
             reference.setValue(data)
