@@ -7,71 +7,75 @@
     tools:context=".KebakaranDetailRiwayatActivity">
 
     <View
-        android:id="@+id/topkebakaran"
+        android:id="@+id/topmedis"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@drawable/heading"
+        android:background="@drawable/bg_topmedis"
+        android:backgroundTint="@color/merah"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/image_back"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:src="@drawable/vector"
+        android:onClick="onBackPressed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.077"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/topkebakaran"
+        app:layout_constraintTop_toTopOf="@+id/topmedis"
         app:layout_constraintVertical_bias="0.034"></ImageView>
 
     <View
         android:id="@+id/rectangle_2"
-        android:layout_width="313dp"
-        android:layout_height="513dp"
+        android:layout_width="317dp"
+        android:layout_height="533dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="28dp"
         android:background="@drawable/rectangle_detailriwayat"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topkebakaran" />
+        app:layout_constraintTop_toBottomOf="@+id/topmedis" />
 
     <View
-        android:id="@+id/toprectangle_kebakarandetail"
-        android:layout_width="312dp"
-        android:layout_height="47dp"
+        android:id="@+id/toprectangle_medisdetail"
+        android:layout_width="316dp"
+        android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="28dp"
-        android:background="@drawable/toprectangle_detailkebakaranriwayat"
+        android:background="@drawable/toprectangle_detailriwayat"
+        android:backgroundTint="@color/merah"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topkebakaran" />
+        app:layout_constraintTop_toBottomOf="@+id/topmedis" />
 
     <ImageView
         android:id="@+id/gambar"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="150dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/rectangle_23"
         app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
         app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="@+id/rectangle_2"
-        app:layout_constraintTop_toBottomOf="@+id/toprectangle_kebakarandetail" />
+        app:layout_constraintTop_toBottomOf="@+id/toprectangle_medisdetail" />
 
     <TextView
         android:id="@+id/kolomnamapelapor"
         android:layout_width="260dp"
         android:layout_height="22dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="25dp"
-        android:text="@string/pelapor_detail"
+        android:text="Nama Pelapor     :"
         android:textColor="#000000"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
@@ -84,12 +88,12 @@
         android:layout_width="260dp"
         android:layout_height="22dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="25dp"
-        android:text="@string/hp_detail"
+        android:text="Nomor HP              :"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
-        app:layout_constraintHorizontal_bias="0.565"
+        app:layout_constraintHorizontal_bias="0.541"
         app:layout_constraintStart_toStartOf="@+id/rectangle_2"
         app:layout_constraintTop_toBottomOf="@+id/kolomnamapelapor" />
 
@@ -98,23 +102,22 @@
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="25dp"
-        android:text="@string/tanggal_detail"
+        android:text="Tanggal Kejadian :"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
-        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="@+id/rectangle_2"
         app:layout_constraintTop_toBottomOf="@+id/kolomnomorpelapor" />
 
     <TextView
         android:id="@+id/kolomlokasikejadian"
         android:layout_width="260dp"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="25dp"
-        android:text="@string/lokasi_detail"
+        android:text="Lokasi Kejadian    :"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
         app:layout_constraintHorizontal_bias="0.529"
@@ -124,27 +127,42 @@
     <TextView
         android:id="@+id/kolomketerangan"
         android:layout_width="262dp"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/keterangan_detail"
+        android:layout_marginTop="16dp"
+        android:text="Keterangan            :"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
-        app:layout_constraintHorizontal_bias="0.255"
+        app:layout_constraintHorizontal_bias="0.234"
         app:layout_constraintStart_toStartOf="@+id/rectangle_2"
         app:layout_constraintTop_toBottomOf="@+id/kolomlokasikejadian" />
+
+    <TextView
+        android:id="@+id/kolomstatus"
+        android:layout_width="259dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Status           :"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
+        app:layout_constraintHorizontal_bias="0.22"
+        app:layout_constraintStart_toStartOf="@+id/rectangle_2"
+        app:layout_constraintTop_toBottomOf="@+id/kolomketerangan" />
 
     <Button
         android:id="@+id/btnsimpan"
         android:layout_width="118dp"
         android:layout_height="48dp"
         android:layout_marginTop="28dp"
-        android:text="@string/edit"
         android:background="@drawable/corner_edit"
+        android:backgroundTint="#F7ECE11B"
+        android:onClick="onButtonEditClicked"
+        android:text="@string/edit"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/btnhapus"
-        app:layout_constraintHorizontal_bias="0.633"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
+        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintStart_toStartOf="@+id/rectangle_2"
         app:layout_constraintTop_toBottomOf="@+id/rectangle_2" />
 
     <Button
@@ -152,12 +170,12 @@
         android:layout_width="113dp"
         android:layout_height="48dp"
         android:layout_marginTop="28dp"
-        android:text="@string/hapus"
         android:background="@drawable/corner_hapus"
+        android:text="@string/hapus"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnsimpan"
-        app:layout_constraintHorizontal_bias="0.768"
+        app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
+        app:layout_constraintHorizontal_bias="0.916"
+        app:layout_constraintStart_toStartOf="@+id/rectangle_2"
         app:layout_constraintTop_toBottomOf="@+id/rectangle_2" />
 
     <TextView
@@ -165,26 +183,28 @@
         android:layout_width="201dp"
         android:layout_height="32dp"
         android:layout_marginTop="24dp"
-        android:text="@string/riwayatkebakaran"
+        android:text="Riwayat Kebakaran"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/topkebakaran"
+        app:layout_constraintEnd_toEndOf="@+id/topmedis"
         app:layout_constraintHorizontal_bias="0.609"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/topkebakaran" />
+        app:layout_constraintTop_toTopOf="@+id/topmedis" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="@string/detail_medis"
+        android:text="Detail Laporan"
         android:textColor="#000000"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/toprectangle_kebakarandetail"
-        app:layout_constraintEnd_toEndOf="@+id/toprectangle_kebakarandetail"
+        app:layout_constraintBottom_toBottomOf="@+id/toprectangle_medisdetail"
+        app:layout_constraintEnd_toEndOf="@+id/toprectangle_medisdetail"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="@+id/toprectangle_kebakarandetail"
+        app:layout_constraintStart_toStartOf="@+id/toprectangle_medisdetail"
         app:layout_constraintTop_toTopOf="@+id/rectangle_2"
         app:layout_constraintVertical_bias="0.333" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
