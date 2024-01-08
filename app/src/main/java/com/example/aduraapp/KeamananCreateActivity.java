@@ -251,6 +251,9 @@ public class KeamananCreateActivity extends AppCompatActivity {
                                 uploadImageView.setLayoutParams(originalParams);
                             }
 
+                            Intent intent = new Intent(KeamananCreateActivity.this, KeamananRiwayatList.class);
+                            startActivity(intent);
+
                             uploadImageView.setImageResource(R.drawable.__icon__cloud_download_);
                             imageUri = null;
                             uploadImageView.setLayoutParams(originalParams);
