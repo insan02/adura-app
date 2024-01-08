@@ -165,15 +165,23 @@ public class MapsActivity extends FragmentActivity implements LocationListener, 
                     startActivity(intent);
                 }
                 if("KebakaranCreate".equals(tipe_laporan)){
-                    nextidlaporan = getIntent().getStringExtra("nextidlaporan");
+                    String namaPelapor = getIntent().getStringExtra("NAMA_PELAPOR");
+                    String nomorPelapor = getIntent().getStringExtra("NOMOR_PELAPOR");
+                    String tanggalKejadian = getIntent().getStringExtra("TANGGAL_KEJADIAN");
+                    String keterangan = getIntent().getStringExtra("KETERANGAN");
+                    String imageUri = getIntent().getStringExtra("IMAGE_URI");
                     double latitude = marker.getPosition().getLatitude();
                     double longitude = marker.getPosition().getLongitude();
                     getAddressFromLocation(latitude, longitude);
                     Intent intent = new Intent(MapsActivity.this, KebakaranCreateActivity.class);
                     intent.putExtra("ADDRESS", addressLine);
                     intent.putExtra("LATITUDE", latitude);
+                    intent.putExtra("NAMA_PELAPOR", namaPelapor);
+                    intent.putExtra("NOMOR_PELAPOR", nomorPelapor);
+                    intent.putExtra("TANGGAL_KEJADIAN", tanggalKejadian);
+                    intent.putExtra("KETERANGAN", keterangan);
+                    intent.putExtra("IMAGE_URI", imageUri);
                     intent.putExtra("LONGITUDE", longitude);
-                    intent.putExtra("primaryKey", nextidlaporan);
                     startActivity(intent);
                 }
                 if("KebakaranUpdate".equals(tipe_laporan)){

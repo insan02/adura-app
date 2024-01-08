@@ -76,7 +76,35 @@ public class KebakaranCreateActivity extends AppCompatActivity {
             address = getIntent().getStringExtra("ADDRESS");
             latitude = getIntent().getDoubleExtra("LATITUDE", 0.0);
             longitude = getIntent().getDoubleExtra("LONGITUDE",0.0);
+            String namaPelapor = intent.getStringExtra("NAMA_PELAPOR");
+            String nomorPelapor = intent.getStringExtra("NOMOR_PELAPOR");
+            String tanggalKejadian = intent.getStringExtra("TANGGAL_KEJADIAN");
+            String keterangan = intent.getStringExtra("KETERANGAN");
+            String imageUriString = intent.getStringExtra("IMAGE_URI");
+            if (imageUriString != null) {
+                imageUri = Uri.parse(imageUriString);
+
+                // Gunakan URI gambar sesuai kebutuhan
+                uploadImageView.setImageURI(imageUri);
+                originalParams = (RelativeLayout.LayoutParams) uploadImageView.getLayoutParams();
+
+                // Periksa apakah imageUri tidak null sebelum mengatur gambar di ImageView
+                if (imageUri != null) {
+                    uploadImageView.setImageURI(imageUri);
+
+                    RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+                            RelativeLayout.LayoutParams.WRAP_CONTENT,
+                            RelativeLayout.LayoutParams.WRAP_CONTENT
+                    );
+                    layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+                    uploadImageView.setLayoutParams(layoutParams);
+                }
+            }
+            binding.kolomnamapelapor.setText(namaPelapor);
             binding.kolomlokasikejadian.setText(address);
+            binding.kolomnomorpelapor.setText(nomorPelapor);
+            binding.kolomtanggalkejadian.setText(tanggalKejadian);
+            binding.kolomketerangan.setText(keterangan);
             Log.d("TAG", "alamat dari: "+address);
         }
 
@@ -222,8 +250,20 @@ public class KebakaranCreateActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             // Izin sudah diberikan, dapatkan lokasi
             tipe_laporan = "KebakaranCreate";
+            kolomnamapelapor = binding.kolomnamapelapor.getText().toString();
+            kolomnomorpelapor = binding.kolomnomorpelapor.getText().toString();
+            kolomtanggalkejadian = binding.kolomtanggalkejadian.getText().toString();
+            kolomketerangan = binding.kolomketerangan.getText().toString();
+
             Intent intent = new Intent(KebakaranCreateActivity.this, MapsActivity.class);
             intent.putExtra("TIPE_LAPORAN", tipe_laporan);
+            intent.putExtra("NAMA_PELAPOR", kolomnamapelapor);
+            intent.putExtra("NOMOR_PELAPOR", kolomnomorpelapor);
+            intent.putExtra("TANGGAL_KEJADIAN", kolomtanggalkejadian);
+            intent.putExtra("KETERANGAN", kolomketerangan);
+            if (imageUri != null) {
+                intent.putExtra("IMAGE_URI", imageUri.toString());
+            }
             startActivity(intent);
         } else {
             // Izin belum diberikan, minta izin
@@ -231,39 +271,6 @@ public class KebakaranCreateActivity extends AppCompatActivity {
         }
     }
 
-//    private void getLocation() {
-//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-//            fusedLocationClient.getLastLocation()
-//                    .addOnSuccessListener(this, location -> {
-//                        if (location != null) {
-//                             latitude = location.getLatitude();
-//                             longitude = location.getLongitude();
-//
-//                            getAddressFromLocation(latitude, longitude);
-//                        }
-//                    });
-//        } else {
-//            // Jika izin belum diberikan, minta izin kepada pengguna
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
-//        }
-//    }
-//
-//    private void getAddressFromLocation(double latitude, double longitude) {
-//        Geocoder geocoder = new Geocoder(this);
-//        try {
-//            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
-//            if (addresses.size() > 0) {
-//                // Dapatkan alamat dari hasil geocoder
-//                Address address = addresses.get(0);
-//                String addressLine = address.getAddressLine(0);
-//
-//                // Tampilkan alamat di kolom lokasi
-//                binding.kolomlokasikejadian.setText(addressLine);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -273,8 +280,19 @@ public class KebakaranCreateActivity extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                 tipe_laporan = "KebakaranCreate";
+                kolomnamapelapor = binding.kolomnamapelapor.getText().toString();
+                kolomnomorpelapor = binding.kolomnomorpelapor.getText().toString();
+                kolomtanggalkejadian = binding.kolomtanggalkejadian.getText().toString();
+                kolomketerangan = binding.kolomketerangan.getText().toString();
                 Intent intent = new Intent(KebakaranCreateActivity.this, MapsActivity.class);
                 intent.putExtra("TIPE_LAPORAN", tipe_laporan);
+                intent.putExtra("NAMA_PELAPOR", kolomnamapelapor);
+                intent.putExtra("NOMOR_PELAPOR", kolomnomorpelapor);
+                intent.putExtra("TANGGAL_KEJADIAN", kolomtanggalkejadian);
+                intent.putExtra("KETERANGAN", kolomketerangan);
+                if (imageUri != null) {
+                    intent.putExtra("IMAGE_URI", imageUri.toString());
+                }
                 startActivity(intent);
             } else {
                 // Izin ditolak, Anda dapat memberikan informasi kepada pengguna atau mengambil tindakan lain yang sesuai
