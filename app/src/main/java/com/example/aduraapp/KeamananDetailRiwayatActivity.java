@@ -69,23 +69,29 @@ public class KeamananDetailRiwayatActivity extends Activity {
 
         btnEdit = findViewById(R.id.btnsimpan);
         btnHapus = findViewById(R.id.btnhapus);
-        btnEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Membuka activity KeamananUpdateData dan mengirimkan primary key sebagai data tambahan
-                Intent intent = new Intent(KeamananDetailRiwayatActivity.this, KeamananUpdateData.class);
-                intent.putExtra("primaryKey", nextIdLaporan);
-                intent.putExtra("tanggalkejadian", tanggalkejadian);
-                intent.putExtra("keterangan", keterangan);
-                intent.putExtra("imageUrl", imageUrl);
-                intent.putExtra("namapelapor", namapelapor);
-                intent.putExtra("nomorpelapor", nomorpelapor);
-                intent.putExtra("lokasikejadian", lokasikejadian);
-                intent.putExtra("status", status);
 
-                startActivity(intent);
-            }
-        });
+        if ("Verified".equals(status) || "Rejected".equals(status)) {
+            btnEdit.setVisibility(View.GONE);
+        } else {
+            btnEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Membuka activity KeamananUpdateData dan mengirimkan primary key sebagai data tambahan
+                    Intent intent = new Intent(KeamananDetailRiwayatActivity.this, KeamananUpdateData.class);
+                    intent.putExtra("primaryKey", nextIdLaporan);
+                    intent.putExtra("tanggalkejadian", tanggalkejadian);
+                    intent.putExtra("keterangan", keterangan);
+                    intent.putExtra("imageUrl", imageUrl);
+                    intent.putExtra("namapelapor", namapelapor);
+                    intent.putExtra("nomorpelapor", nomorpelapor);
+                    intent.putExtra("lokasikejadian", lokasikejadian);
+                    intent.putExtra("status", status);
+
+                    startActivity(intent);
+                }
+            });
+        }
+
 
         btnHapus.setOnClickListener(new View.OnClickListener() {
             @Override

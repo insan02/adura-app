@@ -4,6 +4,8 @@ public class KeamananAdminRiwayat {
 
 
     private String namapelapor;
+    private String nextIdLaporan;
+    private String idUser;
 
     private String nomorpelapor;
     private String tanggalkejadian;
@@ -77,6 +79,21 @@ public class KeamananAdminRiwayat {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getnextIdLaporan() {
+        return nextIdLaporan;
+    }
+
+    public void setnextIdLaporan(String nextIdLaporan) {
+        this.nextIdLaporan = nextIdLaporan;
+    }
+    public String getidUser() {
+        return idUser;
+    }
+
+    public void setidUser(String idUser) {
+        this.idUser = idUser;
     }
 
 }

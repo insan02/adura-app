@@ -156,7 +156,7 @@
         android:id="@+id/btnterima"
         android:layout_width="118dp"
         android:layout_height="48dp"
-        android:layout_marginStart="52dp"
+        android:layout_marginStart="64dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/corner_edit"
         android:backgroundTint="#F7ECE11B"

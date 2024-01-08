@@ -53,6 +53,8 @@ public class KeamananAdminRiwayatList extends AppCompatActivity {
                             // Log and add to the list
                             Log.d("Tag", "Data Tanggal: " + keamananadminRiwayat.getTanggalkejadian());
                             Log.d("Tag", "Data Keterangan: " + keamananadminRiwayat.getKeterangan());
+                            keamananadminRiwayat.setnextIdLaporan(childSnapshot.getKey());
+                            keamananadminRiwayat.setidUser(dataSnapshot.getKey()); // Menggunakan setnextIdLaporan
                             list.add(keamananadminRiwayat);
                         } else {
                             Log.e("Tag", "KeamananRiwayat is null");

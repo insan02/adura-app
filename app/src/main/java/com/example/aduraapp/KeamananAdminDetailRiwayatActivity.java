@@ -26,10 +26,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 public class KeamananAdminDetailRiwayatActivity extends Activity {
-    private Button btnEdit;
-    private Button btnHapus;
+    private Button btnterima;
+    private Button btntolak;
     private String imageUrl;
     private String imageName;
+    private DatabaseReference reference;
+    private FirebaseDatabase db;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keamananadmindetailriwayat);
@@ -43,6 +45,8 @@ public class KeamananAdminDetailRiwayatActivity extends Activity {
         String lokasikejadian = getIntent().getStringExtra("lokasikejadian");
         Log.d("TAG", "imageName: "+imageName);
         String status = getIntent().getStringExtra("status");
+        String nextIdLaporan = getIntent().getStringExtra("nextIdLaporan");
+        String idUser = getIntent().getStringExtra("idUser");
 
         TextView tanggalkejadianTextView = findViewById(R.id.kolomtanggalkejadian);
         TextView keteranganTextView = findViewById(R.id.kolomketerangan);
@@ -63,6 +67,96 @@ public class KeamananAdminDetailRiwayatActivity extends Activity {
                 .load(imageUrl)
                 .fitCenter()
                 .into(imageView);
+
+        db = FirebaseDatabase.getInstance();
+        reference = db.getReference("Laporan_keamanan").child(idUser).child(nextIdLaporan);
+        btnterima = findViewById(R.id.btnterima);
+        btntolak = findViewById(R.id.btntolak);
+
+        if ("Verified".equals(status) || "Rejected".equals(status)) {
+            btnterima.setVisibility(View.GONE);
+            btntolak.setVisibility(View.GONE);
+        } else {
+            btnterima.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(KeamananAdminDetailRiwayatActivity.this);
+                    builder.setTitle("Konfirmasi");
+                    builder.setMessage("Anda yakin ingin menerima laporan ini?");
+                    builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            // Mengupdate status menjadi "verified"
+                            reference.child("status").setValue("Verified")
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Toast.makeText(KeamananAdminDetailRiwayatActivity.this, "Status diterima", Toast.LENGTH_SHORT).show();
+                                            // Sembunyikan tombol setelah status diterima
+                                            btnterima.setVisibility(View.GONE);
+                                            btntolak.setVisibility(View.GONE);
+
+                                            Intent intent = new Intent(KeamananAdminDetailRiwayatActivity.this, KeamananAdminRiwayatList.class);
+                                            startActivity(intent);
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            // Jika gagal, tampilkan pesan error
+                                            Toast.makeText(KeamananAdminDetailRiwayatActivity.this, "Gagal mengupdate status: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                        }
+                    });
+                    builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
+                    builder.show();
+                }
+            });
+            btntolak.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Membuat AlertDialog konfirmasi
+                    AlertDialog.Builder builder = new AlertDialog.Builder(KeamananAdminDetailRiwayatActivity.this);
+                    builder.setTitle("Konfirmasi");
+                    builder.setMessage("Anda yakin ingin menolak laporan ini?");
+                    builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            // Mengupdate status menjadi "rejected"
+                            reference.child("status").setValue("Rejected")
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            // Jika berhasil, tampilkan pesan dan pindah ke activity lain
+                                            Toast.makeText(KeamananAdminDetailRiwayatActivity.this, "Status ditolak", Toast.LENGTH_SHORT).show();
+
+                                            Intent intent = new Intent(KeamananAdminDetailRiwayatActivity.this, KeamananAdminRiwayatList.class);
+                                            startActivity(intent);
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(KeamananAdminDetailRiwayatActivity.this, "Gagal mengupdate status: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                        }
+                    });
+                    builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            // Tidak melakukan apa-apa jika pengguna memilih "Tidak"
+                        }
+                    });
+                    builder.show();
+                }
+            });
+        }
 
 
     }
