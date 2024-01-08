@@ -9,6 +9,7 @@ public class MedisRiwayat {
     private String nomorpelapor;
     private String tanggalkejadian;
     private String imageUrl;
+    private String status;
     private String keterangan;
     private String lokasikejadian;
     private String imageName;
@@ -81,5 +82,13 @@ public class MedisRiwayat {
 
     public void setImageName(String imageName) {
         this.imageName = imageName;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

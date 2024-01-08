@@ -41,6 +41,7 @@ public class MedisDetailRiwayatActivity extends Activity {
         String namapelapor = getIntent().getStringExtra("namapelapor");
         String nomorpelapor = getIntent().getStringExtra("nomorpelapor");
         String lokasikejadian = getIntent().getStringExtra("lokasikejadian");
+        String status = getIntent().getStringExtra("status");
 
         String nextIdLaporan = getIntent().getStringExtra("nextIdLaporan");
         Log.d("TAG", "id: "+nextIdLaporan);
@@ -51,6 +52,7 @@ public class MedisDetailRiwayatActivity extends Activity {
         TextView namapelaporTextView = findViewById(R.id.kolomnamapelapor);
         TextView nomorpelaporTextView = findViewById(R.id.kolomnomorpelapor);
         TextView lokasikejadianTextView = findViewById(R.id.kolomlokasikejadian);
+        TextView statusTextView = findViewById(R.id.kolomstatus);
         ImageView imageView = findViewById(R.id.gambar);
 
         updateTextView(tanggalkejadianTextView, "Tanggal Kejadian: ", tanggalkejadian);
@@ -58,6 +60,7 @@ public class MedisDetailRiwayatActivity extends Activity {
         updateTextView(namapelaporTextView, "Nama Pelapor: ", namapelapor);
         updateTextView(nomorpelaporTextView, "Nomor Pelapor: ", nomorpelapor);
         updateTextView(lokasikejadianTextView, "Lokasi Kejadian: ", lokasikejadian);
+        updateTextView(statusTextView, "Status: ", status);
         Log.d(TAG, imageUrl);
         Glide.with(this)
                 .load(imageUrl)
@@ -66,21 +69,26 @@ public class MedisDetailRiwayatActivity extends Activity {
 
         btnEdit = findViewById(R.id.btnsimpan);
         btnHapus = findViewById(R.id.btnhapus);
-        btnEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MedisDetailRiwayatActivity.this, MedisUpdateData.class);
-                intent.putExtra("primaryKey", nextIdLaporan);
-                intent.putExtra("tanggalkejadian", tanggalkejadian);
-                intent.putExtra("keterangan", keterangan);
-                intent.putExtra("imageUrl", imageUrl);
-                intent.putExtra("namapelapor", namapelapor);
-                intent.putExtra("nomorpelapor", nomorpelapor);
-                intent.putExtra("lokasikejadian", lokasikejadian);
+        if ("Verified".equals(status) || "Rejected".equals(status)) {
+            btnEdit.setVisibility(View.GONE);
+        } else {
+            btnEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MedisDetailRiwayatActivity.this, MedisUpdateData.class);
+                    intent.putExtra("primaryKey", nextIdLaporan);
+                    intent.putExtra("tanggalkejadian", tanggalkejadian);
+                    intent.putExtra("keterangan", keterangan);
+                    intent.putExtra("imageUrl", imageUrl);
+                    intent.putExtra("namapelapor", namapelapor);
+                    intent.putExtra("nomorpelapor", nomorpelapor);
+                    intent.putExtra("lokasikejadian", lokasikejadian);
+                    intent.putExtra("status", status);
 
-                startActivity(intent);
-            }
-        });
+                    startActivity(intent);
+                }
+            });
+        };
 
         btnHapus.setOnClickListener(new View.OnClickListener() {
             @Override

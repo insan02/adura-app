@@ -45,6 +45,7 @@ public class MedisAdminDetailRiwayatActivity extends Activity {
         String nomorpelapor = getIntent().getStringExtra("nomorpelapor");
         String lokasikejadian = getIntent().getStringExtra("lokasikejadian");
         Log.d("TAG", "imageName: "+imageName);
+        String status = getIntent().getStringExtra("status");
         String nextIdLaporan = getIntent().getStringExtra("nextIdLaporan");
         String idUser = getIntent().getStringExtra("idUser");
         TextView tanggalkejadianTextView = findViewById(R.id.kolomtanggalkejadian);
@@ -52,7 +53,9 @@ public class MedisAdminDetailRiwayatActivity extends Activity {
         TextView namapelaporTextView = findViewById(R.id.kolomnamapelapor);
         TextView nomorpelaporTextView = findViewById(R.id.kolomnomorpelapor);
         TextView lokasikejadianTextView = findViewById(R.id.kolomlokasikejadian);
+        TextView statusTextView = findViewById(R.id.kolomstatus);
         ImageView imageView = findViewById(R.id.gambar);
+
         Log.d(TAG, "Medis: "+ nextIdLaporan);
         Log.d(TAG, "iduser: "+ idUser);
 
@@ -61,6 +64,7 @@ public class MedisAdminDetailRiwayatActivity extends Activity {
         updateTextView(namapelaporTextView, "Nama Pelapor: ", namapelapor);
         updateTextView(nomorpelaporTextView, "Nomor Pelapor: ", nomorpelapor);
         updateTextView(lokasikejadianTextView, "Lokasi Kejadian: ", lokasikejadian);
+        updateTextView(statusTextView, "Status: ", status);
         Log.d(TAG, imageUrl);
         Glide.with(this)
                 .load(imageUrl)
@@ -70,82 +74,87 @@ public class MedisAdminDetailRiwayatActivity extends Activity {
         reference = db.getReference("Laporan_medis").child(idUser).child(nextIdLaporan);
         btnterima = findViewById(R.id.btnterima);
         btntolak = findViewById(R.id.btntolak);
-        btnterima.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MedisAdminDetailRiwayatActivity.this);
-                builder.setTitle("Konfirmasi");
-                builder.setMessage("Anda yakin ingin menerima laporan ini?");
-                builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        // Mengupdate status menjadi "verified"
-                        reference.child("status").setValue("verified")
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        Toast.makeText(MedisAdminDetailRiwayatActivity.this, "Status diterima", Toast.LENGTH_SHORT).show();
+        if ("Verified".equals(status) || "Rejected".equals(status)) {
+            btnterima.setVisibility(View.GONE);
+            btntolak.setVisibility(View.GONE);
+        }else {
+            btnterima.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MedisAdminDetailRiwayatActivity.this);
+                    builder.setTitle("Konfirmasi");
+                    builder.setMessage("Anda yakin ingin menerima laporan ini?");
+                    builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            // Mengupdate status menjadi "verified"
+                            reference.child("status").setValue("Verified")
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Toast.makeText(MedisAdminDetailRiwayatActivity.this, "Status diterima", Toast.LENGTH_SHORT).show();
 
-                                        Intent intent = new Intent(MedisAdminDetailRiwayatActivity.this, MedisAdminRiwayatList.class);
-                                        startActivity(intent);
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        // Jika gagal, tampilkan pesan error
-                                        Toast.makeText(MedisAdminDetailRiwayatActivity.this, "Gagal mengupdate status: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                    }
-                });
-                builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                    }
-                });
-                builder.show();
-            }
-        });
-        btntolak.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Membuat AlertDialog konfirmasi
-                AlertDialog.Builder builder = new AlertDialog.Builder(MedisAdminDetailRiwayatActivity.this);
-                builder.setTitle("Konfirmasi");
-                builder.setMessage("Anda yakin ingin menolak laporan ini?");
-                builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        // Mengupdate status menjadi "rejected"
-                        reference.child("status").setValue("rejected")
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        // Jika berhasil, tampilkan pesan dan pindah ke activity lain
-                                        Toast.makeText(MedisAdminDetailRiwayatActivity.this, "Status ditolak", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(MedisAdminDetailRiwayatActivity.this, MedisAdminRiwayatList.class);
+                                            startActivity(intent);
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            // Jika gagal, tampilkan pesan error
+                                            Toast.makeText(MedisAdminDetailRiwayatActivity.this, "Gagal mengupdate status: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                        }
+                    });
+                    builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
+                    builder.show();
+                }
+            });
+            btntolak.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Membuat AlertDialog konfirmasi
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MedisAdminDetailRiwayatActivity.this);
+                    builder.setTitle("Konfirmasi");
+                    builder.setMessage("Anda yakin ingin menolak laporan ini?");
+                    builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            // Mengupdate status menjadi "rejected"
+                            reference.child("status").setValue("Rejected")
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            // Jika berhasil, tampilkan pesan dan pindah ke activity lain
+                                            Toast.makeText(MedisAdminDetailRiwayatActivity.this, "Status ditolak", Toast.LENGTH_SHORT).show();
 
-                                        Intent intent = new Intent(MedisAdminDetailRiwayatActivity.this, MedisAdminRiwayatList.class);
-                                        startActivity(intent);
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(MedisAdminDetailRiwayatActivity.this, "Gagal mengupdate status: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                    }
-                });
-                builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        // Tidak melakukan apa-apa jika pengguna memilih "Tidak"
-                    }
-                });
-                builder.show();
-            }
-        });
+                                            Intent intent = new Intent(MedisAdminDetailRiwayatActivity.this, MedisAdminRiwayatList.class);
+                                            startActivity(intent);
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(MedisAdminDetailRiwayatActivity.this, "Gagal mengupdate status: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                        }
+                    });
+                    builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            // Tidak melakukan apa-apa jika pengguna memilih "Tidak"
+                        }
+                    });
+                    builder.show();
+                }
+            });
+        };
 
 
     }

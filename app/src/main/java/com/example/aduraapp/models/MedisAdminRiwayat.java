@@ -6,6 +6,7 @@ public class MedisAdminRiwayat {
     private String namapelapor;
     private String nextIdLaporan;
     private String idUser;
+    private String status;
 
     private String nomorpelapor;
     private String tanggalkejadian;
@@ -87,5 +88,13 @@ public class MedisAdminRiwayat {
     public void setidUser(String idUser) {
         this.idUser = idUser;
     }
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
 
 }
