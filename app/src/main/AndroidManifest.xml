@@ -101,10 +101,16 @@
             android:name=".MedisAdminRiwayatList"
             android:exported="false" />
         <activity
+            android:name=".KebakaranAdminRiwayatList"
+            android:exported="false" />
+        <activity
             android:name=".KeamananAdminDetailRiwayatActivity"
             android:exported="false" />
         <activity
             android:name=".MedisAdminDetailRiwayatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".KebakaranAdminDetailRiwayatActivity"
             android:exported="false" />
         <activity
             android:name=".MainAdminActivity"
