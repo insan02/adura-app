@@ -20,8 +20,11 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -130,45 +133,64 @@ public class MedisDetailRiwayatActivity extends Activity {
         dialog.show();
     }
 
-    private void performDelete(String nextIdLaporan, String imageName) {
+    private void performDelete(String nextIdLaporan, String imageUrl) {
 
         String idUser = FirebaseAuth.getInstance().getUid();
 
-        String storagePath = "images/" + imageName;
         DatabaseReference deleteref = FirebaseDatabase.getInstance().getReference("Laporan_medis").child(idUser).child(nextIdLaporan);
 
-        StorageReference storageref = FirebaseStorage.getInstance().getReference().child(storagePath);
+        deleteref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Dapatkan URL gambar dari Firebase Database
+                    String imageUrl = dataSnapshot.child("imageUrl").getValue(String.class);
 
-        deleteref.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                storageref.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(MedisDetailRiwayatActivity.this, "Data dan gambar Berhasil Dihapus", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(MedisDetailRiwayatActivity.this, "Gagal menghapus gambar" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                    // Hapus data dari Firebase Database
+                    deleteref.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            // Hapus gambar dari Firebase Storage menggunakan URL
+                            deleteImageFromStorage(imageUrl);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(MedisDetailRiwayatActivity.this, "Data Gagal Dihapus: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
-        }).addOnFailureListener(new OnFailureListener() {
+
             @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(MedisDetailRiwayatActivity.this, "Data Gagal Dihapus" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MedisDetailRiwayatActivity.this, "Gagal membaca data: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     public void onBackPressed(View view) {
         super.onBackPressed();
         finish();
     }
+    private void deleteImageFromStorage(String imageUrl) {
+        // Dapatkan referensi Firebase Storage menggunakan URL gambar
+        StorageReference imageRef = FirebaseStorage.getInstance().getReferenceFromUrl(imageUrl);
 
+        // Hapus gambar dari Firebase Storage
+        imageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(MedisDetailRiwayatActivity.this, "Data dan gambar Berhasil Dihapus", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(MedisDetailRiwayatActivity.this, "Gagal menghapus gambar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     public void onButtonEditClicked(View view){
         Intent editIntent = new Intent(this,MedisUpdateData.class);
         startActivity(editIntent);
