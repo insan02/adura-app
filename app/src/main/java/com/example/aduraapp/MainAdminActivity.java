@@ -41,7 +41,7 @@ public class MainAdminActivity extends AppCompatActivity {
                 replaceFragment(new HomeAdminFragment());
             } else if (itemId == R.id.riwayat) {
                 replaceFragment(new RiwayatAdminFragment());
-            }else if (itemId == R.id.riwayat) {
+            }else if (itemId == R.id.profil) {
                 replaceFragment(new ProfilAdminFragment());
             }
             return true;

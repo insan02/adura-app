@@ -32,7 +32,7 @@
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
             android:fontFamily="sans-serif"
-            android:text="admin"
+            android:text="admin@gmail.com"
             android:textColor="#A4000000"
             android:textSize="20sp"
             android:textStyle="bold"
